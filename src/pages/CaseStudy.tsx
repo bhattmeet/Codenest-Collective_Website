@@ -44,7 +44,7 @@ const CaseStudy = () => {
     ],
     testimonials: project.testimonials || [
       {
-        quote: "Codenest Collective transformed our business operations with their innovative platform. The team's expertise and dedication exceeded our expectations at every turn.",
+        quote: "Codenest Collective Technologies transformed our business operations with their innovative platform. The team's expertise and dedication exceeded our expectations at every turn.",
         author: "John Doe",
         role: "CEO",
         initials: "JD"

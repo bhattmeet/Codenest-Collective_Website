@@ -15,9 +15,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <img src={logo} alt="Codenest Collective" className="h-8 w-8 rounded" />
+              <img src={logo} alt="Codenest Collective Technologies" className="h-8 w-8 rounded" />
               <h3 className="text-base sm:text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Codenest Collective
+                Codenest Collective Technologies
               </h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
@@ -91,7 +91,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-xs sm:text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Codenest Collective. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Codenest Collective Technologies. All rights reserved.</p>
         </div>
       </div>
     </footer>

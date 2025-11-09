@@ -11,9 +11,9 @@ const About = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16 animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">About Codenest Collective</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">About Codenest Collective Technologies</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We're a team of passionate developers, designers, and strategists committed to delivering 
+              We're a team of passionate developers, designers, and strategists committed to delivering
               exceptional software solutions that drive business success.
             </p>
           </div>
@@ -54,7 +54,7 @@ const About = () => {
             <h2 className="text-3xl font-bold mb-6">Our Story</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Codenest Collective is a modern software development company founded in 2025, built on remote collaboration and distributed expertise. We are a collective of talented developers working remotely across multiple technologies—Android, iOS, Flutter, Web, Backend, Cloud, and UI/UX—united by a commitment to delivering enterprise-grade solutions with agility and innovation.
+                Codenest Collective Technologies is a modern software development company founded in 2025, built on remote collaboration and distributed expertise. We are a collective of talented developers working remotely across multiple technologies—Android, iOS, Flutter, Web, Backend, Cloud, and UI/UX—united by a commitment to delivering enterprise-grade solutions with agility and innovation.
               </p>
               <p>
                 As a fresh start company, we combine deep technical expertise with the flexibility of remote work. Our distributed team brings diverse perspectives and focused dedication to every project, ensuring quality and reliability that clients can trust across the full software development lifecycle.
@@ -70,7 +70,7 @@ const About = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-5xl font-bold mb-4">Meet Our Team</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                The talented individuals behind Codenest Collective's success
+                The talented individuals behind Codenest Collective Technologies' success
               </p>
             </div>
 

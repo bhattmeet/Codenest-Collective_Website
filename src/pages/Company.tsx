@@ -27,7 +27,7 @@ const Company = () => {
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">Our Company</h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-              Learn more about Codenest Collective, our journey, and the people behind our success.
+              Learn more about Codenest Collective Technologies, our journey, and the people behind our success.
             </p>
           </div>
 

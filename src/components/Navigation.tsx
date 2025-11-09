@@ -22,9 +22,9 @@ const Navigation = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-20 gap-4">
           <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
-            <img src={logo} alt="Codenest Collective" className="h-8 w-8 sm:h-10 sm:w-10 rounded-lg transition-transform group-hover:scale-105" />
+            <img src={logo} alt="Codenest Collective Technologies" className="h-8 w-8 sm:h-10 sm:w-10 rounded-lg transition-transform group-hover:scale-105" />
             <span className="text-base sm:text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent whitespace-nowrap">
-              Codenest Collective
+              Codenest Collective Technologies
             </span>
           </Link>
 

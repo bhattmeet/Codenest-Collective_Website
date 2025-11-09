@@ -39,7 +39,7 @@ const Contact = () => {
         company: formData.company || 'N/A',
         phone: formData.phone || 'N/A',
         message: formData.message,
-        to_name: 'Codenest Collective', // Your company name
+        to_name: 'Codenest Collective Technologies', // Your company name
       };
 
       await emailjs.send(
