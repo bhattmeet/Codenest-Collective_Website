@@ -84,7 +84,7 @@ const CaseStudy = () => {
             <img
               src={project.caseStudyImage.replace('url(', '').replace(')', '')}
               alt={project.title}
-              className="w-full h-[400px] object-cover rounded-lg mb-12"
+              className="w-full h-[400px] object-contain bg-muted rounded-lg mb-12"
             />
           ) : (
             <div

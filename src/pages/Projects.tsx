@@ -143,7 +143,7 @@ const Projects = () => {
                   <img
                     src={project.image.replace('url(', '').replace(')', '')}
                     alt={project.title}
-                    className="h-48 w-full object-cover"
+                    className="h-48 w-full object-contain bg-muted"
                   />
                 ) : (
                   <div

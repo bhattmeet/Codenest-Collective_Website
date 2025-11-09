@@ -127,7 +127,10 @@ const Contact = () => {
                           id="name"
                           required
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+                            setFormData({ ...formData, name: value });
+                          }}
                           placeholder="John Doe"
                         />
                       </div>
@@ -138,7 +141,10 @@ const Contact = () => {
                           type="email"
                           required
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/\s/g, '');
+                            setFormData({ ...formData, email: value });
+                          }}
                           placeholder="john@company.com"
                         />
                       </div>
@@ -150,7 +156,10 @@ const Contact = () => {
                         <Input
                           id="company"
                           value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+                            setFormData({ ...formData, company: value });
+                          }}
                           placeholder="Your Company"
                         />
                       </div>
