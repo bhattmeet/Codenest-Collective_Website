@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Sparkles, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -126,50 +126,97 @@ const Projects = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      
-      <section className="pt-32 pb-20 px-6">
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-12 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl animate-blob"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+
         <div className="container mx-auto">
           <div className="text-center mb-16 animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Our Work</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Explore our portfolio of successful projects across various industries and technologies.
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 backdrop-blur-sm mb-6">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium">Our Portfolio</span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                Our Work
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Explore our portfolio of <span className="text-primary font-semibold">successful projects</span> across various industries and technologies.
             </p>
           </div>
 
+          {/* Projects Grid - Modern Design */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="border-border hover:border-primary/50 transition-all duration-300 overflow-hidden">
-                {project.image.startsWith('url(') ? (
-                  <img
-                    src={project.image.replace('url(', '').replace(')', '')}
-                    alt={project.title}
-                    className="h-48 w-full object-contain bg-muted"
-                  />
-                ) : (
-                  <div
-                    className="h-48 w-full"
-                    style={{ background: project.image }}
-                  />
-                )}
-                <CardHeader>
-                  <Badge className="w-fit mb-2" variant="secondary">{project.category}</Badge>
-                  <CardTitle>{project.title}</CardTitle>
+              <Card
+                key={index}
+                className="group relative border-primary/10 bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 overflow-hidden"
+              >
+                {/* Project Image with Overlay */}
+                <div className="relative overflow-hidden">
+                  {project.image.startsWith('url(') ? (
+                    <img
+                      src={project.image.replace('url(', '').replace(')', '')}
+                      alt={project.title}
+                      className="h-56 w-full object-contain bg-gradient-to-br from-muted/50 to-muted/30 group-hover:scale-110 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div
+                      className="h-56 w-full group-hover:scale-110 transition-transform duration-500"
+                      style={{ background: project.image }}
+                    />
+                  )}
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+
+                <CardHeader className="relative z-10">
+                  <Badge className="w-fit mb-3 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20" variant="secondary">
+                    {project.category}
+                  </Badge>
+                  <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+
+                <CardContent className="relative z-10">
+                  <p className="text-muted-foreground mb-6 leading-relaxed text-sm line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack Badges */}
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((tech, idx) => (
-                      <Badge key={idx} variant="outline">{tech}</Badge>
+                      <Badge
+                        key={idx}
+                        variant="outline"
+                        className="border-primary/20 hover:border-primary/50 hover:bg-primary/5 transition-colors duration-200"
+                      >
+                        {tech}
+                      </Badge>
                     ))}
                   </div>
-                  <Button 
-                    variant="ghost" 
-                    className="gap-2 w-full"
+
+                  {/* CTA Button */}
+                  <Button
+                    variant="ghost"
+                    className="gap-2 w-full group/btn border border-primary/20 hover:border-primary hover:bg-primary hover:text-white"
                     onClick={() => navigate("/case-study", { state: { project } })}
                   >
-                    View Case Study <ExternalLink size={16} />
+                    View Case Study
+                    <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform duration-300" />
                   </Button>
                 </CardContent>
+
+                {/* Bottom Gradient Border */}
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-500"></div>
               </Card>
             ))}
           </div>

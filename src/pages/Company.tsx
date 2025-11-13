@@ -1,4 +1,4 @@
-import { Users, TrendingUp, Award, Globe } from "lucide-react";
+import { Users, TrendingUp, Award, Globe, Lightbulb, HeartHandshake, Scale, GraduationCap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -62,34 +62,79 @@ const Company = () => {
           </div>
           */}
 
-          {/* Company Culture */}
-          <div className="bg-muted/30 rounded-lg p-6 sm:p-8 md:p-12">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Our Culture</h2>
-            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Innovation First</h3>
-                <p className="text-muted-foreground">
-                  We encourage experimentation and creative problem-solving, staying at the forefront of technology trends.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Collaborative Environment</h3>
-                <p className="text-muted-foreground">
-                  Our open and inclusive culture promotes teamwork, knowledge sharing, and mutual respect.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Work-Life Balance</h3>
-                <p className="text-muted-foreground">
-                  We believe in flexible work arrangements and supporting our team's well-being and personal growth.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Continuous Learning</h3>
-                <p className="text-muted-foreground">
-                  We invest in our team's development through training, conferences, and certification programs.
-                </p>
-              </div>
+          {/* Company Culture - Card Layout like Careers */}
+          <div className="mb-12 sm:mb-16">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Our Culture</h2>
+              <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+                We foster an environment that values innovation, collaboration, and continuous growth.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <Lightbulb className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Innovation First</h3>
+                      <p className="text-sm text-muted-foreground">
+                        We encourage experimentation and creative problem-solving, staying at the forefront of technology trends.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <HeartHandshake className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Collaborative Environment</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Our open and inclusive culture promotes teamwork, knowledge sharing, and mutual respect.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <Scale className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Work-Life Balance</h3>
+                      <p className="text-sm text-muted-foreground">
+                        We believe in flexible work arrangements and supporting our team's well-being and personal growth.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <GraduationCap className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Continuous Learning</h3>
+                      <p className="text-sm text-muted-foreground">
+                        We invest in our team's development through training, conferences, and certification programs.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

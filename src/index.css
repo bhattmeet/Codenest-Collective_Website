@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    --primary: 210 100% 45%;
+    --primary: 222 95% 64%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 215 20% 95%;
@@ -26,7 +26,7 @@ All colors MUST be HSL.
     --muted: 215 20% 97%;
     --muted-foreground: 215 15% 45%;
 
-    --accent: 195 100% 45%;
+    --accent: 222 95% 64%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,7 +34,7 @@ All colors MUST be HSL.
 
     --border: 215 15% 92%;
     --input: 215 20% 90%;
-    --ring: 210 100% 45%;
+    --ring: 222 95% 64%;
 
     --radius: 0.875rem;
 
@@ -65,7 +65,7 @@ All colors MUST be HSL.
     --popover: 215 28% 11%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 210 100% 50%;
+    --primary: 222 95% 64%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 215 25% 16%;
@@ -74,7 +74,7 @@ All colors MUST be HSL.
     --muted: 215 25% 16%;
     --muted-foreground: 215 15% 65%;
 
-    --accent: 195 100% 48%;
+    --accent: 222 95% 64%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
@@ -82,15 +82,15 @@ All colors MUST be HSL.
 
     --border: 215 25% 22%;
     --input: 215 25% 22%;
-    --ring: 210 100% 50%;
+    --ring: 222 95% 64%;
     --sidebar-background: 215 30% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 210 100% 55%;
+    --sidebar-primary: 222 95% 64%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 215 25% 15%;
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 215 25% 20%;
-    --sidebar-ring: 210 100% 55%;
+    --sidebar-ring: 222 95% 64%;
   }
 }
 
@@ -112,7 +112,7 @@ All colors MUST be HSL.
   .animate-fade-in {
     animation: fadeIn 0.6s ease-in;
   }
-  
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -122,5 +122,64 @@ All colors MUST be HSL.
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* 2025 Modern Animations */
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Glassmorphism Utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
