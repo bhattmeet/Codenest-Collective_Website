@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/codenest-logo.jpeg";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,8 +29,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20 gap-4">
           <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-20 rounded-lg blur-md group-hover:opacity-40 transition-opacity duration-300"></div>
-              <img src={logo} alt="Codenest Collective Technologies" className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-lg transition-transform group-hover:scale-110 duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-20 rounded-full blur-md group-hover:opacity-40 transition-opacity duration-300"></div>
+              <img src="/codenest-logo.jpeg" alt="Codenest Collective Technologies" className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover transition-transform group-hover:scale-110 duration-300" />
             </div>
             <span className="text-base sm:text-xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent whitespace-nowrap animate-gradient bg-[length:200%_auto]">
               Codenest Collective Technologies
@@ -39,7 +38,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -67,7 +66,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden flex-shrink-0 p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
+            className="md:hidden flex-shrink-0 p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -77,7 +76,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden py-4 border-t border-primary/10 backdrop-blur-sm">
+          <div className="md:hidden py-4 border-t border-primary/10 backdrop-blur-sm">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
