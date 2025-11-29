@@ -23,8 +23,8 @@ const Footer = () => {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3 mb-4 group">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-20 rounded-lg blur-md group-hover:opacity-40 transition-opacity duration-300"></div>
-                <img src={logo} alt="Codenest Collective Technologies" className="relative h-10 w-10 rounded-lg" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-20 rounded-full blur-md group-hover:opacity-40 transition-opacity duration-300"></div>
+                <img src={logo} alt="Codenest Collective Technologies" className="relative h-10 w-10 rounded-full object-cover" />
               </div>
               <h3 className="text-base sm:text-lg font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
                 Codenest Collective Technologies
