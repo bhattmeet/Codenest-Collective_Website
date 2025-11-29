@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "/public/codenest-logo.jpeg";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ const Navigation = () => {
           <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-20 rounded-full blur-md group-hover:opacity-40 transition-opacity duration-300"></div>
-              <img src="/codenest-logo.jpeg" alt="Codenest Collective Technologies" className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover transition-transform group-hover:scale-110 duration-300" />
+              <img src={logo} alt="Codenest Collective Technologies" className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover transition-transform group-hover:scale-110 duration-300" />
             </div>
             <span className="text-base sm:text-xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent whitespace-nowrap animate-gradient bg-[length:200%_auto]">
               Codenest Collective Technologies
