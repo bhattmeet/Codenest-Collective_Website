@@ -33,7 +33,7 @@ User-agent: LinkedInBot
 Allow: /
 
 # Sitemap location
-Sitemap: https://codenestcollective.net/sitemap.xml
+Sitemap: https://www.codenestcollective.net/sitemap.xml
 
 # Crawl delay (optional, helps prevent server overload)
 Crawl-delay: 1

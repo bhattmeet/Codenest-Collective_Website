@@ -2,6 +2,18 @@
 
 This guide documents all SEO improvements implemented for codenestcollective.net and provides instructions for Google Search Console setup and ongoing SEO maintenance.
 
+## 🌐 Domain Configuration
+
+**Current Domain:** `https://www.codenestcollective.net` (with www)
+
+**Important:** All URLs in the codebase use `www.codenestcollective.net` because that's the currently working domain. The sitemap will be accessible at:
+- ✅ **Working:** https://www.codenestcollective.net/sitemap.xml
+- ✅ **Working:** https://www.codenestcollective.net/robots.txt
+
+**Optional Future Improvement:** You can configure your DNS/server to redirect non-www to www (or vice versa) for consistency. See the "Domain Configuration Tips" section at the end of this guide.
+
+---
+
 ## ✅ Completed SEO Implementations
 
 ### 1. Dynamic Meta Tags (react-helmet-async)
@@ -29,14 +41,14 @@ This guide documents all SEO improvements implemented for codenestcollective.net
 
 **Current Clean URLs:**
 ```
-https://codenestcollective.net/
-https://codenestcollective.net/about
-https://codenestcollective.net/services
-https://codenestcollective.net/projects
-https://codenestcollective.net/case-study
-https://codenestcollective.net/company
-https://codenestcollective.net/careers
-https://codenestcollective.net/contact
+https://www.codenestcollective.net/
+https://www.codenestcollective.net/about
+https://www.codenestcollective.net/services
+https://www.codenestcollective.net/projects
+https://www.codenestcollective.net/case-study
+https://www.codenestcollective.net/company
+https://www.codenestcollective.net/careers
+https://www.codenestcollective.net/contact
 ```
 
 **What was done:**
@@ -46,7 +58,7 @@ https://codenestcollective.net/contact
 
 ### 3. XML Sitemap
 
-**Location:** `public/sitemap.xml` (deployed to `https://codenestcollective.net/sitemap.xml`)
+**Location:** `public/sitemap.xml` (deployed to `https://www.codenestcollective.net/sitemap.xml`)
 
 **What was done:**
 - Updated all URLs from `.com` to `.net` domain
@@ -65,7 +77,7 @@ https://codenestcollective.net/contact
 
 ### 4. robots.txt
 
-**Location:** `public/robots.txt` (deployed to `https://codenestcollective.net/robots.txt`)
+**Location:** `public/robots.txt` (deployed to `https://www.codenestcollective.net/robots.txt`)
 
 **What was done:**
 - Allows all search engine crawlers to access all pages
@@ -78,7 +90,7 @@ https://codenestcollective.net/contact
 User-agent: *
 Allow: /
 
-Sitemap: https://codenestcollective.net/sitemap.xml
+Sitemap: https://www.codenestcollective.net/sitemap.xml
 Crawl-delay: 1
 ```
 
@@ -90,7 +102,7 @@ Crawl-delay: 1
 - **Organization Schema:** Provides Google with company information
   - Name: Codenest Collective Technologies
   - Logo: codenest-logo.jpeg
-  - URL: https://codenestcollective.net
+  - URL: https://www.codenestcollective.net
   - Social media profiles (sameAs)
   - Contact information
   - Service types
@@ -109,8 +121,8 @@ Crawl-delay: 1
 ### 6. Domain Consistency
 
 **What was done:**
-- Updated all references from `www.codenestcollective.net` to `codenestcollective.net`
-- Updated all references from `codenestcollective.com` to `codenestcollective.net`
+- Updated all references to use `www.codenestcollective.net` (the currently working domain)
+- Changed all old `.com` references to `.net`
 - Ensured consistency across:
   - index.html meta tags
   - Open Graph tags
@@ -132,8 +144,9 @@ Crawl-delay: 1
 
 2. **Add Property**
    - Click "Add Property" button
-   - Choose "Domain" property type
-   - Enter: `codenestcollective.net`
+   - Choose "Domain" property type (recommended) OR "URL prefix" type
+   - If using Domain: Enter `codenestcollective.net` (covers both www and non-www)
+   - If using URL prefix: Enter `https://www.codenestcollective.net`
    - Click "Continue"
 
 3. **Verify Ownership via DNS**
@@ -157,9 +170,9 @@ Crawl-delay: 1
 ### Step 2: Submit Sitemap
 
 1. **In Google Search Console:**
-   - Select your verified property (codenestcollective.net)
+   - Select your verified property
    - Go to "Sitemaps" in the left sidebar
-   - Enter sitemap URL: `https://codenestcollective.net/sitemap.xml`
+   - Enter sitemap URL: `https://www.codenestcollective.net/sitemap.xml`
    - Click "Submit"
 
 2. **Verify Sitemap Status:**
@@ -173,13 +186,13 @@ After sitemap submission, you can request immediate indexing:
 
 1. **URL Inspection Tool:**
    - In Search Console, go to "URL Inspection"
-   - Enter: `https://codenestcollective.net`
+   - Enter: `https://www.codenestcollective.net`
    - Click "Request Indexing"
    - Repeat for important pages:
-     - /about
-     - /services
-     - /projects
-     - /contact
+     - https://www.codenestcollective.net/about
+     - https://www.codenestcollective.net/services
+     - https://www.codenestcollective.net/projects
+     - https://www.codenestcollective.net/contact
 
 2. **Wait for Crawling:**
    - Initial crawl: 1-7 days
@@ -248,12 +261,13 @@ Before deploying to production:
 - [x] Check that structured data is valid
 - [x] Confirm correct domain (codenestcollective.net) throughout
 - [ ] Deploy to DigitalOcean/production server
-- [ ] Verify sitemap is accessible: https://codenestcollective.net/sitemap.xml
-- [ ] Verify robots.txt is accessible: https://codenestcollective.net/robots.txt
+- [ ] Verify sitemap is accessible: https://www.codenestcollective.net/sitemap.xml
+- [ ] Verify robots.txt is accessible: https://www.codenestcollective.net/robots.txt
 - [ ] Test all pages load correctly with proper meta tags
 - [ ] Set up Google Search Console
 - [ ] Submit sitemap to Search Console
 - [ ] Request indexing for main pages
+- [ ] (Optional) Configure domain redirect (www vs non-www)
 
 ---
 
@@ -409,6 +423,73 @@ Before deploying to production:
 
 ---
 
-**Document Version:** 1.0
+---
+
+## 🔧 Domain Configuration Tips (Optional)
+
+### Understanding www vs non-www
+
+Your site currently works with `www.codenestcollective.net`. For best SEO practices, you should choose ONE primary version and redirect the other to it.
+
+**Current Status:**
+- ✅ Works: https://www.codenestcollective.net
+- ❌ May not work: https://codenestcollective.net (without www)
+
+### Option 1: Redirect non-www to www (Recommended - Keep Current Setup)
+
+This maintains your current setup. Configure your DNS/server to redirect:
+- `codenestcollective.net` → `www.codenestcollective.net`
+
+**How to configure (DigitalOcean/Nginx):**
+
+If using Nginx, add this to your server configuration:
+
+```nginx
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name codenestcollective.net;
+
+    # Redirect to www
+    return 301 https://www.codenestcollective.net$request_uri;
+}
+
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name www.codenestcollective.net;
+
+    # Your normal configuration here
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+### Option 2: Use non-www as primary (Requires Code Changes)
+
+If you prefer `codenestcollective.net` (without www):
+
+1. Update DNS to point non-www version to your server
+2. Find and replace in codebase: `www.codenestcollective.net` → `codenestcollective.net`
+3. Configure server to redirect www to non-www
+4. Rebuild and redeploy
+
+### Verify Your Domain Setup
+
+After deployment, test both versions:
+```bash
+curl -I https://www.codenestcollective.net
+curl -I https://codenestcollective.net
+```
+
+Both should return HTTP 200 (OK) or one should return HTTP 301 (Redirect) to the other.
+
+---
+
+**Document Version:** 1.1
 **Last Updated:** November 30, 2025
 **Updated By:** Claude Code

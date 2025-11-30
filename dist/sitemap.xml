@@ -6,7 +6,7 @@
 
   <!-- Home Page -->
   <url>
-    <loc>https://codenestcollective.net/</loc>
+    <loc>https://www.codenestcollective.net/</loc>
     <lastmod>2025-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- About Page -->
   <url>
-    <loc>https://codenestcollective.net/about</loc>
+    <loc>https://www.codenestcollective.net/about</loc>
     <lastmod>2025-11-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -22,7 +22,7 @@
 
   <!-- Services Page -->
   <url>
-    <loc>https://codenestcollective.net/services</loc>
+    <loc>https://www.codenestcollective.net/services</loc>
     <lastmod>2025-11-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -30,7 +30,7 @@
 
   <!-- Projects Page -->
   <url>
-    <loc>https://codenestcollective.net/projects</loc>
+    <loc>https://www.codenestcollective.net/projects</loc>
     <lastmod>2025-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -38,7 +38,7 @@
 
   <!-- Case Study Page -->
   <url>
-    <loc>https://codenestcollective.net/case-study</loc>
+    <loc>https://www.codenestcollective.net/case-study</loc>
     <lastmod>2025-11-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -46,7 +46,7 @@
 
   <!-- Company Page -->
   <url>
-    <loc>https://codenestcollective.net/company</loc>
+    <loc>https://www.codenestcollective.net/company</loc>
     <lastmod>2025-11-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -54,7 +54,7 @@
 
   <!-- Careers Page -->
   <url>
-    <loc>https://codenestcollective.net/careers</loc>
+    <loc>https://www.codenestcollective.net/careers</loc>
     <lastmod>2025-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -62,7 +62,7 @@
 
   <!-- Contact Page -->
   <url>
-    <loc>https://codenestcollective.net/contact</loc>
+    <loc>https://www.codenestcollective.net/contact</loc>
     <lastmod>2025-11-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
