@@ -2,10 +2,17 @@ import { Target, Eye, Award, Sparkles, Users, Globe, Heart } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const About = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="About Us - Leading Software Development Company"
+        description="Learn about Codenest Collective Technologies, our mission, vision, and values. We're a passionate team of developers and strategists committed to delivering exceptional software solutions that drive business success."
+        path="/about"
+        keywords="about codenest, software development team, company mission, company values, tech team"
+      />
       <Navigation />
 
       {/* Hero Section */}

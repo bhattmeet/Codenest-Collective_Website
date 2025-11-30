@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import spaceExplorationProjectImg from "@/assets/space_xploration_project.png";
 import spaceExplorationCaseStudyImg from "@/assets/space_xploration_casestudy.png";
 import touchBridgeProjectImg from "@/assets/touch_bridge_project.png";
@@ -125,6 +126,12 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Our Projects - Portfolio & Case Studies"
+        description="Explore our portfolio of successful software projects including mobile apps, web applications, and enterprise solutions. View detailed case studies showcasing our expertise in custom development."
+        path="/projects"
+        keywords="software portfolio, case studies, mobile apps, web applications, project showcase, development projects"
+      />
       <Navigation />
 
       {/* Hero Section */}

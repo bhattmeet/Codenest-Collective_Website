@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import heroImage from "@/assets/hero-bg.jpg";
 
 const Home = () => {
@@ -32,6 +33,12 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Codenest Collective Technologies - Build The Future"
+        description="Codenest Collective Technologies creates innovative software solutions that transform businesses. Expert team delivering custom development, web applications, mobile apps, and enterprise software with agile methodology."
+        path="/"
+        keywords="software development, custom software, web development, mobile app development, enterprise software, Codenest Collective Technologies"
+      />
       <Navigation />
 
       {/* Hero Section - Modern 2025 Design */}

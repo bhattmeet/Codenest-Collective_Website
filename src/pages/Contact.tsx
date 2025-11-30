@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration
@@ -73,6 +74,12 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Contact Us - Get In Touch"
+        description="Contact Codenest Collective Technologies for software development inquiries. Reach out to discuss your project, get a quote, or learn more about our services. We're here to help transform your ideas into reality."
+        path="/contact"
+        keywords="contact software company, get a quote, software development inquiry, reach out, contact us"
+      />
       <Navigation />
       
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6">

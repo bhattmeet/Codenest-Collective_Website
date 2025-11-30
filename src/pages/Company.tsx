@@ -2,6 +2,7 @@ import { Users, TrendingUp, Award, Globe, Lightbulb, HeartHandshake, Scale, Grad
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Company = () => {
   const stats = [
@@ -20,6 +21,12 @@ const Company = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Our Company - Leadership & Values"
+        description="Discover Codenest Collective Technologies' leadership team, company culture, and core values. Learn about our commitment to innovation, excellence, and delivering exceptional software solutions."
+        path="/company"
+        keywords="company information, leadership team, company culture, core values, company overview"
+      />
       <Navigation />
       
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6">

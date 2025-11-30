@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import JobApplicationModal from "@/components/JobApplicationModal";
 
 const Careers = () => {
@@ -77,6 +78,12 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Careers - Join Our Team"
+        description="Explore career opportunities at Codenest Collective Technologies. Join our passionate team of developers, designers, and innovators. We offer competitive benefits, remote work options, and exciting projects."
+        path="/careers"
+        keywords="software development jobs, tech careers, developer jobs, remote work, join our team, career opportunities"
+      />
       <Navigation />
       
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6">

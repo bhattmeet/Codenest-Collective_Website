@@ -2,6 +2,7 @@ import { Smartphone, Globe, Cloud, Database, Cpu, Lock, Sparkles, Palette, Code2
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Services = () => {
   const services = [
@@ -93,6 +94,12 @@ const Services = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Our Services - Custom Software & Web Development Solutions"
+        description="Comprehensive software development services including web development, mobile apps, cloud solutions, AI automation, data analytics, and cybersecurity. Expert team delivering custom solutions for your business needs."
+        path="/services"
+        keywords="web development, mobile app development, cloud solutions, AI automation, data analytics, cybersecurity, custom software services"
+      />
       <Navigation />
 
       {/* Hero Section */}
