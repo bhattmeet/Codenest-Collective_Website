@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2, Clock, MessageSquare } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ const Contact = () => {
     company: "",
     phone: "",
     message: "",
+    budget: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,6 +41,7 @@ const Contact = () => {
         from_email: formData.email,
         company: formData.company || 'N/A',
         phone: formData.phone || 'N/A',
+        budget: formData.budget || 'Not specified',
         message: formData.message,
         to_name: 'Codenest Collective Technologies', // Your company name
       };
@@ -57,14 +60,14 @@ const Contact = () => {
       });
 
       // Reset form
-      setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+      setFormData({ name: "", email: "", company: "", phone: "", message: "", budget: "" });
     } catch (error) {
       console.error('EmailJS Error:', error);
 
       // Error handling
       toast({
         title: "Failed to Send Message",
-        description: "Please try again or contact us directly at sales@codenestcollective.net",
+        description: "Please try again or contact us directly at meet.bhatt@codenestcollective.net",
         variant: "destructive",
       });
     } finally {
@@ -73,144 +76,190 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <SEO
         title="Contact Us - Get In Touch"
-        description="Contact Codenest Collective Technologies for software development inquiries. Reach out to discuss your project, get a quote, or learn more about our services. We're here to help transform your ideas into reality."
+        description="Contact CodeNest Collective Technologies for software development inquiries. We respond within 24 hours. Reach out to discuss your project and get a free consultation."
         path="/contact"
-        keywords="contact software company, get a quote, software development inquiry, reach out, contact us"
+        keywords="contact software company, get a quote, software development inquiry, reach out, contact us, free consultation"
       />
       <Navigation />
-      
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">Get In Touch</h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-              Have a project in mind? Let's discuss how we can help bring your vision to life.
-            </p>
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
+        </div>
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary">
+            Get In Touch
+          </h1>
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Ready to start your project? Fill out the form below and we'll respond within 24 hours
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Info Cards */}
+      <section className="py-12 px-6 bg-white border-y border-primary/10">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-primary/20 text-center">
+              <CardContent className="pt-8 pb-6">
+                <div className="inline-flex p-4 rounded-full bg-primary/10 mb-4">
+                  <Mail className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2 text-primary">Email Us</h3>
+                <p className="text-sm text-muted-foreground mb-1">meet.bhatt@codenestcollective.net</p>
+                <p className="text-sm text-muted-foreground">het.patel@codenestcollective.net</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20 text-center">
+              <CardContent className="pt-8 pb-6">
+                <div className="inline-flex p-4 rounded-full bg-primary/10 mb-4">
+                  <Clock className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2 text-primary">24-Hour Response</h3>
+                <p className="text-sm text-muted-foreground mb-1">We respond to all inquiries</p>
+                <p className="text-sm text-muted-foreground">within 24 hours</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20 text-center">
+              <CardContent className="pt-8 pb-6">
+                <div className="inline-flex p-4 rounded-full bg-primary/10 mb-4">
+                  <MapPin className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2 text-primary">Location</h3>
+                <p className="text-sm text-muted-foreground mb-1">Ahmedabad, Gujarat</p>
+                <p className="text-sm text-muted-foreground">India</p>
+              </CardContent>
+            </Card>
           </div>
+        </div>
+      </section>
 
-          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-            {/* Contact Info */}
-            <div className="space-y-6">
-              <Card className="border-border">
-                <CardContent className="pt-6">
-                  <Mail className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="font-semibold mb-2">Email Us</h3>
-                  <p className="text-sm text-muted-foreground">sales@codenestcollective.net</p>
-                  <p className="text-sm text-muted-foreground">meet@codenestcollective.net</p>
-                </CardContent>
-              </Card>
+      {/* Contact Form Section */}
+      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
+        <div className="container mx-auto max-w-3xl">
+          <Card className="border-primary/20 shadow-lg">
+            <CardContent className="p-8 md:p-12">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="name" className="text-base font-medium">Name *</Label>
+                    <Input
+                      id="name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+                        setFormData({ ...formData, name: value });
+                      }}
+                      placeholder="Your name"
+                      className="mt-2 border-gray-300 focus:border-primary focus:ring-primary/20"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="text-base font-medium">Email *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\s/g, '');
+                        setFormData({ ...formData, email: value });
+                      }}
+                      placeholder="your@email.com"
+                      className="mt-2 border-gray-300 focus:border-primary focus:ring-primary/20"
+                    />
+                  </div>
+                </div>
 
-              <Card className="border-border">
-                <CardContent className="pt-6">
-                  <Phone className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="font-semibold mb-2">Call Us</h3>
-                  <p className="text-sm text-muted-foreground">+91 8735940200</p>
-                  <p className="text-sm text-muted-foreground">Mon-Fri, 10AM-7PM IST</p>
-                </CardContent>
-              </Card>
+                <div>
+                  <Label htmlFor="company" className="text-base font-medium">Company (Optional)</Label>
+                  <Input
+                    id="company"
+                    value={formData.company}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+                      setFormData({ ...formData, company: value });
+                    }}
+                    placeholder="Your company name"
+                    className="mt-2 border-gray-300 focus:border-primary focus:ring-primary/20"
+                  />
+                </div>
 
-              <Card className="border-border">
-                <CardContent className="pt-6">
-                  <MapPin className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="font-semibold mb-2">Visit Us</h3>
-                  {/*<p className="text-sm text-muted-foreground">123 Tech Street</p>*/}
-                  <p className="text-sm text-muted-foreground">Ahmedabad, IN</p>
-                </CardContent>
-              </Card>
-            </div>
+                <div>
+                  <Label htmlFor="message" className="text-base font-medium">Project Description *</Label>
+                  <Textarea
+                    id="message"
+                    rows={5}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Tell us about your project..."
+                    className="mt-2 border-gray-300 focus:border-primary focus:ring-primary/20 resize-none"
+                  />
+                </div>
 
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <Card className="border-border">
-                <CardContent className="pt-6">
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          required
-                          value={formData.name}
-                          onChange={(e) => {
-                            const value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
-                            setFormData({ ...formData, name: value });
-                          }}
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Email *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => {
-                            const value = e.target.value.replace(/\s/g, '');
-                            setFormData({ ...formData, email: value });
-                          }}
-                          placeholder="john@company.com"
-                        />
-                      </div>
-                    </div>
+                <div>
+                  <Label htmlFor="budget" className="text-base font-medium">Budget (Optional)</Label>
+                  <Select value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
+                    <SelectTrigger className="mt-2 border-gray-300 focus:border-primary focus:ring-primary/20">
+                      <SelectValue placeholder="Select budget range" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
+                      <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
+                      <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
+                      <SelectItem value="50k+">$50,000+</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="company">Company</Label>
-                        <Input
-                          id="company"
-                          value={formData.company}
-                          onChange={(e) => {
-                            const value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
-                            setFormData({ ...formData, company: value });
-                          }}
-                          placeholder="Your Company"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="+1 (555) 000-0000"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        rows={6}
-                        required
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Tell us about your project..."
-                      />
-                    </div>
-
-                    <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 size={16} className="animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send Message <Send size={16} />
-                        </>
-                      )}
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="flex-1 gap-2 bg-primary hover:bg-primary/90"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 size={20} className="animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send size={20} />
+                      </>
+                    )}
+                  </Button>
+                  <a
+                    href="https://wa.me/918735940200?text=Hi,%20I'd%20like%20to%20discuss%20a%20software%20project"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1"
+                  >
+                    <Button
+                      type="button"
+                      size="lg"
+                      variant="outline"
+                      className="w-full gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white"
+                    >
+                      <MessageSquare size={20} />
+                      Chat on WhatsApp
                     </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+                  </a>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </section>
 

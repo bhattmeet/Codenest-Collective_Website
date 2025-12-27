@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { MapPin, Clock, DollarSign, Heart, Globe, BookOpen, Zap, Users, Trophy, Briefcase, Bell } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
+import { MapPin, Clock, DollarSign, Heart, Globe, BookOpen, Zap, Users, Trophy, Briefcase, Bell, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -85,9 +85,13 @@ const Careers = () => {
         keywords="software development jobs, tech careers, developer jobs, remote work, join our team, career opportunities"
       />
       <Navigation />
-      
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6">
-        <div className="container mx-auto">
+
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
+        </div>
+        <div className="container mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">Join Our Team</h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
@@ -319,8 +323,33 @@ const Careers = () => {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-16 md:py-20 px-6 bg-primary text-white">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            Don't See Your Role?
+          </h2>
+          <p className="text-lg md:text-xl mb-8 opacity-90">
+            We're always looking for talented people. Send us your resume!
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/contact">
+              <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90 px-6 md:px-8 py-4 md:py-6">
+                Get in Touch
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
+            <Link to="/about">
+              <Button size="lg" className="gap-2 border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#5088FA] px-6 md:px-8 py-4 md:py-6">
+                Learn About Us
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Footer />
-      
+
       <JobApplicationModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

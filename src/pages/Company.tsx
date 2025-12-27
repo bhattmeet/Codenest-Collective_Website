@@ -1,5 +1,7 @@
-import { Users, TrendingUp, Award, Globe, Lightbulb, HeartHandshake, Scale, GraduationCap } from "lucide-react";
+import { Users, TrendingUp, Award, Globe, Lightbulb, HeartHandshake, Scale, GraduationCap, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -28,9 +30,13 @@ const Company = () => {
         keywords="company information, leadership team, company culture, core values, company overview"
       />
       <Navigation />
-      
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6">
-        <div className="container mx-auto">
+
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
+        </div>
+        <div className="container mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">Our Company</h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
@@ -143,6 +149,31 @@ const Company = () => {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-20 px-6 bg-primary text-white">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            Let's Build the Future Together
+          </h2>
+          <p className="text-lg md:text-xl mb-8 opacity-90">
+            Interested in working with us or joining our team?
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/careers">
+              <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90 px-6 md:px-8 py-4 md:py-6">
+                Join Our Team
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button size="lg" className="gap-2 border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#5088FA] px-6 md:px-8 py-4 md:py-6">
+                Contact Us
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

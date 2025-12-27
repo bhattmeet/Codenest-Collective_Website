@@ -1,33 +1,73 @@
-import { ArrowRight, Code, Zap, Shield, Users, Sparkles, Rocket } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight, Code, Smartphone, Palette, Server, CheckCircle, MessageSquare } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import heroImage from "@/assets/hero-bg.jpg";
+import TechStack from "@/components/TechStack";
+import spaceExplorationImg from "@/assets/space_xploration_project.png";
+import touchBridgeImg from "@/assets/touch_bridge_project.png";
+import dishDiscoverImg from "@/assets/dish_discover_project.png";
+import heroBg from "@/assets/hero-bg-new.jpg";
 
 const Home = () => {
-  const features = [
+  const navigate = useNavigate();
+
+  const services = [
     {
       icon: Code,
-      title: "Custom Development",
-      description: "Tailored software solutions built to match your unique business needs.",
+      title: "Web Development",
+      description: "Responsive, scalable web applications built with modern frameworks and best practices.",
     },
     {
-      icon: Zap,
-      title: "Fast Delivery",
-      description: "Agile methodology ensures rapid development without compromising quality.",
+      icon: Smartphone,
+      title: "Mobile Apps",
+      description: "Native iOS & Android apps plus cross-platform Flutter solutions for maximum reach.",
     },
     {
-      icon: Shield,
-      title: "Enterprise Security",
-      description: "Bank-level security measures to protect your data and applications.",
+      icon: Palette,
+      title: "UI/UX Design",
+      description: "User-centered design that combines aesthetics with intuitive functionality.",
     },
     {
-      icon: Users,
-      title: "Expert Team",
-      description: "Experienced professionals dedicated to your project's success.",
+      icon: Server,
+      title: "Backend & APIs",
+      description: "Robust, secure backend systems and RESTful APIs to power your applications.",
+    },
+  ];
+
+  const whyUs = [
+    { title: "On-time delivery", description: "We respect deadlines and deliver quality on schedule" },
+    { title: "Clean code", description: "Maintainable, scalable code following industry standards" },
+    { title: "Transparent communication", description: "Regular updates and clear project visibility" },
+    { title: "Post-launch support", description: "Ongoing maintenance and technical assistance" },
+  ];
+
+  const featuredProjects = [
+    {
+      title: "Space Exploration",
+      category: "Mobile Apps",
+      industry: "Education",
+      description: "Educational Android app for space exploration",
+      tech: ["Android", "Jetpack Compose", "Firebase"],
+      image: spaceExplorationImg
+    },
+    {
+      title: "TouchBridge - NFC",
+      category: "Mobile Apps",
+      industry: "Healthcare",
+      description: "Cross-platform NFC tag reading and writing application",
+      tech: ["Flutter", "Android", "iOS"],
+      image: touchBridgeImg
+    },
+    {
+      title: "Dish Discover - Recipe App",
+      category: "Fullstack",
+      industry: "SaaS",
+      description: "Recipe management platform with Flutter frontend and Node.js backend",
+      tech: ["Flutter", "Node.js", "GetX"],
+      image: dishDiscoverImg
     },
   ];
 
@@ -41,154 +81,72 @@ const Home = () => {
       />
       <Navigation />
 
-      {/* Hero Section - Modern 2025 Design */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-background">
-        {/* Animated Background Gradient */}
-        <div className="absolute inset-0 -z-10 bg-background">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10"></div>
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-accent/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-          <img
-            src={heroImage}
-            alt="Modern workspace"
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.02]"
-          />
-        </div>
+      {/* Hero Section - Professional Background Image */}
+      <section
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Dark Blue Overlay - using #5088FA color family */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1929]/80 via-[#1a2f4a]/75 to-[#0d1b2a]/80"></div>
 
-        <div className="container mx-auto px-6 text-center animate-fade-in py-12">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 backdrop-blur-sm mb-6">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">Welcome to the Future of Development</span>
-          </div>
-
-          {/* Main Heading - Fixed Descender Clipping Issue */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.2] pb-4">
-            <span className="block mb-2 pb-1">
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                Transform Ideas Into
-              </span>
-            </span>
-            <span className="block pb-2 bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-              Digital Reality
-            </span>
+        <div className="container mx-auto px-6 text-center animate-fade-in relative z-10">
+          {/* Main Heading */}
+          <h1 className="hero-title font-bold mb-6 leading-[1.1] pb-4 text-white">
+            Custom Web & Mobile Apps<br />for Startups & Businesses
           </h1>
 
-          {/* Subtitle - More Descriptive */}
-          <div className="max-w-3xl mx-auto mb-8">
-            <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
-              We build <span className="text-primary font-semibold">innovative software solutions</span> that empower businesses to thrive in the digital age. From web and mobile apps to cloud infrastructure and AI integration.
+          {/* Subtitle */}
+          <div className="max-w-3xl mx-auto mb-10">
+            <p className="text-base md:text-lg text-white/95 leading-relaxed">
+              We design, build, and scale digital products that drive results
             </p>
           </div>
 
-          {/* CTA Buttons with Modern Styling */}
+          {/* CTA Buttons with enhanced shadows */}
           <div className="flex flex-wrap gap-4 justify-center mb-12">
             <Link to="/contact">
-              <Button size="lg" className="gap-2 text-base px-8 py-6 rounded-full hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/50">
-                <Rocket className="w-5 h-5" />
-                Start Your Project
-                <ArrowRight size={20} />
+              <Button size="lg" className="gap-2 px-6 md:px-8 py-4 md:py-6 bg-[#5088FA] hover:bg-[#4078EA] text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                Book Free Consultation
+                <ArrowRight size={18} />
               </Button>
             </Link>
             <Link to="/projects">
-              <Button size="lg" variant="outline" className="gap-2 text-base px-8 py-6 rounded-full hover:scale-105 transition-transform duration-300 backdrop-blur-sm border-2 hover:border-primary hover:bg-primary hover:text-white">
-                View Our Work
-                <ArrowRight size={20} />
+              <Button size="lg" className="gap-2 px-6 md:px-8 py-4 md:py-6 border-2 border-white bg-white text-[#5088FA] hover:bg-transparent hover:text-white hover:border-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                See Our Work
+                <ArrowRight size={18} />
               </Button>
             </Link>
           </div>
 
-          {/* Trust Indicators - Below CTA */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mb-12 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <span>Available for new projects</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-primary" />
-              <span>Enterprise-grade security</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-accent" />
-              <span>Fast delivery</span>
-            </div>
-          </div>
-
-          {/* Stats Section with Glassmorphism - More Compact */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {[
-              { label: "Projects Delivered", value: "50+", icon: Code },
-              { label: "Happy Clients", value: "30+", icon: Users },
-              { label: "Team Experts", value: "10+", icon: Users },
-              { label: "Countries", value: "3+", icon: Users }
-            ].map((stat, index) => (
-              <div key={index} className="group p-5 rounded-2xl bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-md border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-105">
-                <stat.icon className="w-5 h-5 mx-auto mb-2 text-primary/60 group-hover:text-primary transition-colors duration-300" />
-                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-xs text-muted-foreground font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Features Section - Modern Cards with Glassmorphism */}
-      <section className="py-24 px-6 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl"></div>
-        </div>
-
+      {/* Services Preview Section */}
+      <section className="py-12 md:py-20 px-6 bg-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Why Choose Us
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Excellence in Every
-              </span>
-              <br />
-              Detail
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              We combine technical expertise with business insight to deliver exceptional results.
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Our Services</h2>
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
+              Comprehensive software development solutions tailored to your business needs
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="group relative border-primary/10 bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden"
-              >
-                {/* Gradient Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-accent/0 group-hover:from-primary/5 group-hover:to-accent/5 transition-all duration-500"></div>
-
-                <CardContent className="pt-8 pb-6 relative z-10">
-                  {/* Icon with Animated Background */}
-                  <div className="mb-6 relative inline-block">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-10 group-hover:opacity-20 rounded-2xl blur-xl transition-opacity duration-300"></div>
-                    <div className="relative p-4 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary/20 group-hover:to-accent/20 transition-all duration-300">
-                      <feature.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" />
+            {services.map((service, index) => (
+              <Card key={index} className="group border-primary/20 hover:border-primary transition-all hover:shadow-2xl hover:-translate-y-2 duration-300 bg-white/80 backdrop-blur-sm">
+                <CardContent className="pt-8 pb-6">
+                  <div className="mb-4">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 inline-block group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                      <service.icon className="w-8 h-8 text-primary" />
                     </div>
                   </div>
-
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">
-                    {feature.description}
-                  </p>
-
-                  {/* Animated Border Bottom */}
-                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-500"></div>
+                  <h3 className="text-lg font-bold mb-3 text-primary group-hover:text-blue-600 transition-colors">{service.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -196,105 +154,118 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Trusted Clients Section
-      <section className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
+      {/* Featured Projects Section */}
+      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Trusted By Industry Leaders</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We're proud to partner with innovative companies across various industries.
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Featured Projects</h2>
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
+              Showcasing our recent work and successful client collaborations
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 items-center justify-items-center opacity-60">
-            <div className="text-xl sm:text-2xl lg:text-4xl font-bold text-primary text-center px-2">TechCorp</div>
-            <div className="text-xl sm:text-2xl lg:text-4xl font-bold text-accent text-center px-2">InnovateLab</div>
-            <div className="text-xl sm:text-2xl lg:text-4xl font-bold text-primary text-center px-2">CloudSync</div>
-            <div className="text-xl sm:text-2xl lg:text-4xl font-bold text-accent text-center px-2">DataFlow</div>
-            <div className="text-xl sm:text-2xl lg:text-4xl font-bold text-accent text-center px-2">SmartOps</div>
-            <div className="text-xl sm:text-2xl lg:text-4xl font-bold text-primary text-center px-2">SecureNet</div>
-            <div className="text-xl sm:text-2xl lg:text-4xl font-bold text-accent text-center px-2">AgileHub</div>
-            <div className="text-xl sm:text-2xl lg:text-4xl font-bold text-primary text-center px-2">DevForce</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((project, index) => (
+              <Card key={index} className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-primary/20 hover:border-primary hover:-translate-y-2 bg-white">
+                {/* Project Image */}
+                <div className="relative overflow-hidden h-48 bg-gradient-to-br from-primary/10 to-cyan-500/10">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                <CardContent className="pt-6">
+                  <h3 className="text-lg font-bold mb-2 text-primary group-hover:text-blue-600 transition-colors">{project.title}</h3>
+
+                  {/* Category Badge */}
+                  <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium mb-3">
+                    {project.category}
+                  </span>
+
+                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.slice(0, 3).map((tech, idx) => (
+                      <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md font-medium">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Button
+                    variant="link"
+                    className="p-0 text-primary hover:text-blue-600 font-semibold group/btn"
+                    onClick={() => navigate("/case-study", { state: { project } })}
+                  >
+                    View Case Study <ArrowRight className="w-4 h-4 ml-1 inline group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
-       */}
 
-      {/* CTA Section - Redesigned Modern Card */}
-      <section className="py-24 px-6 relative overflow-hidden">
-        {/* Animated Background Gradients */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5"></div>
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl animate-blob"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/20 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
-        </div>
+      {/* Tech Stack Section */}
+      <TechStack />
 
+      {/* Why Us Section */}
+      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto">
-          <div className="max-w-5xl mx-auto">
-            {/* Main CTA Card */}
-            <div className="relative group">
-              {/* Glow Effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Why Choose Us</h2>
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
+              Partner with a reliable, senior-level development team
+            </p>
+          </div>
 
-              {/* Card Content */}
-              <div className="relative p-8 md:p-12 lg:p-16 rounded-3xl bg-gradient-to-br from-background via-background/95 to-background/90 border border-primary/20 shadow-2xl overflow-hidden">
-                {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full filter blur-3xl -z-10"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-accent/10 to-primary/10 rounded-full filter blur-3xl -z-10"></div>
-
-                <div className="relative z-10">
-                  {/* Icon Badge */}
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30 mb-6">
-                    <Rocket className="w-8 h-8 text-primary" />
-                  </div>
-
-                  {/* Heading */}
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                    Ready to Start Your
-                    <span className="block mt-2 pb-2 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                      Next Big Project?
-                    </span>
-                  </h2>
-
-                  {/* Description */}
-                  <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl leading-relaxed">
-                    Let's transform your vision into reality. Our expert team is ready to bring your ideas to life with cutting-edge technology and innovative solutions.
-                  </p>
-
-                  {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                    <Link to="/contact" className="flex-1 sm:flex-none">
-                      <Button size="lg" className="w-full gap-2 text-base px-8 py-6 rounded-full hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-primary/50">
-                        <Sparkles className="w-5 h-5" />
-                        Get Started Now
-                        <ArrowRight size={20} />
-                      </Button>
-                    </Link>
-                    <Link to="/services" className="flex-1 sm:flex-none">
-                      <Button size="lg" variant="outline" className="w-full gap-2 text-base px-8 py-6 rounded-full hover:scale-105 transition-all duration-300 backdrop-blur-sm border-2 hover:border-primary hover:bg-primary hover:text-white">
-                        View Services
-                      </Button>
-                    </Link>
-                  </div>
-
-                  {/* Trust Signals */}
-                  <div className="flex flex-wrap items-center justify-center gap-6 pt-6 border-t border-primary/10">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                      <span>Fast Response Time</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {whyUs.map((item, index) => (
+              <Card key={index} className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg bg-white">
+                <CardContent className="p-6">
+                  <div className="flex gap-4 items-start">
+                    <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
+                      <CheckCircle className="w-6 h-6 text-primary" />
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Shield className="w-4 h-4 text-primary" />
-                      <span>100% Secure</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Users className="w-4 h-4 text-accent" />
-                      <span>Expert Team</span>
+                    <div>
+                      <h3 className="text-lg font-bold mb-2 text-primary">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-16 md:py-24 px-6 bg-primary text-white">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Start?</h2>
+          <p className="text-xl mb-8 opacity-90">
+            Get in touch with us to discuss your project requirements
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/contact">
+              <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90 px-6 md:px-8 py-4 md:py-6">
+                Contact Us
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
+            <a
+              href="https://wa.me/918735940200?text=Hi,%20I'd%20like%20to%20discuss%20a%20software%20project"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="gap-2 border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#5088FA] px-6 md:px-8 py-4 md:py-6">
+                <MessageSquare className="w-5 h-5" />
+                Chat on WhatsApp
+              </Button>
+            </a>
           </div>
         </div>
       </section>
