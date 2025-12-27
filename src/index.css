@@ -8,25 +8,32 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Primary white background */
     --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    --foreground: 0 0% 20%; /* Dark gray #333333 */
+
+    /* Soft tinted blue background for alternating sections - More visible */
+    --background-tinted: 210 100% 96%; /* #E6F0FF - more visible blue tint */
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 0 0% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 0 0% 20%;
 
-    --primary: 222 95% 64%;
+    /* Deep blue from logo - Primary brand color */
+    --primary: 220 94% 64%; /* #5088FA - Logo blue */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 20% 95%;
-    --secondary-foreground: 215 25% 15%;
+    /* Lighter blue/teal for highlights and accents */
+    --secondary: 199 85% 55%; /* #42A5F5 - Cyan/teal highlight */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 215 20% 97%;
+    --muted: 210 20% 97%;
     --muted-foreground: 215 15% 45%;
 
-    --accent: 222 95% 64%;
+    /* Accent color - lighter complementary blue */
+    --accent: 199 85% 55%; /* Teal/cyan for hover states */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,7 +41,7 @@ All colors MUST be HSL.
 
     --border: 215 15% 92%;
     --input: 215 20% 90%;
-    --ring: 222 95% 64%;
+    --ring: 220 94% 64%; /* Match primary blue */
 
     --radius: 0.875rem;
 
@@ -42,9 +49,9 @@ All colors MUST be HSL.
 
     --sidebar-foreground: 240 5.3% 26.1%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary: 220 94% 64%; /* Logo blue */
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 100%;
 
     --sidebar-accent: 240 4.8% 95.9%;
 
@@ -52,12 +59,14 @@ All colors MUST be HSL.
 
     --sidebar-border: 220 13% 91%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 220 94% 64%; /* Logo blue */
   }
 
   .dark {
     --background: 215 30% 8%;
     --foreground: 0 0% 98%;
+
+    --background-tinted: 215 28% 11%; /* Darker blue tint for dark mode */
 
     --card: 215 28% 11%;
     --card-foreground: 0 0% 98%;
@@ -65,7 +74,8 @@ All colors MUST be HSL.
     --popover: 215 28% 11%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 222 95% 64%;
+    /* Keep same blue for dark mode */
+    --primary: 220 94% 64%; /* #5088FA - Logo blue */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 215 25% 16%;
@@ -74,7 +84,8 @@ All colors MUST be HSL.
     --muted: 215 25% 16%;
     --muted-foreground: 215 15% 65%;
 
-    --accent: 222 95% 64%;
+    /* Lighter accent for dark mode */
+    --accent: 199 85% 55%; /* Teal/cyan accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
@@ -82,15 +93,15 @@ All colors MUST be HSL.
 
     --border: 215 25% 22%;
     --input: 215 25% 22%;
-    --ring: 222 95% 64%;
+    --ring: 220 94% 64%; /* Logo blue */
     --sidebar-background: 215 30% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 222 95% 64%;
+    --sidebar-primary: 220 94% 64%; /* Logo blue */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 215 25% 15%;
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 215 25% 20%;
-    --sidebar-ring: 222 95% 64%;
+    --sidebar-ring: 220 94% 64%; /* Logo blue */
   }
 }
 
@@ -101,14 +112,64 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-size: 15px; /* Base body text */
+    line-height: 1.6;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* Typography system - reduced sizes */
+  h1 {
+    @apply font-bold tracking-tight;
+    font-size: 2rem; /* 32px for sections */
+    line-height: 1.2;
+  }
+
+  h2 {
+    @apply font-bold tracking-tight;
+    font-size: 1.75rem; /* 28px for sub-sections */
+    line-height: 1.2;
+  }
+
+  h3 {
     @apply font-semibold tracking-tight;
+    font-size: 1.5rem; /* 24px for smaller sections */
+    line-height: 1.3;
+  }
+
+  h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  /* Hero text - larger for impact */
+  .hero-title {
+    font-size: 2rem; /* 32px on mobile */
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px; /* 16px for larger screens */
+    }
+
+    h1 {
+      font-size: 2.5rem; /* 40px */
+    }
+
+    h2 {
+      font-size: 2rem; /* 32px */
+    }
+
+    .hero-title {
+      font-size: 3rem; /* 48px on larger screens */
+    }
   }
 }
 
 @layer utilities {
+  /* Soft tinted blue background utility */
+  .bg-tinted {
+    background-color: hsl(var(--background-tinted));
+  }
+
   .animate-fade-in {
     animation: fadeIn 0.6s ease-in;
   }
@@ -124,17 +185,72 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   /* 2025 Modern Animations */
   .animate-blob {
     animation: blob 7s infinite;
   }
 
+  .animate-blob-large {
+    animation: blob-large 10s ease-in-out infinite;
+  }
+
   .animate-gradient {
-    animation: gradient 3s ease infinite;
+    animation: gradient 8s ease infinite;
+  }
+
+  .animate-gradient-shift {
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
+  }
+
+  .animate-slide-right {
+    animation: slide-right 8s linear infinite;
+  }
+
+  .animate-slide-left {
+    animation: slide-left 8s linear infinite;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1s;
   }
 
   .animation-delay-2000 {
     animation-delay: 2s;
+  }
+
+  .animation-delay-3000 {
+    animation-delay: 3s;
   }
 
   .animation-delay-4000 {
@@ -156,6 +272,25 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes blob-large {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 0.8;
+    }
+    25% {
+      transform: translate(50px, -80px) scale(1.2);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-30px, 60px) scale(0.9);
+      opacity: 0.7;
+    }
+    75% {
+      transform: translate(40px, 30px) scale(1.1);
+      opacity: 0.9;
+    }
+  }
+
   @keyframes gradient {
     0% {
       background-position: 0% 50%;
@@ -165,6 +300,96 @@ All colors MUST be HSL.
     }
     100% {
       background-position: 0% 50%;
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 0%;
+    }
+    25% {
+      background-position: 100% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 0% 100%;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(10deg);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(-30px) rotate(15deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-25px) scale(1.1);
+    }
+  }
+
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-100vw);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100vw);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-left {
+    0% {
+      transform: translateX(100vw);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100vw);
+      opacity: 0;
     }
   }
 
@@ -181,5 +406,10 @@ All colors MUST be HSL.
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Gradient Utilities */
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
   }
 }
