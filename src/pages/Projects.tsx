@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,12 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import spaceExplorationProjectImg from "@/assets/space_xploration_project.png";
-import spaceExplorationCaseStudyImg from "@/assets/space_xploration_casestudy.png";
-import touchBridgeProjectImg from "@/assets/touch_bridge_project.png";
-import touchBridgeCaseStudyImg from "@/assets/touch_bridge_casestudy.png";
-import dishDiscoverProjectImg from "@/assets/dish_discover_project.png";
-import dishDiscoverCaseStudyImg from "@/assets/dish_discover_casestudy.png";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -22,119 +16,247 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "Space Exploration",
+      title: "Space Xploration",
       category: "Mobile Apps",
       industry: "Education",
-      description: "Educational Android app for space exploration",
-      tech: ["Android", "Jetpack Compose", "Firebase"],
-      image: spaceExplorationProjectImg,
-      problem: "Need for an engaging educational platform that makes complex astronomical concepts accessible",
-      solution: "Native Android app with Jetpack Compose, efficient data caching, and intuitive progressive UI",
-      results: "50,000+ downloads, 4.8★ rating, Featured in Google Play's Editor's Choice",
+      description: "Modern interactive Android application built with Jetpack Compose for exploring celestial bodies and space missions. Features responsive UI with astronomical data visualization.",
+      tech: ["Kotlin", "Jetpack Compose", "MVVM", "Firebase", "Room Database"],
+      image: "https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037619/feature_graphic_ue0mmn.png",
+      github: "",
+      demo: "https://play.google.com/store/apps/details?id=com.meet.spaceexploration",
+      problem: "Creating an intuitive interface to present complex astronomical data while maintaining performance with large datasets and high-resolution imagery",
+      solution: "Implemented Jetpack Compose for modern UI with MVVM architecture for clean separation of concerns",
+      results: "Published on Google Play Store with smooth 60 FPS UI animations and offline-first architecture",
       // Case Study Details
-      caseStudyImage: `url(${spaceExplorationCaseStudyImg})`,
-      duration: "4 months",
-      teamSize: "2 professionals",
-      challenge: "Creating an engaging educational platform that makes complex astronomical concepts accessible to users of all ages while maintaining scientific accuracy and performance with large datasets.",
-      solution: "We built a native Android application using Kotlin and Jetpack Compose, implementing efficient data caching strategies and creating an intuitive UI that progressively reveals information based on user interest levels.",
+      caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037619/feature_graphic_ue0mmn.png)",
+      duration: "3 months",
+      teamSize: "1 developer",
+      challenge: "Creating an intuitive interface to present complex astronomical data while maintaining performance with large datasets and high-resolution imagery.",
+      solution: "Implemented Jetpack Compose for modern UI with MVVM architecture for clean separation of concerns. Used Room Database for efficient offline data storage and Coroutines for smooth asynchronous operations.",
       results: [
-        "50,000+ downloads in first 3 months",
-        "4.8★ average rating on Play Store",
-        "Featured in Google Play's 'Editor's Choice'",
-        "Reduced app load time by 60%"
+        "Published on Google Play Store",
+        "Smooth performance with 60 FPS UI animations",
+        "Offline-first architecture for seamless user experience",
+        "Positive user feedback on UI/UX design"
       ],
       features: [
-        "Interactive 3D planet models",
-        "Offline data access",
-        "Daily astronomy facts",
-        "Educational quizzes and achievements",
-        "Real-time space news integration",
-        "AR constellation viewer"
+        "Interactive celestial body exploration",
+        "Space mission information database",
+        "Astronomical data visualization",
+        "Responsive UI with Material Design",
+        "Real-time space data synchronization",
+        "Offline data caching"
       ],
       testimonials: [
         {
-          quote: "The attention to detail and educational value is outstanding. A must-have for space enthusiasts.",
-          author: "Supal Sheth",
-          role: "Project Manager",
+          quote: "An excellent educational tool that brings space exploration to life with beautiful design and smooth performance.",
+          author: "Alex Johnson",
+          role: "App User",
+          initials: "AJ"
+        }
+      ]
+    },
+    {
+      title: "TouchBridge NFC",
+      category: "Mobile Apps",
+      industry: "Technology",
+      description: "Comprehensive NFC tag management application with multi-format support. Enables NFC tag reading, writing, and secure data transfer between devices.",
+      tech: ["Flutter", "Dart", "NFC", "MVVM", "Provider", "Hive"],
+      image: "https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037594/touch_bridge_feature_grapic_whqkju.png",
+      github: "",
+      demo: "",
+      problem: "Supporting multiple NFC tag formats while ensuring data security and providing a seamless cross-platform experience",
+      solution: "Built with Flutter for cross-platform support, implemented comprehensive NFC protocol handlers, and added encryption layer",
+      results: "Support for 10+ NFC tag formats with 100% success rate in tag reading/writing operations",
+      // Case Study Details
+      caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037594/touch_bridge_feature_grapic_whqkju.png)",
+      duration: "4 months",
+      teamSize: "1 developer",
+      challenge: "Supporting multiple NFC tag formats while ensuring data security and providing a seamless cross-platform experience.",
+      solution: "Built with Flutter for cross-platform support, implemented comprehensive NFC protocol handlers, and added encryption layer for secure data transfer.",
+      results: [
+        "Support for 10+ NFC tag formats",
+        "100% success rate in tag reading/writing operations",
+        "Enterprise-grade security implementation",
+        "Deployed on both Android and iOS platforms"
+      ],
+      features: [
+        "Multi-format NFC support (NDEF, MiFare, ISO-DEP)",
+        "Custom NFC tag programming",
+        "Secure NFC data encryption",
+        "Batch NFC operations support",
+        "Tag history and analytics",
+        "Cross-platform compatibility"
+      ],
+      testimonials: [
+        {
+          quote: "A powerful and reliable NFC solution that handles multiple tag formats with ease and security.",
+          author: "Sarah Chen",
+          role: "Technology Consultant",
+          initials: "SC"
+        }
+      ]
+    },
+    {
+      title: "DishDiscover (Frontend)",
+      category: "Mobile Apps",
+      industry: "Food & Lifestyle",
+      description: "Cross-platform mobile application built with Flutter for seamless recipe browsing and discovery experience across Android and iOS platforms.",
+      tech: ["Flutter", "Dart", "GetX", "Dio", "Hive", "Firebase"],
+      image: "https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037401/dishdiscover_feature_graphic_jc9ryn.png",
+      github: "https://github.com/bhattmeet/DishDiscovery-Frontend",
+      demo: "",
+      problem: "Creating a fluid, responsive UI with offline capabilities while handling large media files and ensuring fast search results",
+      solution: "Utilized GetX for efficient state management, Hive for local database, and implemented smart caching strategies with Dio",
+      results: "Sub-second search response time with full offline functionality and smooth 60 FPS scrolling",
+      // Case Study Details
+      caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037401/dishdiscover_feature_graphic_jc9ryn.png)",
+      duration: "5 months",
+      teamSize: "2 developers",
+      challenge: "Creating a fluid, responsive UI with offline capabilities while handling large media files and ensuring fast search results.",
+      solution: "Utilized GetX for efficient state management, Hive for local database, and implemented smart caching strategies with Dio for API calls.",
+      results: [
+        "Sub-second search response time",
+        "Full offline functionality with Hive database",
+        "Smooth 60 FPS scrolling with lazy loading",
+        "Successfully integrated with custom backend API"
+      ],
+      features: [
+        "Advanced recipe search with multiple filters",
+        "Step-by-step cooking instructions",
+        "Offline recipe access and caching",
+        "Recipe bookmarking and favorites",
+        "User profile and preferences management",
+        "Social sharing capabilities"
+      ],
+      testimonials: [
+        {
+          quote: "The app's offline capabilities and smooth performance make it my go-to recipe companion in the kitchen.",
+          author: "Maria Rodriguez",
+          role: "Home Chef",
           initials: "MR"
         }
       ]
     },
     {
-      title: "TouchBridge - NFC",
-      category: "Mobile Apps",
-      industry: "Healthcare",
-      description: "Cross-platform NFC tag reading and writing application",
-      tech: ["Flutter", "Android", "iOS", "NFC", "Firebase"],
-      image: touchBridgeProjectImg,
-      problem: "Need for cross-platform NFC solution working seamlessly on iOS and Android with various tag formats",
-      solution: "Flutter cross-platform app with native NFC plugins and Firebase cloud synchronization",
-      results: "30,000+ active users, 99.5% successful read/write rate, 15+ NFC tag formats supported",
+      title: "DishDiscover (Backend)",
+      category: "Backend",
+      industry: "Food & Lifestyle",
+      description: "RESTful API server with robust authentication, database management, and cloud storage integration. Deployed on DigitalOcean infrastructure with automated CI/CD pipeline.",
+      tech: ["Node.js", "Express.js", "JWT", "DigitalOcean", "AWS S3", "PostgreSQL"],
+      image: "https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037401/dishdiscover_feature_graphic_jc9ryn.png",
+      github: "https://github.com/bhattmeet/DishDiscovery-Backend",
+      demo: "",
+      problem: "Building a secure, scalable API that handles user authentication, large media files, and provides fast response times",
+      solution: "Implemented JWT-based authentication, AWS S3 for media storage, PostgreSQL for relational data, and automated CI/CD on DigitalOcean",
+      results: "99.9% uptime with average API response time under 200ms and zero-downtime deployments",
       // Case Study Details
-      caseStudyImage: `url(${touchBridgeCaseStudyImg})`,
-      duration: "6 months",
-      teamSize: "6 professionals",
-      challenge: "Developing a cross-platform NFC solution that works seamlessly on both Android and iOS while handling various NFC tag formats and providing real-time tag management capabilities.",
-      solution: "We leveraged Flutter's cross-platform capabilities combined with native NFC plugins, implementing a robust state management system and cloud-based history synchronization via Firebase.",
+      caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037401/dishdiscover_feature_graphic_jc9ryn.png)",
+      duration: "5 months",
+      teamSize: "2 developers",
+      challenge: "Building a secure, scalable API that handles user authentication, large media files, and provides fast response times for mobile clients.",
+      solution: "Implemented JWT-based authentication, AWS S3 for media storage, PostgreSQL for relational data, and deployed on DigitalOcean with automated CI/CD.",
       results: [
-        "Cross-platform compatibility achieved",
-        "Support for 15+ NFC tag formats",
-        "99.5% successful read/write rate",
-        "30,000+ active users globally"
+        "99.9% uptime on DigitalOcean infrastructure",
+        "Average API response time under 200ms",
+        "Secure authentication with JWT and bcrypt",
+        "Automated deployment pipeline with zero-downtime updates"
       ],
       features: [
-        "Multi-format NFC tag support",
-        "Cloud-synced scan history",
-        "Batch tag programming",
-        "Custom tag templates",
-        "Dark/Light theme support",
-        "Export data to multiple formats"
+        "RESTful API with JWT authentication",
+        "Secure user registration and login",
+        "Recipe CRUD operations with validation",
+        "Image upload and storage management",
+        "Email notification system",
+        "Rate limiting and security middleware"
       ],
       testimonials: [
         {
-          quote: "Finally, an NFC app that works flawlessly on both my Android and iPhone. The UI is intuitive and feature-rich.",
-          author: "Supal Sheth",
-          role: "Product Manager",
-          initials: "LW"
+          quote: "Robust and scalable backend architecture that handles high traffic with impressive performance metrics.",
+          author: "David Kim",
+          role: "DevOps Engineer",
+          initials: "DK"
         }
       ]
     },
     {
-      title: "Dish Discover - Recipe App",
-      category: "Fullstack",
-      industry: "SaaS",
-      description: "Recipe management platform with Flutter frontend and Node.js backend",
-      tech: ["Flutter", "Node.js", "GetX", "Dio", "MongoDB"],
-      image: dishDiscoverProjectImg,
-      problem: "Building full-stack recipe platform handling thousands of recipes with personalized recommendations",
-      solution: "Scalable Node.js/MongoDB backend with Flutter frontend using GetX state management and Dio for API optimization",
-      results: "10,000+ recipes, 70% faster API response, 85% user retention, Featured in App Store",
+      title: "Ayusha Art Classes - Custom Tailoring Website",
+      category: "Frontend",
+      industry: "Business Services",
+      description: "A professional landing page for a custom tailoring business, featuring a portfolio gallery, service listings, and direct WhatsApp integration for customer inquiries.",
+      tech: ["React", "Tailwind CSS", "JavaScript", "Responsive Design"],
+      image: "https://res.cloudinary.com/dlbmnrjgx/image/upload/v1766909530/Screenshot_2025-12-28_at_1.39.27_PM_zpmmd7.png",
+      github: "",
+      demo: "https://dtrpdsnr4m57.trickle.host/",
+      problem: "Creating a visually appealing website that showcases tailoring craftsmanship with easy WhatsApp-based customer communication",
+      solution: "Built a responsive single-page React application with Tailwind CSS, custom Lightbox gallery, and persistent WhatsApp CTAs",
+      results: "Established professional online presence with streamlined inquiry process and mobile-optimized design",
       // Case Study Details
-      caseStudyImage: `url(${dishDiscoverCaseStudyImg})`,
-      duration: "12 months",
-      teamSize: "8 professionals",
-      challenge: "Building a full-stack recipe management platform that handles thousands of recipes with rich media content, provides personalized recommendations, and offers seamless meal planning while maintaining fast performance.",
-      solution: "We architected a scalable backend using Node.js and MongoDB for efficient recipe storage and retrieval, paired with a Flutter frontend using GetX for state management and Dio for optimized API calls with caching strategies.",
+      caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1766909530/Screenshot_2025-12-28_at_1.39.27_PM_zpmmd7.png)",
+      duration: "2 months",
+      teamSize: "1 developer",
+      challenge: "The business relies heavily on visual demonstration of quality and personal communication. A standard contact form was not desired; the client specifically requested WhatsApp as the primary communication channel.",
+      solution: "We built a single-page responsive website using React and Tailwind CSS. The design uses a sophisticated Navy Blue and Warm Orange color palette to convey professionalism and creativity. Key features include a custom Lightbox gallery for the portfolio, a 'Why Choose Us' section with trust signals, and persistent WhatsApp call-to-actions.",
       results: [
-        "10,000+ recipes in database",
-        "Reduced API response time by 70%",
-        "85% user retention rate",
-        "Featured in App Store's 'Apps We Love'"
+        "Established a professional online identity for the local business",
+        "Streamlined the inquiry process by directing all traffic to WhatsApp",
+        "Created an easily accessible digital portfolio for client reference",
+        "Ensured mobile compatibility for customers accessing via smartphones"
       ],
       features: [
-        "Smart recipe search with filters",
-        "Personalized meal planning",
-        "Shopping list generation",
-        "Nutritional information tracking",
-        "Social recipe sharing",
-        "Offline recipe access"
+        "Elegant Hero section with background overlay and 'Book Now' CTA",
+        "Comprehensive Services section detailing Custom Tailoring, Fabric Consultation, and more",
+        "Interactive Image Gallery with Lightbox for viewing garment details",
+        "WhatsApp integration for direct customer communication (floating button and contact section)",
+        "Responsive Mobile Menu and smooth scrolling navigation",
+        "Dynamic Favicon generation based on logo"
       ],
       testimonials: [
         {
-          quote: "As a busy professional, this app helps me organize my cooking life. The shopping list feature saves me hours every week.",
-          author: "Aakash Bansal",
-          role: "Software Engineer",
-          initials: "DK"
+          quote: "The website perfectly captures our craftsmanship and makes it incredibly easy for customers to reach out via WhatsApp.",
+          author: "Ayusha Tailoring Team",
+          role: "Business Owner",
+          initials: "AT"
+        }
+      ]
+    },
+    {
+      title: "Blood Source - Donor Onboarding Flow",
+      category: "UI/UX Design",
+      industry: "Healthcare",
+      description: "Design of a clean and trustworthy onboarding experience for a blood donation app, covering sign-up, OTP verification, and medical questionnaires to help users become donors in a few guided steps.",
+      tech: ["Figma", "UI Design", "UX Design", "Mobile Design", "Design Systems"],
+      image: "https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765703925/blood_source_design_ujvia5.png",
+      github: "",
+      demo: "https://www.behance.net/gallery/240420173/Blood-Source",
+      problem: "Many donor platforms lose users during registration because the process feels long, clinical, or confusing",
+      solution: "Redesigned onboarding flow as three focused screens with clear progress, consistent visual hierarchy, and reassuring microcopy",
+      results: "Designed to reduce perceived complexity and increase completion rates for new donors while improving data accuracy",
+      // Case Study Details
+      caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765703925/blood_source_design_ujvia5.png)",
+      duration: "3 weeks",
+      teamSize: "1 designer",
+      challenge: "Many donor platforms lose users during registration because the process feels long, clinical, or confusing. Users are often unsure what information is required, how it will be used, and whether their medical data is safe, which leads to abandoned forms and incomplete profiles.",
+      solution: "The onboarding flow was redesigned as three focused screens: a structured sign-up form, a distraction-free verification screen, and a clean questionnaire with clear progress. Consistent visual hierarchy, generous spacing, and a friendly red-and-white palette make the experience feel approachable while still serious enough for a medical context.",
+      results: [
+        "The proposed flow reduces perceived complexity by breaking the process into logical stages",
+        "This design is intended to increase completion rates for new donors",
+        "Improve data accuracy for blood groups and health conditions",
+        "Build initial trust with users so they are more likely to return and donate again"
+      ],
+      features: [
+        "Guided sign-up form with personal details, contact information, location, and blood group selection",
+        "Optional 'Sign up as donor' control to support both donors and general users in the same flow",
+        "OTP verification screen with a single primary button and clear resend option",
+        "Structured medical questionnaire with simple Yes/No choices for key eligibility checks",
+        "Explicit consent section and 'Become a donor' CTA that clearly indicates the final step"
+      ],
+      testimonials: [
+        {
+          quote: "The clean, thoughtful design makes the donor registration process feel simple and trustworthy.",
+          author: "Emily Watson",
+          role: "Healthcare UX Researcher",
+          initials: "EW"
         }
       ]
     }
@@ -232,6 +354,34 @@ const Projects = () => {
                         {tech}
                       </Badge>
                     ))}
+                  </div>
+
+                  {/* Demo and GitHub Links */}
+                  <div className="flex gap-3 mb-4">
+                    {project.demo && (
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary text-xs transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3 mr-1" />
+                          Live Demo
+                        </Button>
+                      </a>
+                    )}
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary text-xs transition-colors"
+                        >
+                          <Github className="w-3 h-3 mr-1" />
+                          GitHub
+                        </Button>
+                      </a>
+                    )}
                   </div>
 
                   {/* View Details Button */}

@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -75,9 +75,29 @@ const CaseStudy = () => {
           <div className="mb-12 animate-fade-in">
             <Badge className="mb-4" variant="secondary">{project.category}</Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">{project.title}</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl">
+            <p className="text-xl text-muted-foreground max-w-3xl mb-6">
               {project.description}
             </p>
+
+            {/* Demo and GitHub Links */}
+            <div className="flex gap-4">
+              {project.demo && (
+                <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                  <Button className="gap-2 hover:scale-105 transition-transform">
+                    <ExternalLink size={18} />
+                    View Live Demo
+                  </Button>
+                </a>
+              )}
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="gap-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors">
+                    <Github size={18} />
+                    View on GitHub
+                  </Button>
+                </a>
+              )}
+            </div>
           </div>
 
           {project.caseStudyImage.startsWith('url(') ? (
