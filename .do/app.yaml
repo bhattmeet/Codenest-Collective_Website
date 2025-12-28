@@ -1,0 +1,12 @@
+name: codenestcollective
+static_sites:
+- name: web
+  build_command: npm run build
+  output_dir: dist
+  error_document: index.html
+  github:
+    repo: bhattmeet/Codenest-Collective_Website
+    branch: main
+    deploy_on_push: true
+  routes:
+  - path: /

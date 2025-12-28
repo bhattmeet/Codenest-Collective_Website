@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Mail, Phone, MapPin, Send, Loader2, Clock, MessageSquare } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -30,11 +30,22 @@ const Contact = () => {
     budget: "",
   });
 
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    console.log('EmailJS initialized with public key');
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
+      // Validate EmailJS credentials
+      if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+        throw new Error('EmailJS credentials are not configured. Please check your environment variables.');
+      }
+
       // Send email using EmailJS
       const templateParams = {
         from_name: formData.name,
@@ -46,12 +57,16 @@ const Contact = () => {
         to_name: 'Codenest Collective Technologies', // Your company name
       };
 
-      await emailjs.send(
+      console.log('Sending email with params:', templateParams);
+
+      const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
         EMAILJS_PUBLIC_KEY
       );
+
+      console.log('EmailJS response:', response);
 
       // Success
       toast({
@@ -64,10 +79,22 @@ const Contact = () => {
     } catch (error) {
       console.error('EmailJS Error:', error);
 
+      // Get detailed error message
+      let errorMessage = "Please try again or contact us directly at meet.bhatt@codenestcollective.net";
+
+      if (error instanceof Error) {
+        console.error('Error details:', {
+          message: error.message,
+          name: error.name,
+          stack: error.stack
+        });
+        errorMessage = `${error.message}. Please contact us directly at meet.bhatt@codenestcollective.net`;
+      }
+
       // Error handling
       toast({
         title: "Failed to Send Message",
-        description: "Please try again or contact us directly at meet.bhatt@codenestcollective.net",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
