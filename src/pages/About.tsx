@@ -55,17 +55,17 @@ const About = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-8 text-lg">
             <div>
-              <span className="font-bold text-primary">6+ years</span>
+              <span className="font-bold text-primary">3+ years</span>
               <span className="text-muted-foreground"> of experience</span>
             </div>
             <div className="w-px bg-border"></div>
             <div>
-              <span className="font-bold text-primary">50+ projects</span>
+              <span className="font-bold text-primary">20+ projects</span>
               <span className="text-muted-foreground"> delivered</span>
             </div>
             <div className="w-px bg-border"></div>
             <div>
-              <span className="font-bold text-primary">30+ clients</span>
+              <span className="font-bold text-primary">10+ clients</span>
               <span className="text-muted-foreground"> worldwide</span>
             </div>
           </div>
@@ -81,7 +81,7 @@ const About = () => {
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                 We empower startups and growing businesses with scalable, high-quality software solutions.
                 Our expertise spans web and mobile applications, backend systems, and UI/UX design.
-                We serve <span className="text-primary font-semibold">Indian and international clients</span> who
+                We serve <span className="text-primary font-semibold">Domestic and international clients</span> who
                 need reliable, senior-level development partners they can trust.
               </p>
             </CardContent>
@@ -112,11 +112,11 @@ const About = () => {
                 {/* Founder Bio */}
                 <div className="p-8">
                   <h3 className="text-3xl font-bold mb-2 text-primary">Meet Bhatt</h3>
-                  <p className="text-lg text-accent mb-6">Founder & Lead Developer</p>
+                  <p className="text-lg text-accent mb-6">Founder & CEO</p>
 
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      With over 6 years of hands-on experience in full-stack development, Meet brings deep
+                      With over 6+ years of hands-on experience in full-stack development, Meet brings deep
                       expertise in Flutter, Android (Kotlin), Node.js, Express.js, MongoDB, and Firebase.
                     </p>
                     <p>
@@ -132,7 +132,7 @@ const About = () => {
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-semibold text-foreground">50+ Projects</p>
+                        <p className="font-semibold text-foreground">20+ Projects</p>
                         <p className="text-sm text-muted-foreground">Successfully delivered</p>
                       </div>
                     </div>
@@ -146,7 +146,7 @@ const About = () => {
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-semibold text-foreground">30+ Clients</p>
+                        <p className="font-semibold text-foreground">10+ Clients</p>
                         <p className="text-sm text-muted-foreground">Global partnerships</p>
                       </div>
                     </div>
