@@ -1,7 +1,7 @@
 name: codenestcollective
 static_sites:
 - name: web
-  build_command: bun run build
+  build_command: npm run build
   output_dir: dist
   error_document: index.html
   github:
