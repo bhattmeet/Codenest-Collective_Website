@@ -252,18 +252,18 @@ const Contact = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="flex-1 gap-2 bg-primary hover:bg-primary/90"
+                    className="flex-1 gap-2 bg-primary hover:bg-primary/90 !h-14 !text-base !py-4 sm:!h-11 sm:!text-sm sm:!py-2"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 size={20} className="animate-spin" />
-                        Sending...
+                        <Loader2 size={24} className="animate-spin sm:!w-5 sm:!h-5" />
+                        <span className="text-base sm:text-sm">Sending...</span>
                       </>
                     ) : (
                       <>
-                        Send Message
-                        <Send size={20} />
+                        <span className="text-base sm:text-sm">Send Message</span>
+                        <Send size={24} className="sm:!w-5 sm:!h-5" />
                       </>
                     )}
                   </Button>
@@ -277,10 +277,10 @@ const Contact = () => {
                       type="button"
                       size="lg"
                       variant="outline"
-                      className="w-full gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white"
+                      className="w-full gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white !h-14 !text-base !py-4 sm:!h-11 sm:!text-sm sm:!py-2"
                     >
-                      <MessageSquare size={20} />
-                      Chat on WhatsApp
+                      <MessageSquare size={24} className="sm:!w-5 sm:!h-5" />
+                      <span className="text-base sm:text-sm">Chat on WhatsApp</span>
                     </Button>
                   </a>
                 </div>
