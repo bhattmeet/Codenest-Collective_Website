@@ -4,9 +4,32 @@ static_sites:
   build_command: bun run build
   output_dir: dist
   error_document: index.html
+  catchall_document: index.html
   github:
     repo: bhattmeet/Codenest-Collective_Website
     branch: main
     deploy_on_push: true
+  envs:
+  - key: VITE_EMAILJS_SERVICE_ID
+    value: service_lwz0j7r
+    scope: BUILD_TIME
+  - key: VITE_EMAILJS_CONTACT_TEMPLATE_ID
+    value: template_fixl4lp
+    scope: BUILD_TIME
+  - key: VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID
+    value: template_newsletter
+    scope: BUILD_TIME
+  - key: VITE_EMAILJS_PUBLIC_KEY
+    value: YQIx5toB7RJ9MmWZ4
+    scope: BUILD_TIME
+  - key: VITE_GA_MEASUREMENT_ID
+    value: G-7M7V8GVZQ7
+    scope: BUILD_TIME
+  - key: VITE_CLOUDINARY_CLOUD_NAME
+    value: dlbmnrjgx
+    scope: BUILD_TIME
+  - key: VITE_CLOUDINARY_UPLOAD_PRESET
+    value: job_applications
+    scope: BUILD_TIME
   routes:
   - path: /
