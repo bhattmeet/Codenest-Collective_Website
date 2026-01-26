@@ -1,4 +1,4 @@
-import { Code, Users, RefreshCw, Shield, CheckCircle, ArrowRight } from "lucide-react";
+import { Code, Users, RefreshCw, Shield, CheckCircle, ArrowRight, Rocket, Trophy, TrendingUp, Target } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -162,6 +162,76 @@ const About = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Journey Timeline Section */}
+      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-blue-50/30 to-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Our Journey</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              From humble beginnings to delivering excellence - here's how we've grown
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {/* 2023 - Founded */}
+            <Card className="border-2 border-primary/30 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 duration-300 bg-white">
+              <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
+                  <Rocket className="w-10 h-10 text-primary" />
+                </div>
+                <h3 className="text-4xl font-bold mb-3 text-primary">2023</h3>
+                <h4 className="text-lg font-semibold mb-4 text-foreground">Company Founded</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  CodeNest Collective Technologies was born with a vision to empower startups.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* 2024 - First Clients */}
+            <Card className="border-2 border-primary/30 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 duration-300 bg-white">
+              <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
+                  <Trophy className="w-10 h-10 text-primary" />
+                </div>
+                <h3 className="text-4xl font-bold mb-3 text-primary">2024</h3>
+                <h4 className="text-lg font-semibold mb-4 text-foreground">First Major Clients</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Delivered 10+ successful projects and built strong relationships with clients worldwide.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* 2025 - Growth */}
+            <Card className="border-2 border-primary/30 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 duration-300 bg-white">
+              <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
+                  <TrendingUp className="w-10 h-10 text-primary" />
+                </div>
+                <h3 className="text-4xl font-bold mb-3 text-primary">2025</h3>
+                <h4 className="text-lg font-semibold mb-4 text-foreground">Rapid Growth</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Expanded our service offerings and established ourselves as a trusted development partner.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* 2026 - Future */}
+            <Card className="border-2 border-primary/30 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 duration-300 bg-white">
+              <CardContent className="p-8 flex flex-col items-center text-center h-full">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
+                  <Target className="w-10 h-10 text-primary" />
+                </div>
+                <h3 className="text-4xl font-bold mb-3 text-primary">2026</h3>
+                <h4 className="text-lg font-semibold mb-4 text-foreground">Vision Ahead</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Continuing to innovate and help businesses transform with cutting-edge technology.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
