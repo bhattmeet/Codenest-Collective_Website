@@ -47,10 +47,10 @@ const About = () => {
           <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
         </div>
         <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
             About CodeNest Collective
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-8">
             Building scalable software solutions for startups and growing businesses
           </p>
           <div className="flex flex-wrap justify-center gap-8 text-lg">
@@ -77,8 +77,8 @@ const About = () => {
         <div className="container mx-auto max-w-5xl">
           <Card className="border-primary/20">
             <CardContent className="p-8 md:p-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">Our Mission</h2>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Our Mission</h2>
+              <p className="text-lg md:text-lg text-muted-foreground leading-relaxed">
                 We empower startups and growing businesses with scalable, high-quality software solutions.
                 Our expertise spans web and mobile applications, backend systems, and UI/UX design.
                 We serve <span className="text-primary font-semibold">Domestic and international clients</span> who
@@ -93,7 +93,7 @@ const About = () => {
       <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">Meet Our Founder</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Meet Our Founder</h2>
             <p className="text-lg text-muted-foreground">
               Leadership driven by expertise and passion for technology
             </p>
@@ -111,7 +111,7 @@ const About = () => {
 
                 {/* Founder Bio */}
                 <div className="p-8">
-                  <h3 className="text-3xl font-bold mb-2 text-primary">Meet Bhatt</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-primary">Meet Bhatt</h3>
                   <p className="text-lg text-accent mb-6">Founder & CEO</p>
 
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -169,7 +169,7 @@ const About = () => {
       <section className="py-12 md:py-20 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">Our Values</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Our Values</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               The principles that guide everything we do
             </p>
@@ -184,7 +184,7 @@ const About = () => {
                       <value.icon className="w-8 h-8 text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-primary">{value.title}</h3>
+                      <h3 className="text-xl font-bold mb-3 text-primary">{value.title}</h3>
                       <p className="text-muted-foreground leading-relaxed">{value.description}</p>
                     </div>
                   </div>
@@ -198,7 +198,7 @@ const About = () => {
       {/* CTA Section */}
       <section className="py-16 md:py-20 px-6 bg-primary text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-2xl md:text-2xl lg:text-4xl font-bold mb-6">
             Ready to Work Together?
           </h2>
           <p className="text-lg md:text-xl mb-8 opacity-90">

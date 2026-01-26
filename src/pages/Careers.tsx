@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { MapPin, Clock, DollarSign, Heart, Globe, BookOpen, Zap, Users, Trophy, Briefcase, Bell, ArrowRight } from "lucide-react";
+import { MapPin, Clock, Briefcase, Heart, Globe, BookOpen, Zap, Users, Trophy, Bell, ArrowRight, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,72 +8,33 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import JobApplicationModal from "@/components/JobApplicationModal";
+import { openPositions, JobPosition } from "@/data/careersData";
 
 const Careers = () => {
   const navigate = useNavigate();
-  const [selectedJob, setSelectedJob] = useState<string | null>(null);
+  const [selectedJob, setSelectedJob] = useState<JobPosition | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [expandedJob, setExpandedJob] = useState<string | null>(null);
+  const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  const jobs = [
-//     {
-//       title: "Senior Full Stack Developer",
-//       location: "San Francisco, CA / Remote",
-//       type: "Full-time",
-//       salary: "$120k - $180k",
-//       department: "Engineering",
-//       description: "We're looking for an experienced full stack developer to join our growing team and work on cutting-edge web applications.",
-//       requirements: ["5+ years experience", "React & Node.js", "Cloud platforms", "Agile methodology"],
-//     },
-//     {
-//       title: "Mobile App Developer",
-//       location: "New York, NY / Hybrid",
-//       type: "Full-time",
-//       salary: "$100k - $150k",
-//       department: "Engineering",
-//       description: "Join our mobile team to build innovative iOS and Android applications that delight users.",
-//       requirements: ["3+ years mobile dev", "React Native or Flutter", "App Store experience", "UI/UX sensibility"],
-//     },
-//     {
-//       title: "DevOps Engineer",
-//       location: "Remote",
-//       type: "Full-time",
-//       salary: "$110k - $160k",
-//       department: "Operations",
-//       description: "Help us build and maintain robust infrastructure and CI/CD pipelines for our enterprise clients.",
-//       requirements: ["AWS/Azure expertise", "Docker & Kubernetes", "Infrastructure as Code", "Security best practices"],
-//     },
-//     {
-//       title: "UX/UI Designer",
-//       location: "Austin, TX / Remote",
-//       type: "Full-time",
-//       salary: "$90k - $130k",
-//       department: "Design",
-//       description: "Create beautiful, intuitive interfaces and user experiences for web and mobile applications.",
-//       requirements: ["Portfolio required", "Figma proficiency", "User research", "Design systems"],
-//     },
-//     {
-//       title: "Product Manager",
-//       location: "San Francisco, CA",
-//       type: "Full-time",
-//       salary: "$130k - $170k",
-//       department: "Product",
-//       description: "Lead product strategy and execution for our flagship products, working closely with engineering and design teams.",
-//       requirements: ["5+ years PM experience", "Technical background", "Data-driven", "Stakeholder management"],
-//     },
-//     {
-//       title: "QA Engineer",
-//       location: "Remote",
-//       type: "Full-time",
-//       salary: "$80k - $120k",
-//       department: "Engineering",
-//       description: "Ensure the quality of our software through comprehensive testing strategies and automation.",
-//       requirements: ["Test automation", "CI/CD integration", "Bug tracking", "Attention to detail"],
-//     },
-  ];
-
-  const handleApply = (jobTitle: string) => {
-    setSelectedJob(jobTitle);
+  const handleApply = (job: JobPosition) => {
+    setSelectedJob(job);
     setIsModalOpen(true);
+  };
+
+  const toggleJobDetails = (jobId: string) => {
+    const isExpanding = expandedJob !== jobId;
+    setExpandedJob(expandedJob === jobId ? null : jobId);
+
+    // Scroll to card when expanding
+    if (isExpanding) {
+      setTimeout(() => {
+        cardRefs.current[jobId]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
   };
 
   return (
@@ -93,7 +54,7 @@ const Careers = () => {
         </div>
         <div className="container mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">Join Our Team</h1>
+            <h1 className="text-3xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">Join Our Team</h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Build your career with a company that values innovation, growth, and work-life balance. 
               We're always looking for talented individuals to join our team.
@@ -103,7 +64,7 @@ const Careers = () => {
           {/* Benefits */}
           <div className="mb-12 sm:mb-16">
             <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Why Work With Us</h2>
+              <h2 className="text-2xl sm:text-lg md:text-xl font-bold mb-4">Why Work With Us</h2>
               <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
                 Join a team that values your growth and well-being. We offer industry-leading benefits and a culture built on collaboration.
               </p>
@@ -210,9 +171,9 @@ const Careers = () => {
 
           {/* Job Listings */}
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Open Positions</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Open Positions ({openPositions.length})</h2>
 
-            {jobs.length === 0 ? (
+            {openPositions.length === 0 ? (
               // Empty State - No Jobs Available
               <Card className="border-dashed border-2 border-border">
                 <CardContent className="flex flex-col items-center justify-center py-16 px-6">
@@ -230,24 +191,6 @@ const Careers = () => {
                     We don't have any open positions at the moment, but we're always looking for talented individuals.
                     Check back soon or submit your resume for future opportunities.
                   </p>
-
-                  {/*
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Button
-                      onClick={() => navigate("/contact")}
-                      className="gap-2"
-                    >
-                      <Bell size={16} />
-                      Get Notified
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => navigate("/contact")}
-                    >
-                      Submit Resume
-                    </Button>
-                  </div>
-                  */}
 
                   <div className="mt-8 text-center">
                     <p className="text-sm text-muted-foreground mb-2">In the meantime, explore:</p>
@@ -279,44 +222,111 @@ const Careers = () => {
               </Card>
             ) : (
               // Job Listings
-              <div className="grid gap-6">
-                {jobs.map((job, index) => (
-                  <Card key={index} className="border-border hover:border-primary/50 transition-all duration-300">
-                    <CardHeader>
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <div>
-                          <CardTitle className="text-2xl mb-2">{job.title}</CardTitle>
-                          <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-                            <span className="flex items-center gap-1">
-                              <MapPin size={16} /> {job.location}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Clock size={16} /> {job.type}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <DollarSign size={16} /> {job.salary}
-                            </span>
+              <div className="grid gap-4">
+                {openPositions.map((job) => {
+                  const isExpanded = expandedJob === job.id;
+                  return (
+                    <div
+                      key={job.id}
+                      ref={(el) => cardRefs.current[job.id] = el}
+                      className="scroll-mt-24"
+                    >
+                      <Card className="border-primary/20 hover:border-primary/50 transition-all duration-300">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <CardTitle className="text-xl mb-2 text-primary">{job.title}</CardTitle>
+                            <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                              <span className="flex items-center gap-1">
+                                <MapPin size={14} className="text-primary flex-shrink-0" /> {job.location}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Clock size={14} className="text-primary flex-shrink-0" /> {job.type}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Briefcase size={14} className="text-primary flex-shrink-0" /> {job.experience}
+                              </span>
+                            </div>
                           </div>
+                          <Badge variant="secondary" className="text-xs flex-shrink-0">{job.department}</Badge>
                         </div>
-                        <Badge variant="secondary">{job.department}</Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground mb-4">{job.description}</p>
-                      <div className="mb-4">
-                        <h4 className="font-semibold mb-2">Requirements:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {job.requirements.map((req, idx) => (
-                            <Badge key={idx} variant="outline">{req}</Badge>
-                          ))}
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{job.description}</p>
+
+                        {isExpanded && (
+                          <div className="space-y-4 mb-4 border-t border-primary/10 pt-4">
+                            {/* Responsibilities */}
+                            <div>
+                              <h4 className="font-semibold text-sm mb-2 text-primary">Key Responsibilities</h4>
+                              <ul className="space-y-1.5">
+                                {job.responsibilities.map((resp, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-muted-foreground text-xs">
+                                    <CheckCircle className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                                    <span>{resp}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Requirements */}
+                            <div>
+                              <h4 className="font-semibold text-sm mb-2 text-primary">Required Qualifications</h4>
+                              <ul className="space-y-1.5">
+                                {job.requirements.map((req, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-muted-foreground text-xs">
+                                    <CheckCircle className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                                    <span>{req}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Nice to Have */}
+                            <div>
+                              <h4 className="font-semibold text-sm mb-2 text-primary">Nice to Have</h4>
+                              <ul className="space-y-1.5">
+                                {job.niceToHave.map((item, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-muted-foreground text-xs">
+                                    <CheckCircle className="w-3.5 h-3.5 text-cyan-500 flex-shrink-0 mt-0.5" />
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Benefits */}
+                            <div>
+                              <h4 className="font-semibold text-sm mb-2 text-primary">Benefits</h4>
+                              <div className="flex flex-wrap gap-1.5">
+                                {job.benefits.map((benefit, idx) => (
+                                  <Badge key={idx} variant="outline" className="text-xs py-0.5 px-2">
+                                    {benefit}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <Button onClick={() => handleApply(job)} size="sm" className="flex-1 sm:flex-none">
+                            Apply Now
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => toggleJobDetails(job.id)}
+                            className="flex-1 sm:flex-none"
+                          >
+                            {isExpanded ? "Show Less" : "View Details"}
+                          </Button>
                         </div>
-                      </div>
-                      <Button onClick={() => handleApply(job.title)} className="w-full md:w-auto">
-                        Apply Now
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </CardContent>
+                    </Card>
+                  </div>
+                );
+                })}
               </div>
             )}
           </div>
@@ -326,7 +336,7 @@ const Careers = () => {
       {/* CTA Section */}
       <section className="py-16 md:py-20 px-6 bg-primary text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-lg md:text-xl lg:text-4xl font-bold mb-6">
             Don't See Your Role?
           </h2>
           <p className="text-lg md:text-xl mb-8 opacity-90">
@@ -350,10 +360,10 @@ const Careers = () => {
 
       <Footer />
 
-      <JobApplicationModal 
+      <JobApplicationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        jobTitle={selectedJob || ""}
+        jobTitle={selectedJob?.title || ""}
       />
     </div>
   );

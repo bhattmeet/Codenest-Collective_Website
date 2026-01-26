@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, CheckCircle2, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ExternalLink, Github, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -74,7 +74,7 @@ const CaseStudy = () => {
 
           <div className="mb-12 animate-fade-in">
             <Badge className="mb-4" variant="secondary">{project.category}</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">{project.title}</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">{project.title}</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mb-6">
               {project.description}
             </p>
@@ -104,6 +104,7 @@ const CaseStudy = () => {
             <img
               src={project.caseStudyImage.replace('url(', '').replace(')', '')}
               alt={project.title}
+              loading="lazy"
               className="w-full h-[400px] object-contain bg-muted rounded-lg mb-12"
             />
           ) : (
@@ -185,36 +186,44 @@ const CaseStudy = () => {
 
           {/* Client Testimonials Section */}
           <div className="mt-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">What Our Clients Say</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            <h2 className="text-lg md:text-xl font-bold mb-8 text-center bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">What Our Clients Say</h2>
+            <div className="grid md:grid-cols-2 gap-8">
               {caseStudyDetails.testimonials.map((testimonial, idx) => (
                 <Card
                   key={idx}
-                  className={idx === 0
-                    ? "bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20"
-                    : "bg-gradient-to-br from-accent/5 to-primary/5 border-accent/20"
-                  }
+                  className="relative overflow-hidden border-primary/20 hover:border-primary/40 transition-all hover:shadow-xl hover:-translate-y-1 duration-300 bg-white"
                 >
-                  <CardContent className="pt-6">
-                    <div className="mb-4">
-                      <div className="flex gap-1 mb-3">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-primary text-lg">★</span>
-                        ))}
-                      </div>
-                      <p className="text-muted-foreground italic mb-4">
-                        "{testimonial.quote}"
-                      </p>
+                  <CardContent className="p-8">
+                    {/* Quote Icon */}
+                    <div className="absolute top-4 right-4 opacity-10">
+                      <Quote className="w-16 h-16 text-primary" />
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold ${
-                        idx === 0 ? "bg-primary/20 text-primary" : "bg-accent/20 text-accent"
-                      }`}>
-                        {testimonial.initials}
-                      </div>
-                      <div>
-                        <p className="font-semibold">{testimonial.author}</p>
-                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+
+                    {/* Rating Stars */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+
+                    {/* Testimonial Content */}
+                    <p className="text-gray-700 text-sm leading-relaxed mb-6 relative z-10">
+                      "{testimonial.quote}"
+                    </p>
+
+                    {/* Author Info */}
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3">
+                        {/* Avatar Placeholder */}
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center flex-shrink-0">
+                          <span className="text-white font-bold text-lg">
+                            {testimonial.initials}
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-primary text-sm">{testimonial.author}</h4>
+                          <p className="text-xs text-gray-600">{testimonial.role}</p>
+                        </div>
                       </div>
                     </div>
                   </CardContent>

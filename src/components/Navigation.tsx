@@ -40,7 +40,7 @@ const Navigation = () => {
     { name: "Services", path: "/services" },
     { name: "Projects", path: "/projects" },
     { name: "Company", path: "/company" },
-    // { name: "Resources", path: "/resources" }, // Hidden for now
+    { name: "Resources", path: "/resources" },
     { name: "Careers", path: "/careers" },
   ];
 
@@ -54,75 +54,35 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full transition-all duration-300 ${
-        isOpen ? 'z-[95]' : 'z-50'
-      } ${
-        isOpen
-          ? 'bg-transparent'
-          : isHomePage && !isScrolled
-            ? 'bg-transparent backdrop-blur-sm'
-            : 'bg-background/95 backdrop-blur-2xl border-b border-primary/10 shadow-lg shadow-primary/5'
-      }`}>
+      <nav
+        className={`fixed top-0 w-full transition-all duration-300 ${
+          isOpen ? 'z-[95]' : 'z-50'
+        } ${
+          isOpen
+            ? 'bg-transparent'
+            : isHomePage && !isScrolled
+              ? 'bg-transparent backdrop-blur-sm'
+              : 'bg-background/95 backdrop-blur-2xl border-b border-primary/10 shadow-lg shadow-primary/5'
+        }`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-20 gap-4">
-            <Link to="/" className={`flex items-center gap-2 sm:gap-3 group flex-shrink-0 transition-opacity duration-300 ${
-              isOpen ? 'opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto' : 'opacity-100'
-            }`}>
+            <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
               <div className="relative">
                 <img src={logo} alt="Codenest Collective Technologies" className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover transition-transform group-hover:scale-110 duration-300 shadow-lg" />
               </div>
               <span className={`text-base sm:text-xl font-bold whitespace-nowrap transition-colors duration-300 ${
-                isHomePage && !isScrolled ? 'text-white drop-shadow-lg' : 'bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent'
+                isOpen || (isHomePage && !isScrolled) ? 'text-white drop-shadow-lg' : 'bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent'
               }`}>
                 Codenest Collective Technologies
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`relative text-sm font-semibold transition-colors duration-300 group/link ${
-                    isHomePage && !isScrolled
-                      ? isActive(link.path)
-                        ? "text-white"
-                        : "text-white/90 hover:text-white"
-                      : isActive(link.path)
-                        ? "text-primary"
-                        : "text-foreground/80 hover:text-primary"
-                  }`}
-                >
-                  {link.name}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${
-                    isHomePage && !isScrolled
-                      ? 'bg-white'
-                      : 'bg-gradient-to-r from-primary to-accent'
-                  } ${
-                    isActive(link.path)
-                      ? "w-full"
-                      : "w-0 group-hover/link:w-full"
-                  }`}></span>
-                </Link>
-              ))}
-              <Link to="/contact">
-                <Button
-                  size="sm"
-                  className={`rounded-full transition-all duration-300 hover:scale-105 ${
-                    isHomePage && !isScrolled
-                      ? 'bg-white text-[#5088FA] hover:bg-white/90 shadow-lg'
-                      : 'bg-[#5088FA] text-white hover:bg-[#4078EA] shadow-lg hover:shadow-xl hover:shadow-primary/50'
-                  }`}
-                >
-                  Contact Us
-                </Button>
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
+            {/* Menu Button */}
             <button
-              className={`md:hidden flex-shrink-0 p-2 rounded-lg transition-all duration-300 ${
+              className={`flex-shrink-0 p-2 rounded-lg border-2 border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                 isOpen
                   ? 'hover:bg-white/20'
                   : isHomePage && !isScrolled
@@ -130,7 +90,9 @@ const Navigation = () => {
                     : 'hover:bg-primary/10'
               }`}
               onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               {isOpen ? (
                 <X size={28} className="text-white drop-shadow-lg" />
@@ -142,37 +104,29 @@ const Navigation = () => {
         </div>
       </nav>
 
-      {/* Mobile Navigation - Full Screen Gradient Overlay */}
+      {/* Navigation Menu - Full Screen Gradient Overlay */}
       {isOpen && (
-        <div className="md:hidden fixed inset-0 z-[90]">
+        <div id="mobile-menu" className="fixed inset-0 z-[90]" role="dialog" aria-modal="true">
           {/* Backdrop with gradient and animated orbs */}
           <div
-            className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-accent"
+            className="absolute inset-0 bg-gradient-to-br from-[#0a1929] via-[#1a2f4a] to-[#0d1b2a]"
             onClick={() => setIsOpen(false)}
           >
             {/* Animated gradient orbs */}
-            <div className="absolute top-20 right-10 w-64 h-64 bg-white/10 rounded-full filter blur-3xl animate-blob"></div>
-            <div className="absolute bottom-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
+            <div className="absolute top-20 right-10 w-64 h-64 bg-[#5088FA]/20 rounded-full filter blur-3xl animate-blob"></div>
+            <div className="absolute bottom-20 left-10 w-72 h-72 bg-[#42A5F5]/20 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
           </div>
 
           {/* Menu Content */}
           <div className="relative h-full flex items-center justify-center px-6 pt-24">
             <div className="w-full max-w-sm">
-              {/* Logo */}
-              <div className="flex flex-col items-center justify-center mb-12 animate-fade-in">
-                <img src={logo} alt="Codenest Collective Technologies" className="h-20 w-20 rounded-full object-cover shadow-2xl mb-4" />
-                <span className="text-2xl font-bold text-white drop-shadow-lg text-center">
-                  Codenest Collective Technologies
-                </span>
-              </div>
-
               {/* Navigation Links */}
               <nav className="space-y-2 mb-8">
                 {navLinks.map((link, index) => (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`block py-4 px-6 text-lg font-semibold rounded-2xl transition-all duration-300 text-center ${
+                    className={`block py-3 px-6 text-base font-semibold rounded-2xl transition-all duration-300 text-center ${
                       isActive(link.path)
                         ? "bg-white text-primary shadow-xl scale-105"
                         : "text-white hover:bg-white/20 hover:scale-105"

@@ -1,137 +1,155 @@
+import { useState, useEffect } from "react";
 import { BookOpen, FileText, Video, Code } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { allResources, resourceCategories } from "@/data/resourcesData";
+import ResourceCardSkeleton from "@/components/ResourceCardSkeleton";
 
 const Resources = () => {
   const navigate = useNavigate();
-  
-  const articles = [
-    {
-      type: "blog",
-      icon: BookOpen,
-      iconName: "BookOpen",
-      title: "Building Scalable Microservices with Docker and Kubernetes",
-      excerpt: "Learn how to architect and deploy microservices that can handle millions of requests.",
-      date: "Mar 15, 2024",
-      readTime: "8 min read",
-      tags: ["DevOps", "Cloud"],
-      url: "#",
-    },
-    {
-      type: "case-study",
-      icon: FileText,
-      iconName: "FileText",
-      title: "How We Reduced Cloud Costs by 40% for Fortune 500 Client",
-      excerpt: "A deep dive into our cloud optimization strategies and implementation process.",
-      date: "Mar 10, 2024",
-      readTime: "12 min read",
-      tags: ["Cloud", "Case Study"],
-      url: "#",
-    },
-    {
-      type: "video",
-      icon: Video,
-      iconName: "Video",
-      title: "Introduction to Modern Web Development",
-      excerpt: "A comprehensive video series covering React, TypeScript, and modern tooling.",
-      date: "Mar 5, 2024",
-      readTime: "45 min",
-      tags: ["Web Dev", "Tutorial"],
-      url: "#",
-    },
-    {
-      type: "guide",
-      icon: Code,
-      iconName: "Code",
-      title: "API Design Best Practices",
-      excerpt: "Complete guide to designing RESTful and GraphQL APIs that scale.",
-      date: "Feb 28, 2024",
-      readTime: "15 min read",
-      tags: ["Backend", "API"],
-      url: "#",
-    },
-    {
-      type: "blog",
-      icon: BookOpen,
-      iconName: "BookOpen",
-      title: "The Future of AI in Software Development",
-      excerpt: "Exploring how artificial intelligence is transforming the development process.",
-      date: "Feb 20, 2024",
-      readTime: "10 min read",
-      tags: ["AI", "Trends"],
-      url: "#",
-    },
-    {
-      type: "whitepaper",
-      icon: FileText,
-      iconName: "FileText",
-      title: "Enterprise Security in the Cloud Era",
-      excerpt: "Comprehensive whitepaper on securing cloud-based applications and infrastructure.",
-      date: "Feb 15, 2024",
-      readTime: "20 min read",
-      tags: ["Security", "Enterprise"],
-      url: "#",
-    },
-  ];
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Map icon names to actual icon components
+  const iconMap: { [key: string]: any } = {
+    BookOpen,
+    FileText,
+    Video,
+    Code
+  };
+
+  // Filter resources by category
+  const filteredResources = selectedCategory === "All"
+    ? allResources
+    : allResources.filter(resource => resource.type === selectedCategory.toLowerCase().replace(" ", "-"));
+
+  // Simulate loading state
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
+      <SEO
+        title="Resources - Blog, Guides & Case Studies"
+        description="Explore insights, guides, and best practices from CodeNest Collective Technologies. Stay updated with the latest in software development, DevOps, cloud computing, and technology trends."
+        path="/resources"
+        keywords="software development blog, tech guides, case studies, coding tutorials, DevOps resources, cloud computing, API design"
+      />
       <Navigation />
-      
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">Resources</h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-              Insights, guides, and best practices from our team of experts. Stay updated with the latest 
-              in software development and technology trends.
-            </p>
-          </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {articles.map((article, index) => (
-              <div
-                key={index}
-                className="cursor-pointer"
-                onClick={() => navigate('/resource-detail', { state: {
-                  type: article.type,
-                  iconName: article.iconName,
-                  title: article.title,
-                  excerpt: article.excerpt,
-                  date: article.date,
-                  readTime: article.readTime,
-                  tags: article.tags,
-                  url: article.url
-                }})}
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
+        </div>
+        <div className="container mx-auto max-w-4xl text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+            Resources & Insights
+          </h1>
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Insights, guides, and best practices from our team of experts. Stay updated with the latest
+            in software development and technology trends.
+          </p>
+        </div>
+      </section>
+
+      {/* Category Filter */}
+      <section className="py-8 px-6 bg-white border-y border-primary/10">
+        <div className="container mx-auto">
+          <div className="flex flex-wrap gap-3 justify-center">
+            {resourceCategories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                onClick={() => setSelectedCategory(category)}
+                className={`${
+                  selectedCategory === category
+                    ? "bg-primary text-white shadow-lg"
+                    : "border-primary/30 text-primary hover:bg-primary/10 hover:border-primary"
+                } transition-all hover:scale-105 duration-300`}
               >
-                <Card className="border-border hover:border-primary/50 transition-all duration-300 h-full">
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <article.icon className="w-10 h-10 text-primary" />
-                    <Badge variant="secondary" className="capitalize">{article.type}</Badge>
-                  </div>
-                  <CardTitle className="text-xl">{article.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{article.excerpt}</p>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {article.tags.map((tag, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">{tag}</Badge>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <span>{article.date}</span>
-                    <span>•</span>
-                    <span>{article.readTime}</span>
-                  </div>
-                </CardContent>
-              </Card>
-              </div>
+                {category}
+              </Button>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Resources Grid */}
+      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {isLoading ? (
+              // Show 6 skeleton cards while loading
+              Array(6).fill(0).map((_, index) => (
+                <ResourceCardSkeleton key={index} />
+              ))
+            ) : (
+              filteredResources.map((resource) => {
+              const Icon = iconMap[resource.iconName];
+              return (
+              <div
+                key={resource.id}
+                className="cursor-pointer group"
+                onClick={() => navigate('/resource-detail', { state: resource })}
+              >
+                <Card className="border-primary/20 hover:border-primary/50 transition-all duration-300 h-full hover:shadow-xl hover:-translate-y-1">
+                  <CardHeader>
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
+                        <Icon className="w-8 h-8 text-primary" />
+                      </div>
+                      <Badge variant="secondary" className="capitalize text-xs">
+                        {resource.type.replace("-", " ")}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
+                      {resource.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4 line-clamp-3">{resource.excerpt}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {resource.tags.slice(0, 3).map((tag, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                      {resource.tags.length > 3 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{resource.tags.length - 3}
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground border-t border-primary/10 pt-3">
+                      <span>{new Date(resource.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                      <span>•</span>
+                      <span>{resource.readTime}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            );
+            })
+            )}
+          </div>
+
+          {filteredResources.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-xl text-muted-foreground">No resources found in this category.</p>
+            </div>
+          )}
         </div>
       </section>
 

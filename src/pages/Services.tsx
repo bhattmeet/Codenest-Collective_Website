@@ -1,10 +1,16 @@
-import { Smartphone, Globe, Palette, Server, Wrench, ArrowRight, CheckCircle } from "lucide-react";
+import { Smartphone, Globe, Palette, Server, Wrench, ArrowRight, CheckCircle, Lightbulb, Pencil, Code2, TestTube, Rocket } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Services = () => {
   const services = [
@@ -60,34 +66,6 @@ const Services = () => {
     },
   ];
 
-  const processSteps = [
-    {
-      number: "01",
-      title: "Discovery",
-      description: "We dive deep into your business goals, target audience, and project requirements to create a solid foundation."
-    },
-    {
-      number: "02",
-      title: "Design",
-      description: "Our designers create wireframes, mockups, and prototypes that bring your vision to life with user-centered design principles."
-    },
-    {
-      number: "03",
-      title: "Develop",
-      description: "Our developers build your application using modern technologies, following best practices and writing clean, maintainable code."
-    },
-    {
-      number: "04",
-      title: "Test",
-      description: "Rigorous testing ensures your application is bug-free, secure, and performs optimally across all devices and platforms."
-    },
-    {
-      number: "05",
-      title: "Launch & Support",
-      description: "We deploy your application and provide ongoing support, maintenance, and updates to ensure continued success."
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <SEO
@@ -105,10 +83,10 @@ const Services = () => {
           <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
         </div>
         <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-blue-600 to-cyan-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary via-blue-600 to-cyan-600 bg-clip-text text-transparent">
             End-to-End Software Solutions
           </h1>
-          <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed">
             From concept to deployment and beyond, we provide comprehensive development services that transform your ideas into powerful digital products.
           </p>
         </div>
@@ -129,7 +107,7 @@ const Services = () => {
                     <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 flex-shrink-0">
                       <service.icon className="w-8 h-8 text-primary" />
                     </div>
-                    <h2 className="text-xl md:text-2xl font-bold text-primary group-hover:text-blue-600 transition-colors">
+                    <h2 className="text-lg md:text-xl font-bold text-primary group-hover:text-blue-600 transition-colors">
                       {service.title}
                     </h2>
                   </div>
@@ -163,65 +141,219 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Process Timeline Section */}
-      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      {/* Process - Compact Design */}
+      <section className="py-12 md:py-16 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+          <div className="text-center mb-12">
+            <h2 className="text-lg md:text-xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
               Our Development Process
             </h2>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              A proven 5-step methodology that ensures quality, efficiency, and success
+              A proven 5-step methodology that ensures success
             </p>
           </div>
 
-          {/* Timeline */}
-          <div className="relative">
-            {/* Connecting Line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 hidden sm:block"></div>
-
-            <div className="space-y-12">
-              {processSteps.map((step, index) => (
-                <div
-                  key={index}
-                  className={`relative flex flex-col md:flex-row gap-8 items-start ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                >
-                  {/* Number Circle */}
-                  <div className="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
-                    <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center border-4 border-background shadow-lg">
-                      <span className="text-white font-bold text-lg">{step.number}</span>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {/* Step 1 - Discovery */}
+              <div className="group relative">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4 relative">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <Lightbulb className="w-8 h-8 text-primary group-hover:animate-pulse" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                        1
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Content Card */}
-                  <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'}`}>
-                    <Card className="border-primary/20 hover:border-primary/40 transition-colors">
-                      <CardContent className="p-6">
-                        <h3 className="text-2xl font-bold mb-3 text-primary">
-                          {step.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {step.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Spacer for alternating layout */}
-                  <div className="hidden md:block flex-1"></div>
+                    <h3 className="text-base font-bold mb-2 text-primary">Discovery</h3>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      Understanding your goals and requirements
+                    </p>
+                  </CardContent>
+                </Card>
+                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                  <ArrowRight className="w-6 h-6 text-primary/30" />
                 </div>
-              ))}
+              </div>
+
+              {/* Step 2 - Design */}
+              <div className="group relative">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4 relative">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-cyan-500/10 to-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <Pencil className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                        2
+                      </div>
+                    </div>
+                    <h3 className="text-base font-bold mb-2 text-cyan-600">Design</h3>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      Crafting beautiful, intuitive interfaces
+                    </p>
+                  </CardContent>
+                </Card>
+                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                  <ArrowRight className="w-6 h-6 text-primary/30" />
+                </div>
+              </div>
+
+              {/* Step 3 - Develop */}
+              <div className="group relative">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4 relative">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <Code2 className="w-8 h-8 text-primary group-hover:animate-pulse" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                        3
+                      </div>
+                    </div>
+                    <h3 className="text-base font-bold mb-2 text-primary">Develop</h3>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      Building with modern tech and best practices
+                    </p>
+                  </CardContent>
+                </Card>
+                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                  <ArrowRight className="w-6 h-6 text-primary/30" />
+                </div>
+              </div>
+
+              {/* Step 4 - Test */}
+              <div className="group relative">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4 relative">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-cyan-500/10 to-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <TestTube className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                        4
+                      </div>
+                    </div>
+                    <h3 className="text-base font-bold mb-2 text-cyan-600">Test</h3>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      Ensuring quality across all platforms
+                    </p>
+                  </CardContent>
+                </Card>
+                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                  <ArrowRight className="w-6 h-6 text-primary/30" />
+                </div>
+              </div>
+
+              {/* Step 5 - Launch */}
+              <div className="group relative">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4 relative">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <Rocket className="w-8 h-8 text-primary group-hover:animate-pulse" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                        5
+                      </div>
+                    </div>
+                    <h3 className="text-base font-bold mb-2 text-primary">Launch</h3>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      Deploying and supporting your success
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-12 md:py-20 px-6 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-lg md:text-xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-base text-gray-600">
+              Common questions about our services and process
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1" className="border-primary/20">
+              <AccordionTrigger className="text-left hover:text-primary">
+                How long does a typical project take?
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600">
+                Project timelines vary based on complexity and scope. A simple mobile app typically takes 2-3 months,
+                while a complex web application with backend can take 4-6 months. We provide detailed timelines
+                during the discovery phase after understanding your requirements.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" className="border-primary/20">
+              <AccordionTrigger className="text-left hover:text-primary">
+                What technologies do you specialize in?
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600">
+                We specialize in modern tech stacks including React, Next.js, Node.js, Flutter, Kotlin (Android),
+                Swift (iOS), MongoDB, Firebase, and more. We choose the best technology based on your project
+                requirements and long-term goals.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" className="border-primary/20">
+              <AccordionTrigger className="text-left hover:text-primary">
+                Do you provide post-launch support?
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600">
+                Yes! We offer comprehensive post-launch support including bug fixes, updates, performance monitoring,
+                and feature enhancements. We provide different support packages to fit your needs and budget.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" className="border-primary/20">
+              <AccordionTrigger className="text-left hover:text-primary">
+                How do you ensure code quality?
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600">
+                We follow industry best practices including code reviews, automated testing, continuous integration,
+                and adherence to coding standards. Every project goes through rigorous quality assurance before deployment.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5" className="border-primary/20">
+              <AccordionTrigger className="text-left hover:text-primary">
+                Can you work with my existing codebase?
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600">
+                Absolutely! We have experience working with existing codebases. We can review, refactor, add features,
+                or help migrate to newer technologies while maintaining stability and minimizing downtime.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-6" className="border-primary/20">
+              <AccordionTrigger className="text-left hover:text-primary">
+                What is your pricing model?
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600">
+                We offer flexible pricing models including fixed-price projects, hourly rates, and monthly retainers.
+                The best model depends on your project type and requirements. Contact us for a detailed quote
+                tailored to your specific needs.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 px-6 bg-primary text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-lg md:text-xl lg:text-4xl font-bold mb-6">
             Ready to Build Something Amazing?
           </h2>
           <p className="text-lg md:text-xl mb-8 opacity-90">

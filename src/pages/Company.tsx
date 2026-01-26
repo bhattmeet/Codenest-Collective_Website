@@ -38,7 +38,7 @@ const Company = () => {
         </div>
         <div className="container mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">Our Company</h1>
+            <h1 className="text-3xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">Our Company</h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Learn more about Codenest Collective Technologies, our journey, and the people behind our success.
             </p>
@@ -78,7 +78,7 @@ const Company = () => {
           {/* Company Culture - Card Layout like Careers */}
           <div className="mb-12 sm:mb-16">
             <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Our Culture</h2>
+              <h2 className="text-2xl sm:text-lg md:text-xl font-bold mb-4">Our Culture</h2>
               <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
                 We foster an environment that values innovation, collaboration, and continuous growth.
               </p>
@@ -156,7 +156,7 @@ const Company = () => {
       {/* CTA Section */}
       <section className="py-16 md:py-20 px-6 bg-primary text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-lg md:text-xl lg:text-4xl font-bold mb-6">
             Let's Build the Future Together
           </h2>
           <p className="text-lg md:text-xl mb-8 opacity-90">
