@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { companyStats, companyInfo } from "@/data/companyData";
+import { allProjects } from "@/pages/Projects";
 
 const About = () => {
   const values = [
@@ -55,17 +57,17 @@ const About = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-8 text-lg">
             <div>
-              <span className="font-bold text-primary">3+ years</span>
+              <span className="font-bold text-primary">{companyStats.yearsExperience}+ years</span>
               <span className="text-muted-foreground"> of experience</span>
             </div>
             <div className="w-px bg-border"></div>
             <div>
-              <span className="font-bold text-primary">20+ projects</span>
+              <span className="font-bold text-primary">{allProjects.length}+ projects</span>
               <span className="text-muted-foreground"> delivered</span>
             </div>
             <div className="w-px bg-border"></div>
             <div>
-              <span className="font-bold text-primary">10+ clients</span>
+              <span className="font-bold text-primary">{companyStats.clientsWorldwide}+ clients</span>
               <span className="text-muted-foreground"> worldwide</span>
             </div>
           </div>
@@ -116,7 +118,7 @@ const About = () => {
 
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      With over 6+ years of hands-on experience in full-stack development, Meet brings deep
+                      With over {companyStats.yearsExperience}+ years of hands-on experience in full-stack development, Meet brings deep
                       expertise in Flutter, Android (Kotlin), Node.js, Express.js, MongoDB, and Firebase.
                     </p>
                     <p>
@@ -132,7 +134,7 @@ const About = () => {
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-semibold text-foreground">20+ Projects</p>
+                        <p className="font-semibold text-foreground">{allProjects.length}+ Projects</p>
                         <p className="text-sm text-muted-foreground">Successfully delivered</p>
                       </div>
                     </div>
@@ -146,14 +148,14 @@ const About = () => {
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-semibold text-foreground">10+ Clients</p>
+                        <p className="font-semibold text-foreground">{companyStats.clientsWorldwide}+ Clients</p>
                         <p className="text-sm text-muted-foreground">Global partnerships</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-semibold text-foreground">6+ Years</p>
+                        <p className="font-semibold text-foreground">{companyStats.yearsExperience}+ Years</p>
                         <p className="text-sm text-muted-foreground">Industry experience</p>
                       </div>
                     </div>
@@ -199,7 +201,7 @@ const About = () => {
                 <h3 className="text-4xl font-bold mb-3 text-primary">2024</h3>
                 <h4 className="text-lg font-semibold mb-4 text-foreground">First Major Clients</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Delivered 10+ successful projects and built strong relationships with clients worldwide.
+                  Delivered {allProjects.length}+ successful projects and built strong relationships with clients worldwide.
                 </p>
               </CardContent>
             </Card>

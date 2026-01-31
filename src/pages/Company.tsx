@@ -5,13 +5,15 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { companyStats } from "@/data/companyData";
+import { allProjects } from "@/pages/Projects";
 
 const Company = () => {
   const stats = [
-    { icon: Users, value: "10+", label: "Team Members" },
-    { icon: TrendingUp, value: "5+", label: "Projects Completed" },
+    { icon: Users, value: `${companyStats.clientsWorldwide}+`, label: "Team Members" },
+    { icon: TrendingUp, value: `${allProjects.length}+`, label: "Projects Completed" },
     { icon: Award, value: "1+", label: "Industry Awards" },
-    { icon: Globe, value: "3+", label: "Countries Served" },
+    { icon: Globe, value: `${companyStats.yearsExperience}+`, label: "Years Experience" },
   ];
 
   const team = [
