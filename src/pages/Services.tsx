@@ -285,10 +285,10 @@ const Services = () => {
 
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="border-primary/20">
-              <AccordionTrigger className="text-left hover:text-primary">
+              <AccordionTrigger className="text-left hover:text-primary text-sm md:text-base">
                 How long does a typical project take?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-gray-600 text-sm">
                 Project timelines vary based on complexity and scope. A simple mobile app typically takes 2-3 months,
                 while a complex web application with backend can take 4-6 months. We provide detailed timelines
                 during the discovery phase after understanding your requirements.
@@ -296,10 +296,10 @@ const Services = () => {
             </AccordionItem>
 
             <AccordionItem value="item-2" className="border-primary/20">
-              <AccordionTrigger className="text-left hover:text-primary">
+              <AccordionTrigger className="text-left hover:text-primary text-sm md:text-base">
                 What technologies do you specialize in?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-gray-600 text-sm">
                 We specialize in modern tech stacks including React, Next.js, Node.js, Flutter, Kotlin (Android),
                 Swift (iOS), MongoDB, Firebase, and more. We choose the best technology based on your project
                 requirements and long-term goals.
@@ -307,40 +307,40 @@ const Services = () => {
             </AccordionItem>
 
             <AccordionItem value="item-3" className="border-primary/20">
-              <AccordionTrigger className="text-left hover:text-primary">
+              <AccordionTrigger className="text-left hover:text-primary text-sm md:text-base">
                 Do you provide post-launch support?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-gray-600 text-sm">
                 Yes! We offer comprehensive post-launch support including bug fixes, updates, performance monitoring,
                 and feature enhancements. We provide different support packages to fit your needs and budget.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4" className="border-primary/20">
-              <AccordionTrigger className="text-left hover:text-primary">
+              <AccordionTrigger className="text-left hover:text-primary text-sm md:text-base">
                 How do you ensure code quality?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-gray-600 text-sm">
                 We follow industry best practices including code reviews, automated testing, continuous integration,
                 and adherence to coding standards. Every project goes through rigorous quality assurance before deployment.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-5" className="border-primary/20">
-              <AccordionTrigger className="text-left hover:text-primary">
+              <AccordionTrigger className="text-left hover:text-primary text-sm md:text-base">
                 Can you work with my existing codebase?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-gray-600 text-sm">
                 Absolutely! We have experience working with existing codebases. We can review, refactor, add features,
                 or help migrate to newer technologies while maintaining stability and minimizing downtime.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-6" className="border-primary/20">
-              <AccordionTrigger className="text-left hover:text-primary">
+              <AccordionTrigger className="text-left hover:text-primary text-sm md:text-base">
                 What is your pricing model?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionContent className="text-gray-600 text-sm">
                 We offer flexible pricing models including fixed-price projects, hourly rates, and monthly retainers.
                 The best model depends on your project type and requirements. Contact us for a detailed quote
                 tailored to your specific needs.
