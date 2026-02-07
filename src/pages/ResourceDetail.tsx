@@ -125,17 +125,48 @@ const ResourceDetail = () => {
                 {resource.content ? (
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: resource.content
-                        .replace(/\n## /g, '<h2 class="text-2xl md:text-3xl font-bold mt-12 mb-6 text-primary leading-tight">')
-                        .replace(/\n### /g, '<h3 class="text-xl md:text-2xl font-semibold mt-10 mb-4 text-primary leading-snug">')
-                        .replace(/\n#### /g, '<h4 class="text-lg md:text-xl font-semibold mt-8 mb-3 text-primary leading-snug">')
-                        .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
-                        .replace(/\n\n/g, '</p><p class="text-muted-foreground text-base leading-relaxed mb-4">')
-                        .replace(/```(\w+)\n([\s\S]+?)```/g, '<pre class="bg-gray-900 text-gray-100 p-4 md:p-6 rounded-lg overflow-x-auto my-6 shadow-soft-lg border border-gray-700"><code class="language-$1 text-sm">$2</code></pre>')
-                        .replace(/`([^`]+)`/g, '<code class="text-primary bg-primary/5 px-2 py-0.5 rounded text-sm font-mono border border-primary/10">$1</code>')
-                        .replace(/\n- /g, '<li class="text-muted-foreground text-base leading-relaxed mb-2">')
-                        .replace(/✅ /g, '<span class="text-green-600">✅</span> ')
-                        .replace(/\n\n</g, '\n<p class="text-muted-foreground text-base leading-relaxed mb-4">')
+                      __html: (() => {
+                        let html = resource.content;
+
+                        // Convert markdown tables to HTML
+                        html = html.replace(/\n(\|.+\|)\n(\|[-:\s|]+\|)\n((?:\|.+\|\n?)+)/g, (match, header, separator, rows) => {
+                          const headers = header.split('|').filter(h => h.trim()).map(h => h.trim());
+                          const rowData = rows.trim().split('\n').map(row =>
+                            row.split('|').filter(cell => cell.trim()).map(cell => cell.trim())
+                          );
+
+                          let tableHtml = '<table class="w-full my-8 border-collapse rounded-lg overflow-hidden shadow-soft-lg"><thead><tr>';
+                          headers.forEach(h => {
+                            tableHtml += `<th class="bg-primary/5 border border-primary/20 px-4 py-3 text-left font-semibold text-primary text-sm">${h}</th>`;
+                          });
+                          tableHtml += '</tr></thead><tbody>';
+
+                          rowData.forEach((row, idx) => {
+                            const bgClass = idx % 2 === 0 ? 'bg-white' : 'bg-muted/30';
+                            tableHtml += `<tr class="${bgClass} hover:bg-primary/5 transition-colors">`;
+                            row.forEach(cell => {
+                              tableHtml += `<td class="border border-primary/10 px-4 py-3 text-sm text-muted-foreground">${cell}</td>`;
+                            });
+                            tableHtml += '</tr>';
+                          });
+
+                          tableHtml += '</tbody></table>';
+                          return tableHtml;
+                        });
+
+                        // Apply other replacements
+                        return html
+                          .replace(/\n## /g, '<h2 class="text-2xl md:text-3xl font-bold mt-12 mb-6 text-primary leading-tight">')
+                          .replace(/\n### /g, '<h3 class="text-xl md:text-2xl font-semibold mt-10 mb-4 text-primary leading-snug">')
+                          .replace(/\n#### /g, '<h4 class="text-lg md:text-xl font-semibold mt-8 mb-3 text-primary leading-snug">')
+                          .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
+                          .replace(/\n\n/g, '</p><p class="text-muted-foreground text-base leading-relaxed mb-4">')
+                          .replace(/```(\w+)\n([\s\S]+?)```/g, '<pre class="bg-gray-900 text-gray-100 p-4 md:p-6 rounded-lg overflow-x-auto my-6 shadow-soft-lg border border-gray-700"><code class="language-$1 text-sm">$2</code></pre>')
+                          .replace(/`([^`]+)`/g, '<code class="text-primary bg-primary/5 px-2 py-0.5 rounded text-sm font-mono border border-primary/10">$1</code>')
+                          .replace(/\n- /g, '<li class="text-muted-foreground text-base leading-relaxed mb-2">')
+                          .replace(/✅ /g, '<span class="text-green-600">✅</span> ')
+                          .replace(/\n\n</g, '\n<p class="text-muted-foreground text-base leading-relaxed mb-4">');
+                      })()
                     }}
                   />
                 ) : (
