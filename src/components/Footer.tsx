@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook, Twitter, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
 import logo from "@/assets/codenest-logo.jpeg";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
@@ -7,8 +7,6 @@ const Footer = () => {
   const socialLinks = [
     { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/company/codenest-collective-technologies/", color: "hover:bg-[#0A66C2]" },
     { name: "Instagram", icon: Instagram, url: "https://www.instagram.com/codenest_collective/", color: "hover:bg-gradient-to-tr hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737]" },
-    { name: "Twitter", icon: Twitter, url: "https://twitter.com/codenest_tech", color: "hover:bg-[#1DA1F2]" },
-    { name: "GitHub", icon: Github, url: "https://github.com/codenest-collective", color: "hover:bg-[#333]" },
   ];
 
   return (
