@@ -457,6 +457,40 @@ All colors MUST be HSL.
                 0 16px 40px rgba(80, 136, 250, 0.1);
   }
 
+  /* Table styling for prose content */
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    box-shadow: 0 2px 8px rgba(80, 136, 250, 0.08);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .prose th {
+    background: hsl(var(--primary) / 0.05);
+    border: 1px solid hsl(var(--primary) / 0.2);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: hsl(var(--primary));
+    font-size: 0.875rem;
+  }
+
+  .prose td {
+    border: 1px solid hsl(var(--primary) / 0.1);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .prose tr:nth-child(even) {
+    background: hsl(var(--muted) / 0.3);
+  }
+
+  .prose tr:hover {
+    background: hsl(var(--primary) / 0.03);
+  }
+
   /* Accessibility - Enhanced Focus Indicators */
   *:focus-visible {
     outline: 2px solid hsl(var(--primary));
