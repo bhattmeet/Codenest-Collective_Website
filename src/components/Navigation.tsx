@@ -128,8 +128,8 @@ const Navigation = () => {
                     to={link.path}
                     className={`block py-3 px-6 text-base font-semibold rounded-2xl transition-all duration-300 text-center ${
                       isActive(link.path)
-                        ? "bg-white text-primary shadow-xl scale-105"
-                        : "text-white hover:bg-white/20 hover:scale-105"
+                        ? "bg-white text-primary shadow-soft-lg scale-105"
+                        : "text-white hover:bg-white/20 hover:scale-105 hover:shadow-soft"
                     }`}
                     style={{
                       animation: `slideInUp 0.4s ease-out ${index * 0.1}s both`
@@ -145,7 +145,7 @@ const Navigation = () => {
               <Link to="/contact" onClick={() => setIsOpen(false)}>
                 <Button
                   size="lg"
-                  className="w-full rounded-full bg-white text-primary hover:bg-white/90 shadow-2xl text-lg font-bold py-6 hover:scale-105 transition-all duration-300"
+                  className="w-full rounded-full bg-white text-primary hover:bg-white/90 shadow-soft-xl hover:shadow-soft-xl text-lg font-bold py-6 hover:scale-105 transition-all duration-300"
                   style={{
                     animation: `slideInUp 0.4s ease-out ${navLinks.length * 0.1}s both`
                   }}

@@ -191,7 +191,7 @@ const CaseStudy = () => {
               {caseStudyDetails.testimonials.map((testimonial, idx) => (
                 <Card
                   key={idx}
-                  className="relative overflow-hidden border-primary/20 hover:border-primary/40 transition-all hover:shadow-xl hover:-translate-y-1 duration-300 bg-white"
+                  className="relative overflow-hidden border-primary/20 hover:border-primary/20 transition-all hover:shadow-xl hover:-translate-y-1 duration-300 bg-white"
                 >
                   <CardContent className="p-8">
                     {/* Quote Icon */}

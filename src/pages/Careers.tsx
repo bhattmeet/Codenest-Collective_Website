@@ -71,7 +71,7 @@ const Careers = () => {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -87,7 +87,7 @@ const Careers = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -103,7 +103,7 @@ const Careers = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -119,7 +119,7 @@ const Careers = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -135,7 +135,7 @@ const Careers = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -151,7 +151,7 @@ const Careers = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border hover:border-primary/50 transition-all duration-300 group">
+              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -231,7 +231,7 @@ const Careers = () => {
                       ref={(el) => cardRefs.current[job.id] = el}
                       className="scroll-mt-24"
                     >
-                      <Card className="border-primary/20 hover:border-primary/50 transition-all duration-300">
+                      <Card className="border-primary/20 hover:border-primary/20 transition-all duration-300">
                       <CardHeader className="pb-3">
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1 min-w-0">
@@ -334,7 +334,7 @@ const Careers = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 px-6 bg-primary text-white">
+      <section className="py-16 md:py-24 px-6 bg-primary text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-lg md:text-xl lg:text-4xl font-bold mb-6">
             Don't See Your Role?

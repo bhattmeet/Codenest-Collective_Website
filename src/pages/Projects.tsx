@@ -375,8 +375,8 @@ const Projects = () => {
                 onClick={() => setSelectedFilter(filter)}
                 className={`${
                   selectedFilter === filter
-                    ? "bg-primary text-white shadow-lg"
-                    : "border-primary/30 text-primary hover:bg-primary/10 hover:border-primary"
+                    ? "bg-primary text-white shadow-soft"
+                    : "border-primary/20 text-primary hover:bg-primary/10 hover:border-primary"
                 } transition-all hover:scale-105 duration-300`}
               >
                 {filter}
@@ -387,7 +387,7 @@ const Projects = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {isLoading ? (
@@ -399,7 +399,7 @@ const Projects = () => {
               filteredProjects.map((project, index) => (
               <Card
                 key={index}
-                className="border-primary/20 hover:border-primary transition-all hover:shadow-2xl hover:-translate-y-2 duration-300 overflow-hidden group bg-white"
+                className="border-primary/20 hover:border-primary transition-all hover:shadow-soft-xl hover:-translate-y-2 duration-300 overflow-hidden group bg-white"
               >
                 {/* Project Image */}
                 <div className="relative overflow-hidden h-48 bg-gradient-to-br from-primary/10 to-cyan-500/10">
@@ -442,7 +442,7 @@ const Projects = () => {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary text-xs transition-colors"
+                          className="border-primary/20 text-primary hover:bg-primary hover:text-white hover:border-primary text-xs transition-colors"
                         >
                           <ExternalLink className="w-3 h-3 mr-1" />
                           Live Demo
@@ -454,7 +454,7 @@ const Projects = () => {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary text-xs transition-colors"
+                          className="border-primary/20 text-primary hover:bg-primary hover:text-white hover:border-primary text-xs transition-colors"
                         >
                           <Github className="w-3 h-3 mr-1" />
                           GitHub
@@ -488,7 +488,7 @@ const Projects = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 px-6 bg-primary text-white">
+      <section className="py-16 md:py-24 px-6 bg-primary text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-lg md:text-xl lg:text-4xl font-bold mb-6">
             Start Your Project

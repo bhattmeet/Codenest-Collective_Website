@@ -159,7 +159,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Form and Map Section - Horizontal Layout */}
-      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Contact Form */}
@@ -170,7 +170,7 @@ const Contact = () => {
                   Fill out the form and we'll get back to you within 24 hours
                 </p>
               </div>
-              <Card className="border-primary/20 shadow-lg">
+              <Card className="border-primary/20 shadow-soft">
                 <CardContent className="p-6 md:p-8">
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid md:grid-cols-2 gap-5">
@@ -296,7 +296,7 @@ const Contact = () => {
                   Based in Ahmedabad, serving clients worldwide
                 </p>
               </div>
-              <Card className="border-primary/20 overflow-hidden shadow-lg h-[calc(100%-88px)]">
+              <Card className="border-primary/20 overflow-hidden shadow-soft h-[calc(100%-88px)]">
                 <CardContent className="p-0 h-full">
                   <div className="w-full h-full min-h-[500px]">
                     <iframe

@@ -107,7 +107,7 @@ const ResourceDetail = () => {
 
             <div className="flex flex-wrap gap-2">
               {resource.tags.map((tag, idx) => (
-                <Badge key={idx} variant="outline" className="text-sm border-primary/30 hover:bg-primary/10 transition-colors">
+                <Badge key={idx} variant="outline" className="text-sm border-primary/20 hover:bg-primary/10 transition-colors">
                   <Tag className="w-3 h-3 mr-1" />
                   {tag}
                 </Badge>

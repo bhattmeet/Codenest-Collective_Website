@@ -224,13 +224,13 @@ const Home = () => {
           {/* CTA Buttons with enhanced shadows */}
           <div className="flex flex-wrap gap-4 justify-center mb-12">
             <Link to="/contact">
-              <Button size="lg" className="gap-2 px-6 md:px-8 py-4 md:py-6 bg-[#5088FA] hover:bg-[#4078EA] text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <Button size="lg" className="gap-2 px-6 md:px-8 py-4 md:py-6 bg-[#5088FA] hover:bg-[#4078EA] text-white shadow-soft-lg hover:shadow-soft-xl hover:scale-105 transition-all duration-300">
                 Book Free Consultation
                 <ArrowRight size={18} />
               </Button>
             </Link>
             <Link to="/projects">
-              <Button size="lg" className="gap-2 px-6 md:px-8 py-4 md:py-6 border-2 border-white bg-white text-[#5088FA] hover:bg-transparent hover:text-white hover:border-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <Button size="lg" className="gap-2 px-6 md:px-8 py-4 md:py-6 border-2 border-white bg-white text-[#5088FA] hover:bg-transparent hover:text-white hover:border-white shadow-soft hover:shadow-soft-lg hover:scale-105 transition-all duration-300">
                 See Our Work
                 <ArrowRight size={18} />
               </Button>
@@ -263,7 +263,7 @@ const Home = () => {
       </section>
 
       {/* Services Preview Section */}
-      <section className="py-12 md:py-20 px-6 bg-white">
+      <section className="py-16 md:py-24 px-6 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Our Services</h2>
@@ -274,10 +274,10 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <Card key={index} className="group border-primary/20 hover:border-primary transition-all hover:shadow-2xl hover:-translate-y-2 duration-300 bg-white/80 backdrop-blur-sm">
+              <Card key={index} className="group border-primary/20 hover:border-primary transition-all hover:shadow-soft-xl hover:-translate-y-2 duration-300 bg-white/80 backdrop-blur-sm">
                 <CardContent className="pt-8 pb-6">
                   <div className="mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 inline-block group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 inline-block group-hover:shadow-soft group-hover:scale-110 transition-all duration-300">
                       <service.icon className="w-8 h-8 text-primary" />
                     </div>
                   </div>
@@ -291,7 +291,7 @@ const Home = () => {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Featured Projects</h2>
@@ -302,7 +302,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-2xl transition-all duration-300 border-primary/20 hover:border-primary hover:-translate-y-2 bg-white">
+              <Card key={index} className="group overflow-hidden hover:shadow-soft-xl transition-all duration-300 border-primary/20 hover:border-primary hover:-translate-y-2 bg-white">
                 {/* Project Image */}
                 <div className="relative overflow-hidden h-48 bg-gradient-to-br from-primary/10 to-cyan-500/10">
                   <img
@@ -362,7 +362,7 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Step 1 */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     {/* Animated Icon */}
                     <div className="mb-4 relative">
@@ -370,7 +370,7 @@ const Home = () => {
                         <Lightbulb className="w-8 h-8 text-primary group-hover:animate-pulse" />
                       </div>
                       {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         1
                       </div>
                     </div>
@@ -388,7 +388,7 @@ const Home = () => {
 
               {/* Step 2 */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     {/* Animated Icon */}
                     <div className="mb-4 relative">
@@ -396,7 +396,7 @@ const Home = () => {
                         <Pencil className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
                       </div>
                       {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         2
                       </div>
                     </div>
@@ -414,7 +414,7 @@ const Home = () => {
 
               {/* Step 3 */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     {/* Animated Icon */}
                     <div className="mb-4 relative">
@@ -422,7 +422,7 @@ const Home = () => {
                         <Wrench className="w-8 h-8 text-primary group-hover:animate-pulse" />
                       </div>
                       {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         3
                       </div>
                     </div>
@@ -440,7 +440,7 @@ const Home = () => {
 
               {/* Step 4 */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     {/* Animated Icon */}
                     <div className="mb-4 relative">
@@ -448,7 +448,7 @@ const Home = () => {
                         <Rocket className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
                       </div>
                       {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         4
                       </div>
                     </div>
@@ -465,7 +465,7 @@ const Home = () => {
       </section>
 
       {/* Why Us Section */}
-      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Why Choose Us</h2>
@@ -476,7 +476,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {whyUs.map((item, index) => (
-              <Card key={index} className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg bg-white">
+              <Card key={index} className="border-primary/20 hover:border-primary/20 transition-all hover:shadow-soft bg-white">
                 <CardContent className="p-6">
                   <div className="flex gap-4 items-start">
                     <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
@@ -495,7 +495,7 @@ const Home = () => {
       </section>
 
       {/* Client Testimonials Section */}
-      <section className="py-12 md:py-20 px-6 bg-white">
+      <section className="py-16 md:py-24 px-6 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">What Our Clients Say</h2>
@@ -506,7 +506,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="relative overflow-hidden border-primary/20 hover:border-primary/40 transition-all hover:shadow-xl hover:-translate-y-1 duration-300 bg-white">
+              <Card key={index} className="relative overflow-hidden border-primary/20 hover:border-primary/20 transition-all hover:shadow-soft-lg hover:-translate-y-1 duration-300 bg-white">
                 <CardContent className="p-8">
                   {/* Quote Icon */}
                   <div className="absolute top-4 right-4 opacity-10">
@@ -562,7 +562,7 @@ const Home = () => {
               {clientLogos.map((client, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-center p-4 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg group"
+                  className="flex items-center justify-center p-4 bg-white rounded-lg border border-primary/10 hover:border-primary/20 transition-all duration-300 hover:shadow-soft group"
                 >
                   <img
                     src={client.logo}
@@ -609,7 +609,7 @@ const Home = () => {
 
 
       {/* Featured Resources Section */}
-      <section className="py-12 md:py-20 px-6 bg-white">
+      <section className="py-16 md:py-24 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">Latest Resources</h2>
@@ -622,7 +622,7 @@ const Home = () => {
             {featuredResources.map((resource) => (
               <Card
                 key={resource.id}
-                className="border-primary/20 hover:border-primary/50 transition-all duration-300 cursor-pointer group hover:shadow-xl hover:-translate-y-1"
+                className="border-primary/20 hover:border-primary/20 transition-all duration-300 cursor-pointer group hover:shadow-soft-lg hover:-translate-y-1"
                 onClick={() => navigate('/resource-detail', { state: resource })}
               >
                 <CardContent className="p-6">

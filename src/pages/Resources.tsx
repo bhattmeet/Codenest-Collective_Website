@@ -75,8 +75,8 @@ const Resources = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`${
                   selectedCategory === category
-                    ? "bg-primary text-white shadow-lg"
-                    : "border-primary/30 text-primary hover:bg-primary/10 hover:border-primary"
+                    ? "bg-primary text-white shadow-soft"
+                    : "border-primary/20 text-primary hover:bg-primary/10 hover:border-primary"
                 } transition-all hover:scale-105 duration-300`}
               >
                 {category}
@@ -87,7 +87,7 @@ const Resources = () => {
       </section>
 
       {/* Resources Grid */}
-      <section className="py-12 md:py-20 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
         <div className="container mx-auto max-w-6xl">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {isLoading ? (
@@ -104,7 +104,7 @@ const Resources = () => {
                 className="cursor-pointer group"
                 onClick={() => navigate('/resource-detail', { state: resource })}
               >
-                <Card className="border-primary/20 hover:border-primary/50 transition-all duration-300 h-full hover:shadow-xl hover:-translate-y-1">
+                <Card className="border-primary/20 hover:border-primary/20 transition-all duration-300 h-full hover:shadow-soft-lg hover:-translate-y-1">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-3">
                       <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">

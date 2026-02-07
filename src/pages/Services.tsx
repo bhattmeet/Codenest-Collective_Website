@@ -93,18 +93,18 @@ const Services = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-12 md:py-20 px-6 bg-white">
+      <section className="py-16 md:py-24 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <Card
                 key={index}
-                className="group border-primary/20 hover:border-primary overflow-hidden hover:shadow-2xl transition-all duration-300 bg-white hover:-translate-y-1"
+                className="group border-primary/20 hover:border-primary overflow-hidden hover:shadow-soft-xl transition-all duration-300 bg-white hover:-translate-y-1"
               >
                 <CardContent className="p-8">
                   {/* Icon and Title */}
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 group-hover:shadow-soft group-hover:scale-110 transition-all duration-300 flex-shrink-0">
                       <service.icon className="w-8 h-8 text-primary" />
                     </div>
                     <h2 className="text-lg md:text-xl font-bold text-primary group-hover:text-blue-600 transition-colors">
@@ -129,7 +129,7 @@ const Services = () => {
 
                   {/* CTA Button */}
                   <Link to="/contact">
-                    <Button className="bg-primary hover:bg-primary/90 gap-2 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 w-full">
+                    <Button className="bg-primary hover:bg-primary/90 gap-2 shadow-soft hover:shadow-soft-lg hover:scale-105 transition-all duration-300 w-full">
                       Get Quote
                       <ArrowRight className="w-4 h-4" />
                     </Button>
@@ -157,13 +157,13 @@ const Services = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {/* Step 1 - Discovery */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     <div className="mb-4 relative">
                       <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <Lightbulb className="w-8 h-8 text-primary group-hover:animate-pulse" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         1
                       </div>
                     </div>
@@ -180,13 +180,13 @@ const Services = () => {
 
               {/* Step 2 - Design */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     <div className="mb-4 relative">
                       <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-cyan-500/10 to-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <Pencil className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         2
                       </div>
                     </div>
@@ -203,13 +203,13 @@ const Services = () => {
 
               {/* Step 3 - Develop */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     <div className="mb-4 relative">
                       <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <Code2 className="w-8 h-8 text-primary group-hover:animate-pulse" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         3
                       </div>
                     </div>
@@ -226,13 +226,13 @@ const Services = () => {
 
               {/* Step 4 - Test */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     <div className="mb-4 relative">
                       <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-cyan-500/10 to-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <TestTube className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         4
                       </div>
                     </div>
@@ -249,13 +249,13 @@ const Services = () => {
 
               {/* Step 5 - Launch */}
               <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-xl hover:-translate-y-2 duration-300 bg-white">
+                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
                   <CardContent className="p-6 text-center">
                     <div className="mb-4 relative">
                       <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <Rocket className="w-8 h-8 text-primary group-hover:animate-pulse" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
                         5
                       </div>
                     </div>
@@ -272,7 +272,7 @@ const Services = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12 md:py-20 px-6 bg-white">
+      <section className="py-16 md:py-24 px-6 bg-white">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-lg md:text-xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
@@ -351,7 +351,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 px-6 bg-primary text-white">
+      <section className="py-16 md:py-24 px-6 bg-primary text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-lg md:text-xl lg:text-4xl font-bold mb-6">
             Ready to Build Something Amazing?
