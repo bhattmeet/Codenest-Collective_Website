@@ -170,6 +170,23 @@ All colors MUST be HSL.
     background-color: hsl(var(--background-tinted));
   }
 
+  /* Section divider utility for better visual separation */
+  .section-divider {
+    position: relative;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    border-radius: 2px;
+  }
+
   .animate-fade-in {
     animation: fadeIn 0.6s ease-in;
   }
@@ -422,6 +439,22 @@ All colors MUST be HSL.
   /* Gradient Utilities */
   .bg-gradient-radial {
     background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+
+  /* Enhanced shadow system for more depth */
+  .shadow-soft {
+    box-shadow: 0 2px 8px rgba(80, 136, 250, 0.08),
+                0 4px 16px rgba(80, 136, 250, 0.06);
+  }
+
+  .shadow-soft-lg {
+    box-shadow: 0 4px 12px rgba(80, 136, 250, 0.1),
+                0 8px 24px rgba(80, 136, 250, 0.08);
+  }
+
+  .shadow-soft-xl {
+    box-shadow: 0 8px 20px rgba(80, 136, 250, 0.12),
+                0 16px 40px rgba(80, 136, 250, 0.1);
   }
 
   /* Accessibility - Enhanced Focus Indicators */
