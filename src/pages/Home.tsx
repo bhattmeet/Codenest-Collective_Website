@@ -330,7 +330,7 @@ const Home = () => {
                   </CardContent>
                 </Card>
                 {/* Arrow connector - desktop only */}
-                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                <div className="hidden lg:flex absolute top-1/2 -right-8 transform -translate-y-1/2 z-20 items-center justify-center">
                   <ArrowRight className="w-6 h-6 text-primary/30" />
                 </div>
               </div>
@@ -356,7 +356,7 @@ const Home = () => {
                   </CardContent>
                 </Card>
                 {/* Arrow connector - desktop only */}
-                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                <div className="hidden lg:flex absolute top-1/2 -right-8 transform -translate-y-1/2 z-20 items-center justify-center">
                   <ArrowRight className="w-6 h-6 text-primary/30" />
                 </div>
               </div>
@@ -382,7 +382,7 @@ const Home = () => {
                   </CardContent>
                 </Card>
                 {/* Arrow connector - desktop only */}
-                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                <div className="hidden lg:flex absolute top-1/2 -right-8 transform -translate-y-1/2 z-20 items-center justify-center">
                   <ArrowRight className="w-6 h-6 text-primary/30" />
                 </div>
               </div>
