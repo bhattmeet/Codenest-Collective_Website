@@ -186,7 +186,7 @@ const CaseStudy = () => {
 
           {/* Client Testimonials Section */}
           <div className="mt-16">
-            <h2 className="text-lg md:text-xl font-bold mb-8 text-center bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">What Our Clients Say</h2>
+            <h2 className="text-lg md:text-xl font-bold mb-8 text-center text-primary">What Our Clients Say</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {caseStudyDetails.testimonials.map((testimonial, idx) => (
                 <Card
@@ -215,7 +215,7 @@ const CaseStudy = () => {
                     <div className="relative z-10">
                       <div className="flex items-center gap-3">
                         {/* Avatar Placeholder */}
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                           <span className="text-white font-bold text-lg">
                             {testimonial.initials}
                           </span>
