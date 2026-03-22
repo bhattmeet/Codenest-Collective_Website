@@ -436,7 +436,7 @@ const Projects = () => {
                 className={`card-glass hover-lift overflow-hidden group border-primary/20 transition-all duration-300`}
               >
                 {/* Project Image */}
-                <div className="relative overflow-hidden h-48 bg-gradient-to-br from-primary/10 to-cyan-500/10">
+                <div className="relative overflow-hidden h-48 bg-primary/10">
                   <img
                     src={project.image}
                     alt={project.title}

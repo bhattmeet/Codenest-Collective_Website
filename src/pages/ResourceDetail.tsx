@@ -55,16 +55,12 @@ const ResourceDetail = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-12 px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
-        </div>
+      <section className="pt-32 pb-12 px-6 bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] relative overflow-hidden">
         <div className="container mx-auto max-w-4xl">
           <Button
             variant="ghost"
             onClick={() => navigate("/resources")}
-            className="mb-8 hover:bg-primary/10"
+            className="mb-8 hover:bg-white/10 text-white hover:text-white"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Resources
@@ -72,33 +68,33 @@ const ResourceDetail = () => {
 
           <div className="mb-8">
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-4 rounded-xl bg-primary/10">
-                <Icon className="w-10 h-10 text-primary" />
+              <div className="p-4 rounded-xl bg-white/10">
+                <Icon className="w-10 h-10 text-white" />
               </div>
-              <Badge variant="secondary" className="capitalize text-base px-4 py-2">
+              <Badge variant="secondary" className="capitalize text-base px-4 py-2 bg-white text-primary">
                 {resource.type.replace("-", " ")}
               </Badge>
             </div>
 
-            <h1 className="text-4xl sm:text-lg md:text-xl font-bold mb-6 text-primary leading-tight">
+            <h1 className="text-4xl sm:text-lg md:text-xl font-bold mb-6 text-white leading-tight">
               {resource.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-6">
+            <div className="flex flex-wrap items-center gap-4 text-white/80 mb-6">
               <div className="flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-primary" />
+                <Calendar className="w-5 h-5 text-white" />
                 <span>{formattedDate}</span>
               </div>
-              <span className="text-primary">•</span>
+              <span className="text-white">•</span>
               <div className="flex items-center gap-2">
-                <Clock className="w-5 h-5 text-primary" />
+                <Clock className="w-5 h-5 text-white" />
                 <span>{resource.readTime}</span>
               </div>
               {resource.author && (
                 <>
-                  <span className="text-primary">•</span>
+                  <span className="text-white">•</span>
                   <div className="flex items-center gap-2">
-                    <User className="w-5 h-5 text-primary" />
+                    <User className="w-5 h-5 text-white" />
                     <span>{resource.author}</span>
                   </div>
                 </>
@@ -107,7 +103,7 @@ const ResourceDetail = () => {
 
             <div className="flex flex-wrap gap-2">
               {resource.tags.map((tag, idx) => (
-                <Badge key={idx} variant="outline" className="text-sm border-primary/20 hover:bg-primary/10 transition-colors">
+                <Badge key={idx} variant="outline" className="text-sm border-white/30 text-white hover:bg-white/10 transition-colors">
                   <Tag className="w-3 h-3 mr-1" />
                   {tag}
                 </Badge>
@@ -176,7 +172,7 @@ const ResourceDetail = () => {
                       {resource.excerpt}
                     </p>
 
-                    <div className="border-l-4 border-primary pl-6 my-8 bg-gradient-to-r from-blue-50/50 to-transparent py-4 rounded-r-lg">
+                    <div className="border-l-4 border-primary pl-6 my-8 bg-primary/5 py-4 rounded-r-lg">
                       <h3 className="text-xl md:text-2xl font-semibold mb-4 text-primary">Introduction</h3>
                       <p className="text-muted-foreground text-base leading-relaxed">
                         This comprehensive {resource.type.replace("-", " ")} explores the key concepts and practical implementations
@@ -233,10 +229,8 @@ const ResourceDetail = () => {
 
           {/* CTA Section */}
           <div className="mt-16">
-            <Card className="border-primary/20 bg-gradient-to-br from-blue-50 to-cyan-50 overflow-hidden shadow-soft-xl">
+            <Card className="border-primary/20 bg-primary/5 overflow-hidden shadow-soft-xl">
               <CardContent className="p-8 md:p-12 text-center relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full filter blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/10 rounded-full filter blur-3xl"></div>
               <div className="relative">
                 <h3 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Want to learn more?</h3>
                 <p className="text-muted-foreground mb-8 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
