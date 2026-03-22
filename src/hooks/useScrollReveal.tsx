@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 
 /**
- * Hook to reveal elements with .scroll-reveal class when they enter viewport
+ * Enhanced hook to reveal elements with animation classes when they enter viewport
  * Uses Intersection Observer for performance
+ * Supports: .scroll-reveal, .animate-slide-in-bottom, .animate-slide-in-left, .animate-slide-in-right, .animate-scale-in
  */
 export const useScrollReveal = () => {
   useEffect(() => {
@@ -10,7 +11,7 @@ export const useScrollReveal = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
+            entry.target.classList.add('is-visible');
             // Stop observing once revealed (performance optimization)
             observer.unobserve(entry.target);
           }
@@ -24,8 +25,20 @@ export const useScrollReveal = () => {
 
     // Small delay to ensure DOM is ready
     setTimeout(() => {
-      document.querySelectorAll('.scroll-reveal').forEach((el) => {
-        observer.observe(el);
+      // Observe all animation elements
+      const selectors = [
+        '.scroll-reveal',
+        '.animate-slide-in-bottom',
+        '.animate-slide-in-left',
+        '.animate-slide-in-right',
+        '.animate-scale-in'
+      ];
+
+      selectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach((el) => {
+          el.classList.add('opacity-0'); // Start hidden
+          observer.observe(el);
+        });
       });
     }, 100);
 
