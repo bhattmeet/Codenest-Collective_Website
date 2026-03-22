@@ -22,8 +22,6 @@ export const allProjects = [
       github: "",
       demo: "https://play.google.com/store/apps/details?id=com.meet.spaceexploration",
       problem: "Creating an intuitive interface to present complex astronomical data while maintaining performance with large datasets and high-resolution imagery",
-      solution: "Implemented Jetpack Compose for modern UI with MVVM architecture for clean separation of concerns",
-      results: "Published on Google Play Store with smooth 60 FPS UI animations and offline-first architecture",
       // Case Study Details
       caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037619/feature_graphic_ue0mmn.png)",
       duration: "3 months",
@@ -70,8 +68,6 @@ export const allProjects = [
       github: "",
       demo: "",
       problem: "Supporting multiple NFC tag formats while ensuring data security and providing a seamless cross-platform experience",
-      solution: "Built with Flutter for cross-platform support, implemented comprehensive NFC protocol handlers, and added encryption layer",
-      results: "Support for 10+ NFC tag formats with 100% success rate in tag reading/writing operations",
       // Case Study Details
       caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037594/touch_bridge_feature_grapic_whqkju.png)",
       duration: "4 months",
@@ -120,8 +116,6 @@ export const allProjects = [
       github: "https://github.com/bhattmeet/DishDiscovery-Frontend",
       demo: "",
       problem: "Creating a fluid, responsive UI with offline capabilities while handling large media files and ensuring fast search results",
-      solution: "Utilized GetX for efficient state management, Hive for local database, and implemented smart caching strategies with Dio",
-      results: "Sub-second search response time with full offline functionality and smooth 60 FPS scrolling",
       // Case Study Details
       caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037401/dishdiscover_feature_graphic_jc9ryn.png)",
       duration: "5 months",
@@ -171,8 +165,6 @@ export const allProjects = [
       github: "https://github.com/bhattmeet/DishDiscovery-Backend",
       demo: "",
       problem: "Building a secure, scalable API that handles user authentication, large media files, and provides fast response times",
-      solution: "Implemented JWT-based authentication, AWS S3 for media storage, PostgreSQL for relational data, and automated CI/CD on DigitalOcean",
-      results: "99.9% uptime with average API response time under 200ms and zero-downtime deployments",
       // Case Study Details
       caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037401/dishdiscover_feature_graphic_jc9ryn.png)",
       duration: "5 months",
@@ -226,8 +218,6 @@ export const allProjects = [
       github: "",
       demo: "https://dtrpdsnr4m57.trickle.host/",
       problem: "Creating a visually appealing website that showcases tailoring craftsmanship with easy WhatsApp-based customer communication",
-      solution: "Built a responsive single-page React application with Tailwind CSS, custom Lightbox gallery, and persistent WhatsApp CTAs",
-      results: "Established professional online presence with streamlined inquiry process and mobile-optimized design",
       // Case Study Details
       caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1766909530/Screenshot_2025-12-28_at_1.39.27_PM_zpmmd7.png)",
       duration: "2 months",
@@ -276,8 +266,6 @@ export const allProjects = [
       github: "",
       demo: "https://www.behance.net/gallery/240420173/Blood-Source",
       problem: "Many donor platforms lose users during registration because the process feels long, clinical, or confusing",
-      solution: "Redesigned onboarding flow as three focused screens with clear progress, consistent visual hierarchy, and reassuring microcopy",
-      results: "Designed to reduce perceived complexity and increase completion rates for new donors while improving data accuracy",
       // Case Study Details
       caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765703925/blood_source_design_ujvia5.png)",
       duration: "3 weeks",
@@ -327,8 +315,6 @@ export const allProjects = [
       github: "",
       demo: "https://www.behance.net/gallery/244993379/Minimalist-luxury-business-card-design",
       problem: "Creating a business card that stands out in a crowded market while maintaining simplicity and elegance",
-      solution: "Adopted minimalist design approach with refined typography, strategic white space, and sophisticated color palette",
-      results: "Achieved timeless design balancing minimalism with functionality, perfect for premium brand identity",
       // Case Study Details
       caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1772353050/White_And_Green_Minimalist_Id_Card_Mockup_Instagram_Post_wu7fde.png)",
       duration: "3 days",
