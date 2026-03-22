@@ -45,7 +45,7 @@ const About = () => {
       <Navigation />
 
       {/* Company Intro Section */}
-      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA] relative overflow-hidden">
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#3B6FE6] to-[#5A8BF5] relative overflow-hidden">
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="section-title text-4xl md:text-5xl font-bold mb-6 text-white">
             About CodeNest Collective

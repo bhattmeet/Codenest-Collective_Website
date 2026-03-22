@@ -8,13 +8,13 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Soft light gray background - easier on eyes than pure white */
-    --background: 210 20% 98%; /* #F8F9FA - Very light gray */
+    /* Medium-light gray background - softer and more professional */
+    --background: 240 9% 93%; /* #ECECF0 - Medium-light gray */
     --foreground: 0 0% 20%; /* Dark gray #333333 */
 
     /* Slightly darker gray for alternating sections */
-    --background-tinted: 210 15% 96%; /* #F5F6F7 - Slightly darker than background */
-    --background-alternate: 210 15% 96%; /* #F5F6F7 - Slightly darker than background */
+    --background-tinted: 240 8% 90%; /* #E5E6EA - Slightly darker than background */
+    --background-alternate: 240 8% 90%; /* #E5E6EA - Slightly darker than background */
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 20%;
@@ -84,9 +84,9 @@ All colors MUST be HSL.
     --primary-hover: 220 94% 58%; /* #3F75E8 - Darker blue for hover */
     --primary-light: 220 93% 70%; /* #6B9BFA - Lighter blue */
 
-    /* Hero gradient colors */
-    --hero-gradient-from: 220 95% 63%; /* #4A7EFA - Deeper blue */
-    --hero-gradient-to: 220 93% 70%; /* #6B9BFA - Lighter blue */
+    /* Hero gradient colors - softer and more professional */
+    --hero-gradient-from: 220 76% 56%; /* #3B6FE6 - Deeper, softer blue */
+    --hero-gradient-to: 220 88% 66%; /* #5A8BF5 - Lighter, softer blue */
 
     /* Shadow system - reduced intensities */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);

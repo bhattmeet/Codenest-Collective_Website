@@ -35,7 +35,7 @@ const Company = () => {
       />
       <Navigation />
 
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA] relative overflow-hidden">
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-[#3B6FE6] to-[#5A8BF5] relative overflow-hidden">
         <div className="container mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
             <h1 className="section-title fade-in-up text-3xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 text-white">Our Company</h1>
