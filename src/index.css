@@ -8,13 +8,13 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Medium-light gray background - softer and more professional */
-    --background: 240 9% 93%; /* #ECECF0 - Medium-light gray */
+    /* Noticeable medium gray background - much calmer and professional */
+    --background: 230 11% 87%; /* #DCDEE4 - Noticeable medium gray */
     --foreground: 0 0% 20%; /* Dark gray #333333 */
 
-    /* Slightly darker gray for alternating sections */
-    --background-tinted: 240 8% 90%; /* #E5E6EA - Slightly darker than background */
-    --background-alternate: 240 8% 90%; /* #E5E6EA - Slightly darker than background */
+    /* Darker gray for alternating sections */
+    --background-tinted: 230 10% 84%; /* #D4D6DC - Darker than background */
+    --background-alternate: 230 10% 84%; /* #D4D6DC - Darker than background */
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 20%;
@@ -84,9 +84,9 @@ All colors MUST be HSL.
     --primary-hover: 220 94% 58%; /* #3F75E8 - Darker blue for hover */
     --primary-light: 220 93% 70%; /* #6B9BFA - Lighter blue */
 
-    /* Hero gradient colors - softer and more professional */
-    --hero-gradient-from: 220 76% 56%; /* #3B6FE6 - Deeper, softer blue */
-    --hero-gradient-to: 220 88% 66%; /* #5A8BF5 - Lighter, softer blue */
+    /* Hero gradient colors - much deeper and less saturated */
+    --hero-gradient-from: 223 65% 52%; /* #2E5BDA - Much deeper blue */
+    --hero-gradient-to: 223 78% 60%; /* #4874E8 - Deeper, muted blue */
 
     /* Shadow system - reduced intensities */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);

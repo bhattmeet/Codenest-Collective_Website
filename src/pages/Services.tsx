@@ -79,7 +79,7 @@ const Services = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#3B6FE6] to-[#5A8BF5] relative overflow-hidden">
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] relative overflow-hidden">
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <h1 className="section-title text-3xl md:text-4xl font-bold mb-6 text-white">
             End-to-End Software Solutions

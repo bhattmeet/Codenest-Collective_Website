@@ -130,7 +130,7 @@ const Home = () => {
       {/* Hero Section - Animated Mesh Gradient */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Animated Mesh Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#3B6FE6] to-[#5A8BF5]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2E5BDA] to-[#4874E8]">
           {/* Gradient Orbs - Slower, elegant movement */}
           <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#5088FA] rounded-full mix-blend-multiply filter blur-[128px] opacity-70"
                style={{ animation: 'blob 12s ease-in-out infinite' }}></div>
