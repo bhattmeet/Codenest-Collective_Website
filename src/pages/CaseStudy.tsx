@@ -62,20 +62,21 @@ const CaseStudy = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <section className="pt-32 pb-12 px-6 bg-white">
-        <div className="container mx-auto">
-          <Button 
-            variant="ghost" 
-            className="mb-8 gap-2"
+      {/* Hero Section - Blue Gradient */}
+      <section className="pt-32 pb-12 px-6 bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] relative overflow-hidden">
+        <div className="container mx-auto max-w-4xl">
+          <Button
+            variant="ghost"
+            className="mb-8 gap-2 hover:bg-white/10 text-white hover:text-white"
             onClick={() => navigate("/projects")}
           >
             <ArrowLeft size={16} /> Back to Projects
           </Button>
 
-          <div className="mb-12 animate-fade-in">
-            <Badge className="mb-4" variant="secondary">{project.category}</Badge>
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">{project.title}</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mb-6">
+          <div className="mb-8 animate-fade-in">
+            <Badge className="mb-4 bg-white text-primary" variant="secondary">{project.category}</Badge>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 text-white">{project.title}</h1>
+            <p className="text-xl text-white/90 max-w-3xl mb-6">
               {project.description}
             </p>
 
@@ -83,7 +84,7 @@ const CaseStudy = () => {
             <div className="flex gap-4">
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                  <Button className="gap-2 hover:scale-105 transition-transform">
+                  <Button className="gap-2 hover:scale-105 transition-transform bg-white text-primary hover:bg-white/90">
                     <ExternalLink size={18} />
                     View Live Demo
                   </Button>
@@ -91,7 +92,7 @@ const CaseStudy = () => {
               )}
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="gap-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors">
+                  <Button variant="outline" className="gap-2 border-white/30 text-white hover:bg-white/10 transition-colors">
                     <Github size={18} />
                     View on GitHub
                   </Button>
@@ -99,6 +100,12 @@ const CaseStudy = () => {
               )}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Content Section - White Background */}
+      <section className="py-16 md:py-24 px-6 bg-white">
+        <div className="container mx-auto max-w-6xl">
 
           {project.caseStudyImage.startsWith('url(') ? (
             <img
