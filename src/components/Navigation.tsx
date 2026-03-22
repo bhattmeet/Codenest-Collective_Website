@@ -55,14 +55,8 @@ const Navigation = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full transition-all duration-300 ${
-          isOpen ? 'z-[95]' : 'z-50'
-        } ${
-          isOpen
-            ? 'bg-transparent'
-            : isHomePage && !isScrolled
-              ? 'bg-transparent backdrop-blur-sm'
-              : 'bg-background/95 backdrop-blur-2xl border-b border-primary/10 shadow-lg shadow-primary/5'
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          isScrolled ? 'nav-glass' : 'bg-transparent backdrop-blur-sm'
         }`}
         role="navigation"
         aria-label="Main navigation"

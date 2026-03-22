@@ -10,8 +10,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#1a1a1a] text-gray-300 border-t border-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 py-8">
+    <footer className="glass-effect border-t border-primary/10">
+      <div className="section-container py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
           {/* Company Info */}

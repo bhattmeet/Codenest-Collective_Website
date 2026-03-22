@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { allProjects } from "./Projects";
 import { companyStats, clientLogos } from "@/data/companyData";
 import { featuredResources } from "@/data/resourcesData";
-import { AnimatedText } from "@/components/AnimatedText";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 const Home = () => {
