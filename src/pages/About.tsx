@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { companyStats, companyInfo } from "@/data/companyData";
 import { allProjects } from "@/pages/Projects";
 
 const About = () => {
+  useScrollReveal();
   const values = [
     {
       icon: Code,
@@ -43,32 +45,28 @@ const About = () => {
       <Navigation />
 
       {/* Company Intro Section */}
-      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
-        </div>
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA] relative overflow-hidden">
         <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+          <h1 className="section-title text-4xl md:text-5xl font-bold mb-6 text-white">
             About CodeNest Collective
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+          <p className="text-lg text-white/90 leading-relaxed mb-8">
             Building scalable software solutions for startups and growing businesses
           </p>
           <div className="flex flex-wrap justify-center gap-8 text-lg">
             <div>
-              <span className="font-bold text-primary">{companyStats.yearsExperience}+ years</span>
-              <span className="text-muted-foreground"> of experience</span>
+              <span className="font-bold text-white">{companyStats.yearsExperience}+ years</span>
+              <span className="text-white/80"> of experience</span>
             </div>
-            <div className="w-px bg-border"></div>
+            <div className="w-px bg-white/30"></div>
             <div>
-              <span className="font-bold text-primary">{allProjects.length}+ projects</span>
-              <span className="text-muted-foreground"> delivered</span>
+              <span className="font-bold text-white">{allProjects.length}+ projects</span>
+              <span className="text-white/80"> delivered</span>
             </div>
-            <div className="w-px bg-border"></div>
+            <div className="w-px bg-white/30"></div>
             <div>
-              <span className="font-bold text-primary">{companyStats.clientsWorldwide}+ clients</span>
-              <span className="text-muted-foreground"> worldwide</span>
+              <span className="font-bold text-white">{companyStats.clientsWorldwide}+ clients</span>
+              <span className="text-white/80"> worldwide</span>
             </div>
           </div>
         </div>
@@ -92,7 +90,7 @@ const About = () => {
       </section>
 
       {/* Founder Section */}
-      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-16 md:py-24 px-6 bg-white">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Meet Our Founder</h2>
@@ -105,7 +103,7 @@ const About = () => {
             <CardContent className="p-0">
               <div className="grid md:grid-cols-[300px,1fr] gap-8">
                 {/* Founder Photo */}
-                <div className="bg-gradient-to-br from-primary/20 to-accent/20 p-8 flex items-center justify-center">
+                <div className="bg-primary/10 p-8 flex items-center justify-center">
                   <div className="w-48 h-48 rounded-full bg-primary/10 border-4 border-primary/20 flex items-center justify-center">
                     <div className="text-6xl font-bold text-primary">MB</div>
                   </div>
@@ -179,7 +177,7 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {/* 2023 - Founded */}
-            <Card className="border-2 border-primary/20 shadow-soft hover:shadow-soft-lg transition-all hover:-translate-y-1 duration-300 bg-white">
+            <Card className="card-glass stagger-1 border-2 border-primary/20 transition-all duration-300">
               <CardContent className="p-8 flex flex-col items-center text-center h-full">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
                   <Rocket className="w-10 h-10 text-primary" />
@@ -193,7 +191,7 @@ const About = () => {
             </Card>
 
             {/* 2024 - First Clients */}
-            <Card className="border-2 border-primary/20 shadow-soft hover:shadow-soft-lg transition-all hover:-translate-y-1 duration-300 bg-white">
+            <Card className="card-glass stagger-2 border-2 border-primary/20 transition-all duration-300">
               <CardContent className="p-8 flex flex-col items-center text-center h-full">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
                   <Trophy className="w-10 h-10 text-primary" />
@@ -207,7 +205,7 @@ const About = () => {
             </Card>
 
             {/* 2025 - Growth */}
-            <Card className="border-2 border-primary/20 shadow-soft hover:shadow-soft-lg transition-all hover:-translate-y-1 duration-300 bg-white">
+            <Card className="card-glass stagger-3 border-2 border-primary/20 transition-all duration-300">
               <CardContent className="p-8 flex flex-col items-center text-center h-full">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
                   <TrendingUp className="w-10 h-10 text-primary" />
@@ -221,7 +219,7 @@ const About = () => {
             </Card>
 
             {/* 2026 - Future */}
-            <Card className="border-2 border-primary/20 shadow-soft hover:shadow-soft-lg transition-all hover:-translate-y-1 duration-300 bg-white">
+            <Card className="card-glass stagger-4 border-2 border-primary/20 transition-all duration-300">
               <CardContent className="p-8 flex flex-col items-center text-center h-full">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
                   <Target className="w-10 h-10 text-primary" />
@@ -238,7 +236,7 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 md:py-24 px-6 bg-white">
+      <section className="py-16 md:py-24 px-6 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Our Values</h2>
@@ -249,7 +247,7 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {values.map((value, index) => (
-              <Card key={index} className="border-primary/20 hover:border-primary/20 transition-all hover:shadow-soft">
+              <Card key={index} className={`card-glass stagger-${(index % 2) + 1} border-primary/20 transition-all`}>
                 <CardContent className="p-8">
                   <div className="flex gap-6 items-start">
                     <div className="p-4 rounded-xl bg-primary/10 flex-shrink-0">
