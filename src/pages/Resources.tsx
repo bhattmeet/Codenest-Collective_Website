@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { allResources, resourceCategories } from "@/data/resourcesData";
 import ResourceCardSkeleton from "@/components/ResourceCardSkeleton";
 
 const Resources = () => {
+  useScrollReveal();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
@@ -48,16 +50,12 @@ const Resources = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
-        </div>
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA] relative overflow-hidden">
         <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+          <h1 className="section-title text-4xl md:text-5xl font-bold mb-6 text-white">
             Resources & Insights
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-xl text-white/90 leading-relaxed">
             Insights, guides, and best practices from our team of experts. Stay updated with the latest
             in software development and technology trends.
           </p>
@@ -87,7 +85,7 @@ const Resources = () => {
       </section>
 
       {/* Resources Grid */}
-      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-16 md:py-24 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {isLoading ? (
@@ -104,7 +102,7 @@ const Resources = () => {
                 className="cursor-pointer group"
                 onClick={() => navigate('/resource-detail', { state: resource })}
               >
-                <Card className="border-primary/20 hover:border-primary/20 transition-all duration-300 h-full hover:shadow-soft-lg hover:-translate-y-1">
+                <Card className="card-glass border-primary/20 transition-all duration-300 h-full">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-3">
                       <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
