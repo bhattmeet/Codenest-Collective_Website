@@ -183,7 +183,7 @@ const Contact = () => {
                             setFormData({ ...formData, name: value });
                           }}
                           placeholder="Your name"
-                          className="input-glass mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20"
+                          className="input-solid mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20"
                         />
                       </div>
                       <div>
@@ -198,7 +198,7 @@ const Contact = () => {
                             setFormData({ ...formData, email: value });
                           }}
                           placeholder="your@email.com"
-                          className="input-glass mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20"
+                          className="input-solid mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20"
                         />
                       </div>
                     </div>
@@ -213,7 +213,7 @@ const Contact = () => {
                           setFormData({ ...formData, company: value });
                         }}
                         placeholder="Your company name"
-                        className="input-glass mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20"
+                        className="input-solid mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20"
                       />
                     </div>
 
@@ -226,14 +226,14 @@ const Contact = () => {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Tell us about your project..."
-                        className="input-glass mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20 resize-none"
+                        className="input-solid mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20 resize-none"
                       />
                     </div>
 
                     <div>
                       <Label htmlFor="budget" className="text-sm font-medium">Budget (Optional)</Label>
                       <Select value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
-                        <SelectTrigger className="input-glass mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20">
+                        <SelectTrigger className="input-solid mt-1.5 border-gray-300 focus:border-primary focus:ring-primary/20">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
