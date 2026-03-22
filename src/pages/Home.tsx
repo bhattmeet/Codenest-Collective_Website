@@ -14,58 +14,11 @@ import { useEffect, useState } from "react";
 import { allProjects } from "./Projects";
 import { companyStats, clientLogos } from "@/data/companyData";
 import { featuredResources } from "@/data/resourcesData";
-
-// Animated Text Component - Word by word fade in
-const AnimatedText = ({ text }: { text: string }) => {
-  const words = text.split(' ');
-
-  return (
-    <>
-      {words.map((word, index) => (
-        <span
-          key={index}
-          className="inline-block"
-          style={{
-            animation: `fadeInUp 0.6s ease-out forwards`,
-            animationDelay: `${index * 0.1}s`,
-            opacity: 0
-          }}
-        >
-          {word}
-          {index < words.length - 1 && '\u00A0'}
-        </span>
-      ))}
-    </>
-  );
-};
-
-// Stats Counter Component
-const AnimatedCounter = ({ end, suffix = "", duration = 2000 }: { end: number; suffix?: string; duration?: number }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let startTime: number;
-    let animationFrame: number;
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-
-      setCount(Math.floor(progress * end));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [end, duration]);
-
-  return <>{count}{suffix}</>;
-};
-
+import { AnimatedText } from "@/components/AnimatedText";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 const Home = () => {
+  useScrollReveal();
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
 
@@ -178,7 +131,7 @@ const Home = () => {
       {/* Hero Section - Animated Mesh Gradient */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Animated Mesh Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1929] via-[#1a2f4a] to-[#0d1b2a]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA]">
           {/* Gradient Orbs - Slower, elegant movement */}
           <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#5088FA] rounded-full mix-blend-multiply filter blur-[128px] opacity-70"
                style={{ animation: 'blob 12s ease-in-out infinite' }}></div>
@@ -187,9 +140,6 @@ const Home = () => {
           <div className="absolute bottom-0 left-1/2 w-[500px] h-[500px] bg-[#5088FA] rounded-full mix-blend-multiply filter blur-[128px] opacity-70"
                style={{ animation: 'blob 12s ease-in-out infinite 6s' }}></div>
 
-          {/* Gradient Overlay for depth - Very slow shift */}
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#1a2f4a]/30 to-transparent"
-               style={{ backgroundSize: '400% 400%', animation: 'gradient-shift 25s ease infinite' }}></div>
         </div>
 
         {/* Floating Geometric Shapes */}
@@ -277,7 +227,7 @@ const Home = () => {
               <Card key={index} className="group border-primary/20 hover:border-primary transition-all hover:shadow-soft-xl hover:-translate-y-2 duration-300 bg-white/80 backdrop-blur-sm">
                 <CardContent className="pt-8 pb-6">
                   <div className="mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 inline-block group-hover:shadow-soft group-hover:scale-110 transition-all duration-300">
+                    <div className="p-3 rounded-xl bg-primary/10 inline-block group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                       <service.icon className="w-8 h-8 text-primary" />
                     </div>
                   </div>
@@ -291,7 +241,7 @@ const Home = () => {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-16 md:py-24 px-6 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Featured Projects</h2>
@@ -301,10 +251,10 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProjects.map((project, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-soft-xl transition-all duration-300 border-primary/20 hover:border-primary hover:-translate-y-2 bg-white">
+            {featuredProjects.map((project, idx) => (
+              <Card key={project.title} className={`card-glass hover-lift group overflow-hidden transition-all duration-300 border-primary/20 hover:border-primary stagger-${idx + 1}`}>
                 {/* Project Image */}
-                <div className="relative overflow-hidden h-48 bg-gradient-to-br from-primary/10 to-cyan-500/10">
+                <div className="relative overflow-hidden h-48 bg-primary/10">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -325,9 +275,9 @@ const Home = () => {
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.slice(0, 3).map((tech, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md font-medium">
+                      <Badge key={idx} className="tech-badge">
                         {tech}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
 
@@ -349,7 +299,7 @@ const Home = () => {
       <TechStack />
 
       {/* Process / How We Work Section - Compact Design */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-12 md:py-16 px-6 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Our Process</h2>
@@ -366,7 +316,7 @@ const Home = () => {
                   <CardContent className="p-6 text-center">
                     {/* Animated Icon */}
                     <div className="mb-4 relative">
-                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <Lightbulb className="w-8 h-8 text-primary group-hover:animate-pulse" />
                       </div>
                       {/* Number Badge */}
@@ -392,7 +342,7 @@ const Home = () => {
                   <CardContent className="p-6 text-center">
                     {/* Animated Icon */}
                     <div className="mb-4 relative">
-                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-cyan-500/10 to-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <Pencil className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
                       </div>
                       {/* Number Badge */}
@@ -418,7 +368,7 @@ const Home = () => {
                   <CardContent className="p-6 text-center">
                     {/* Animated Icon */}
                     <div className="mb-4 relative">
-                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <Wrench className="w-8 h-8 text-primary group-hover:animate-pulse" />
                       </div>
                       {/* Number Badge */}
@@ -444,7 +394,7 @@ const Home = () => {
                   <CardContent className="p-6 text-center">
                     {/* Animated Icon */}
                     <div className="mb-4 relative">
-                      <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-cyan-500/10 to-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                         <Rocket className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
                       </div>
                       {/* Number Badge */}
