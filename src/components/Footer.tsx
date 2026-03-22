@@ -100,8 +100,8 @@ const Footer = () => {
                   <a href="mailto:meet.bhatt@codenestcollective.net" className="hover:text-[#5088FA] transition-colors duration-200">
                     meet.bhatt@codenestcollective.net
                   </a>
-                  <a href="mailto:het.patel@codenestcollective.net" className="hover:text-[#5088FA] transition-colors duration-200">
-                    het.patel@codenestcollective.net
+                  <a href="mailto:codenestcollective@gmail.com" className="hover:text-[#5088FA] transition-colors duration-200">
+                    codenestcollective@gmail.com
                   </a>
                 </div>
               </li>
