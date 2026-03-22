@@ -68,7 +68,7 @@ const Navigation = () => {
                 <img src={logo} alt="Codenest Collective Technologies" className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover transition-transform group-hover:scale-110 duration-300 shadow-lg" />
               </div>
               <span className={`text-base sm:text-xl font-bold whitespace-nowrap transition-colors duration-300 ${
-                isOpen || (isHomePage && !isScrolled) ? 'text-white drop-shadow-lg' : 'bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent'
+                isOpen || !isScrolled ? 'text-white drop-shadow-lg' : 'text-primary'
               }`}>
                 Codenest Collective Technologies
               </span>
