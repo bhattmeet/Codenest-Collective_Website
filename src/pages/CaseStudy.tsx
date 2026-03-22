@@ -59,10 +59,10 @@ const CaseStudy = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      
-      <section className="pt-32 pb-12 px-6">
+
+      <section className="pt-32 pb-12 px-6 bg-white">
         <div className="container mx-auto">
           <Button 
             variant="ghost" 
