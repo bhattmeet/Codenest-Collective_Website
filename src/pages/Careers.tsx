@@ -51,123 +51,129 @@ const Careers = () => {
 
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA] relative overflow-hidden">
         <div className="container mx-auto relative z-10">
-          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h1 className="section-title fade-in-up text-3xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">Join Our Team</h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-              Build your career with a company that values innovation, growth, and work-life balance. 
+          <div className="text-center animate-fade-in">
+            <h1 className="section-title fade-in-up text-3xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 text-white">Join Our Team</h1>
+            <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto px-4">
+              Build your career with a company that values innovation, growth, and work-life balance.
               We're always looking for talented individuals to join our team.
             </p>
           </div>
+        </div>
+      </section>
 
-          {/* Benefits */}
-          <div className="mb-12 sm:mb-16">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-lg md:text-xl font-bold mb-4">Why Work With Us</h2>
-              <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-                Join a team that values your growth and well-being. We offer industry-leading benefits and a culture built on collaboration.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="card-glass stagger-1 border-border transition-all duration-300 group">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                      <Heart className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-2">Comprehensive Benefits</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Health, dental, vision insurance, 401(k) matching, and generous PTO
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="card-glass stagger-2 border-border transition-all duration-300 group">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                      <Globe className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-2">Remote First</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Work from anywhere with flexible hours and a strong remote culture
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="card-glass stagger-3 border-border transition-all duration-300 group">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                      <BookOpen className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-2">Learning & Development</h3>
-                      <p className="text-sm text-muted-foreground">
-                        $2,500/year budget for courses, conferences, books, and certifications
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="card-glass stagger-4 border-border transition-all duration-300 group">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                      <Zap className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-2">Cutting-Edge Tech</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Work with the latest technologies and tools on challenging projects
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="card-glass stagger-5 border-border transition-all duration-300 group">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                      <Users className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-2">Collaborative Culture</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Join a diverse team that values transparency, respect, and innovation
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="card-glass stagger-6 border-border transition-all duration-300 group">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                      <Trophy className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-2">Career Growth</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Clear career paths with mentorship and opportunities for advancement
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+      {/* Benefits - Separate White Section */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 bg-white">
+        <div className="container mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-lg md:text-xl font-bold mb-4 text-primary">Why Work With Us</h2>
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+              Join a team that values your growth and well-being. We offer industry-leading benefits and a culture built on collaboration.
+            </p>
           </div>
 
-          {/* Job Listings */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="card-glass stagger-1 border-border transition-all duration-300 group">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <Heart className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Comprehensive Benefits</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Health, dental, vision insurance, 401(k) matching, and generous PTO
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-glass stagger-2 border-border transition-all duration-300 group">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <Globe className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Remote First</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Work from anywhere with flexible hours and a strong remote culture
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-glass stagger-3 border-border transition-all duration-300 group">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <BookOpen className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Learning & Development</h3>
+                    <p className="text-sm text-muted-foreground">
+                      $2,500/year budget for courses, conferences, books, and certifications
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-glass stagger-4 border-border transition-all duration-300 group">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <Zap className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Cutting-Edge Tech</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Work with the latest technologies and tools on challenging projects
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-glass stagger-5 border-border transition-all duration-300 group">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <Users className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Collaborative Culture</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Join a diverse team that values transparency, respect, and innovation
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-glass stagger-6 border-border transition-all duration-300 group">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <Trophy className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Career Growth</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Clear career paths with mentorship and opportunities for advancement
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Job Listings */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 bg-gray-50">
+        <div className="container mx-auto">
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Open Positions ({openPositions.length})</h2>
 
