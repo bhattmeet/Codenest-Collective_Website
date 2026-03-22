@@ -107,10 +107,10 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA] relative overflow-hidden">
         <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <h1 className="section-title fade-in-up text-4xl md:text-5xl font-bold mb-6 text-primary">
+          <h1 className="section-title fade-in-up text-4xl md:text-5xl font-bold mb-6 text-white">
             Get In Touch
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-xl text-white/90 leading-relaxed">
             Ready to start your project? Fill out the form below and we'll respond within 24 hours
           </p>
         </div>
