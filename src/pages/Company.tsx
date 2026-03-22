@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { companyStats } from "@/data/companyData";
 import { allProjects } from "@/pages/Projects";
 
 const Company = () => {
+  useScrollReveal();
   const stats = [
     { icon: Users, value: `${companyStats.clientsWorldwide}+`, label: "Team Members" },
     { icon: TrendingUp, value: `${allProjects.length}+`, label: "Projects Completed" },
@@ -33,14 +35,10 @@ const Company = () => {
       />
       <Navigation />
 
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
-        </div>
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA] relative overflow-hidden">
         <div className="container mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h1 className="text-3xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">Our Company</h1>
+            <h1 className="section-title fade-in-up text-3xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">Our Company</h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Learn more about Codenest Collective Technologies, our journey, and the people behind our success.
             </p>
@@ -87,7 +85,7 @@ const Company = () => {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
-              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
+              <Card className="card-glass stagger-1 border-border transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -103,7 +101,7 @@ const Company = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
+              <Card className="card-glass stagger-2 border-border transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -119,7 +117,7 @@ const Company = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
+              <Card className="card-glass stagger-3 border-border transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -135,7 +133,7 @@ const Company = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border hover:border-primary/20 transition-all duration-300 group">
+              <Card className="card-glass stagger-4 border-border transition-all duration-300 group">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">

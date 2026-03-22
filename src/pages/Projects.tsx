@@ -8,6 +8,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import ProjectCardSkeleton from "@/components/ProjectCardSkeleton";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 // Export projects data for use in other components
 export const allProjects = [
@@ -369,6 +370,7 @@ export const allProjects = [
   ];
 
 const Projects = () => {
+  useScrollReveal();
   const navigate = useNavigate();
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
@@ -399,16 +401,12 @@ const Projects = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-blue-50 via-white to-cyan-50 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl opacity-60"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-60"></div>
-        </div>
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#4A7EFA] to-[#6B9BFA] relative overflow-hidden">
         <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary via-blue-600 to-cyan-600 bg-clip-text text-transparent">
+          <h1 className="section-title text-3xl md:text-4xl font-bold mb-6 text-white">
             Our Portfolio
           </h1>
-          <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+          <p className="text-sm md:text-base text-white/90 leading-relaxed">
             Showcasing successful projects across Mobile Apps, Web Apps, Healthcare, Fintech, and SaaS
           </p>
         </div>
@@ -449,7 +447,7 @@ const Projects = () => {
               filteredProjects.map((project, index) => (
               <Card
                 key={index}
-                className="border-primary/20 hover:border-primary transition-all hover:shadow-soft-xl hover:-translate-y-2 duration-300 overflow-hidden group bg-white"
+                className={`card-glass hover-lift overflow-hidden group border-primary/20 transition-all duration-300`}
               >
                 {/* Project Image */}
                 <div className="relative overflow-hidden h-48 bg-gradient-to-br from-primary/10 to-cyan-500/10">
@@ -479,7 +477,7 @@ const Projects = () => {
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.slice(0, 3).map((tech, idx) => (
-                      <Badge key={idx} variant="secondary" className="text-xs">
+                      <Badge key={idx} variant="secondary" className="tech-badge text-xs">
                         {tech}
                       </Badge>
                     ))}
