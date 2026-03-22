@@ -8,13 +8,13 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Primary white background */
-    --background: 0 0% 100%;
+    /* Soft light gray background - easier on eyes than pure white */
+    --background: 210 20% 98%; /* #F8F9FA - Very light gray */
     --foreground: 0 0% 20%; /* Dark gray #333333 */
 
-    /* Soft tinted blue background for alternating sections - More visible */
-    --background-tinted: 0 0% 98%; /* #FAFAFA - Light gray for alternating */
-    --background-alternate: 0 0% 98%; /* #FAFAFA - Light gray for alternating */
+    /* Slightly darker gray for alternating sections */
+    --background-tinted: 210 15% 96%; /* #F5F6F7 - Slightly darker than background */
+    --background-alternate: 210 15% 96%; /* #F5F6F7 - Slightly darker than background */
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 20%;

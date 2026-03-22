@@ -10,7 +10,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="glass-effect border-t border-primary/10">
+    <footer className="bg-[#0f1419] border-t border-white/10">
       <div className="section-container py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
