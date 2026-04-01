@@ -203,49 +203,63 @@ const JobApplicationModal = ({ isOpen, onClose, jobTitle }: JobApplicationModalP
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Apply for {jobTitle}</DialogTitle>
-          <DialogDescription>
-            Fill out the form below to submit your application.
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl">
+        <DialogHeader className="bg-gradient-to-r from-[#2E5BDA] to-[#4874E8] -mx-6 -mt-6 px-6 py-6 mb-6 rounded-t-lg">
+          <DialogTitle className="text-2xl text-white">Apply for {jobTitle}</DialogTitle>
+          <DialogDescription className="text-white/90 text-base">
+            Fill out the form below to submit your application. We'll review it and get back to you soon.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5 px-1">
           <div>
-            <Label htmlFor="name">Full Name</Label>
+            <Label htmlFor="name" className="text-sm font-semibold text-gray-700 mb-2 block">
+              Full Name <span className="text-red-500">*</span>
+            </Label>
             <Input
               id="name"
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              placeholder="Enter your full name"
             />
           </div>
 
           <div>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="text-sm font-semibold text-gray-700 mb-2 block">
+              Email Address <span className="text-red-500">*</span>
+            </Label>
             <Input
               id="email"
               type="email"
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              placeholder="your.email@example.com"
             />
           </div>
 
           <div>
-            <Label htmlFor="phone">Phone Number</Label>
+            <Label htmlFor="phone" className="text-sm font-semibold text-gray-700 mb-2 block">
+              Phone Number <span className="text-red-500">*</span>
+            </Label>
             <Input
               id="phone"
               type="tel"
               required
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              className="border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              placeholder="+1 (555) 000-0000"
             />
           </div>
 
           <div>
-            <Label>Resume/CV</Label>
+            <Label className="text-sm font-semibold text-gray-700 mb-2 block">
+              Resume/CV <span className="text-red-500">*</span>
+            </Label>
             <div className="space-y-3">
               {/* File Upload */}
               <div>
@@ -260,31 +274,35 @@ const JobApplicationModal = ({ isOpen, onClose, jobTitle }: JobApplicationModalP
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full"
+                  className="w-full border-2 border-primary/30 hover:border-primary hover:bg-primary/5 text-primary font-medium transition-all"
                   onClick={() => fileInputRef.current?.click()}
                   disabled={!!cvFile}
                 >
                   <Upload className="w-4 h-4 mr-2" />
-                  {cvFile ? "CV Uploaded" : "Upload CV (PDF, DOC)"}
+                  {cvFile ? "CV Uploaded Successfully" : "Upload CV (PDF, DOC, DOCX)"}
                 </Button>
 
                 {cvFile && (
-                  <div className="mt-2 flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <div className="flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-green-600" />
-                      <span className="text-sm text-green-700 font-medium truncate">
-                        {cvFile.name}
-                      </span>
-                      <span className="text-xs text-green-600">
-                        ({(cvFile.size / 1024).toFixed(1)} KB)
-                      </span>
+                  <div className="mt-3 flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-lg shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-green-100 rounded-lg">
+                        <FileText className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm text-green-800 font-semibold truncate max-w-xs">
+                          {cvFile.name}
+                        </span>
+                        <span className="text-xs text-green-600">
+                          {(cvFile.size / 1024).toFixed(1)} KB
+                        </span>
+                      </div>
                     </div>
                     <Button
                       type="button"
                       variant="ghost"
                       size="sm"
                       onClick={removeFile}
-                      className="h-auto p-1 hover:bg-green-100"
+                      className="h-auto p-2 hover:bg-green-200 rounded-full transition-all"
                     >
                       <X className="w-4 h-4 text-green-700" />
                     </Button>
@@ -293,9 +311,9 @@ const JobApplicationModal = ({ isOpen, onClose, jobTitle }: JobApplicationModalP
               </div>
 
               {/* OR divider */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 my-4">
                 <div className="flex-1 border-t border-gray-300"></div>
-                <span className="text-sm text-muted-foreground">OR</span>
+                <span className="text-sm font-medium text-gray-500 bg-gray-50 px-3 py-1 rounded-full">OR</span>
                 <div className="flex-1 border-t border-gray-300"></div>
               </div>
 
@@ -308,27 +326,42 @@ const JobApplicationModal = ({ isOpen, onClose, jobTitle }: JobApplicationModalP
                   value={formData.resume}
                   onChange={(e) => setFormData({ ...formData, resume: e.target.value })}
                   disabled={!!cvFile}
+                  className="border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all disabled:opacity-50"
                 />
               </div>
             </div>
           </div>
 
           <div>
-            <Label htmlFor="coverLetter">Cover Letter</Label>
+            <Label htmlFor="coverLetter" className="text-sm font-semibold text-gray-700 mb-2 block">
+              Cover Letter <span className="text-red-500">*</span>
+            </Label>
             <Textarea
               id="coverLetter"
               rows={6}
               required
               value={formData.coverLetter}
               onChange={(e) => setFormData({ ...formData, coverLetter: e.target.value })}
+              className="border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+              placeholder="Tell us why you're a great fit for this role..."
             />
           </div>
 
-          <div className="flex gap-2 justify-end">
-            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+          <div className="flex gap-3 justify-end pt-4 border-t border-gray-200">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              disabled={isSubmitting}
+              className="px-6 border-gray-300 hover:bg-gray-100 font-medium"
+            >
               Cancel
             </Button>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="px-6 bg-gradient-to-r from-[#2E5BDA] to-[#4874E8] hover:from-[#2651C9] hover:to-[#3E65D7] text-white font-medium shadow-lg hover:shadow-xl transition-all"
+            >
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
