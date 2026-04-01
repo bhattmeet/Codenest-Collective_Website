@@ -226,7 +226,7 @@ The investment pays off: improved performance, better user experience, and incre
     date: "2025-12-20",
     readTime: "12 min read",
     tags: ["PWA", "Web Dev", "Performance", "Mobile"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: true,
   },
   {
@@ -471,7 +471,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-12-15",
     readTime: "10 min read",
     tags: ["Mobile", "React Native", "Flutter", "Comparison"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: true,
   },
   {
@@ -483,7 +483,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-12-10",
     readTime: "18 min read",
     tags: ["SaaS", "Architecture", "Backend", "Database"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: true,
   },
   {
@@ -495,7 +495,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-12-05",
     readTime: "15 min read",
     tags: ["Case Study", "E-commerce", "Performance", "React"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -507,7 +507,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-11-28",
     readTime: "20 min read",
     tags: ["Serverless", "AWS", "Lambda", "Cloud"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -531,7 +531,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-11-15",
     readTime: "16 min read",
     tags: ["Next.js", "React", "Web Dev", "Migration"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -543,7 +543,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-11-10",
     readTime: "18 min read",
     tags: ["Healthcare", "Security", "Compliance", "Case Study"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -555,7 +555,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-11-05",
     readTime: "12 min read",
     tags: ["Design", "Tailwind", "UI/UX", "Frontend"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -567,7 +567,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-10-28",
     readTime: "22 min read",
     tags: ["Database", "PostgreSQL", "Performance", "Backend"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -591,7 +591,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-10-15",
     readTime: "16 min read",
     tags: ["DevOps", "CI/CD", "GitHub", "Automation"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -603,7 +603,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-10-10",
     readTime: "20 min read",
     tags: ["Fintech", "Case Study", "Security", "Mobile"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -615,7 +615,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-10-05",
     readTime: "15 min read",
     tags: ["Docker", "DevOps", "Security", "Optimization"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
   {
@@ -639,7 +639,7 @@ The frameworks are converging in capabilities. By 2026, both offer excellent dev
     date: "2025-09-20",
     readTime: "12 min read",
     tags: ["API", "Security", "Backend", "Redis"],
-    author: "Meet Bhatt",
+    author: "Codenest Team",
     featured: false,
   },
 ];

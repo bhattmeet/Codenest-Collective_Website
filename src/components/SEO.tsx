@@ -45,9 +45,8 @@ const SEO = ({
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-8735940200",
       "contactType": "Customer Service",
-      "email": "contact@codenestcollective.com"
+      "email": "codenestcollective@gmail.com"
     },
     "sameAs": [
       "https://www.linkedin.com/company/codenest-collective-technologies/",

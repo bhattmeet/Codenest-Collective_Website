@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Mail, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
 import logo from "@/assets/codenest-logo.jpeg";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
@@ -96,19 +96,8 @@ const Footer = () => {
             <ul className="space-y-1">
               <li className="flex items-start gap-2 text-xs text-gray-400">
                 <Mail size={14} className="mt-0.5 text-[#5088FA] flex-shrink-0" />
-                <div className="flex flex-col gap-1">
-                  <a href="mailto:meet.bhatt@codenestcollective.net" className="hover:text-[#5088FA] transition-colors duration-200">
-                    meet.bhatt@codenestcollective.net
-                  </a>
-                  <a href="mailto:codenestcollective@gmail.com" className="hover:text-[#5088FA] transition-colors duration-200">
-                    codenestcollective@gmail.com
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-2 text-xs text-gray-400">
-                <Phone size={14} className="mt-0.5 text-[#5088FA] flex-shrink-0" />
-                <a href="tel:+918735940200" className="hover:text-[#5088FA] transition-colors duration-200">
-                  +91 87359 40200
+                <a href="mailto:codenestcollective@gmail.com" className="hover:text-[#5088FA] transition-colors duration-200">
+                  codenestcollective@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2 text-xs text-gray-400">

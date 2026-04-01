@@ -12,9 +12,7 @@ export const companyInfo = {
   name: "Codenest Collective Technologies",
   tagline: "Build The Future",
   description: "We design, build, and scale digital products that drive results",
-  email: "contact@codenestcollective.com",
-  phone: "+91 8735940200",
-  whatsapp: "918735940200",
+  email: "codenestcollective@gmail.com",
   address: "India", // Update with actual address if needed
   foundedYear: 2023,
 };

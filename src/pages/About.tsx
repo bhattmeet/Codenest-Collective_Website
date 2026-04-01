@@ -111,17 +111,17 @@ const About = () => {
 
                 {/* Founder Bio */}
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold mb-2 text-primary">Meet Bhatt</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-primary">Our Founder</h3>
                   <p className="text-lg text-accent mb-6">Founder & CEO</p>
 
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      With over {companyStats.yearsExperience}+ years of hands-on experience in full-stack development, Meet brings deep
+                      With over {companyStats.yearsExperience}+ years of hands-on experience in full-stack development, our founder brings deep
                       expertise in Flutter, Android (Kotlin), Node.js, Express.js, MongoDB, and Firebase.
                     </p>
                     <p>
                       Having worked with startups and established businesses across multiple industries,
-                      Meet understands the unique challenges of building scalable digital products. His
+                      our founder understands the unique challenges of building scalable digital products. The
                       approach combines technical excellence with business acumen to deliver solutions
                       that truly move the needle.
                     </p>

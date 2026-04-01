@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Mail, Phone, MapPin, Send, Loader2, Clock, MessageSquare } from "lucide-react";
+import { Mail, MapPin, Send, Loader2, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -77,10 +77,10 @@ const Contact = () => {
       console.error('EmailJS Error:', error);
 
       // Get detailed error message
-      let errorMessage = "Please try again or contact us directly at meet.bhatt@codenestcollective.net";
+      let errorMessage = "Please try again or contact us directly at codenestcollective@gmail.com";
 
       if (error instanceof Error) {
-        errorMessage = `${error.message}. Please contact us directly at meet.bhatt@codenestcollective.net`;
+        errorMessage = `${error.message}. Please contact us directly at codenestcollective@gmail.com`;
       }
 
       // Error handling
@@ -126,7 +126,6 @@ const Contact = () => {
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="font-bold text-lg mb-2 text-primary">Email Us</h3>
-                <p className="text-sm text-muted-foreground mb-1">meet.bhatt@codenestcollective.net</p>
                 <p className="text-sm text-muted-foreground">codenestcollective@gmail.com</p>
               </CardContent>
             </Card>
@@ -245,11 +244,11 @@ const Contact = () => {
                       </Select>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <div className="pt-2">
                       <Button
                         type="submit"
                         size="lg"
-                        className="flex-1 gap-2 bg-primary hover:bg-primary/90"
+                        className="w-full gap-2 bg-primary hover:bg-primary/90"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
@@ -264,22 +263,6 @@ const Contact = () => {
                           </>
                         )}
                       </Button>
-                      <a
-                        href="https://wa.me/918735940200?text=Hi,%20I'd%20like%20to%20discuss%20a%20software%20project"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1"
-                      >
-                        <Button
-                          type="button"
-                          size="lg"
-                          variant="outline"
-                          className="w-full gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white"
-                        >
-                          <MessageSquare className="w-5 h-5" />
-                          <span>WhatsApp</span>
-                        </Button>
-                      </a>
                     </div>
                   </form>
                 </CardContent>
