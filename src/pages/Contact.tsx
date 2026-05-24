@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Mail, MapPin, Send, Loader2, Clock, MessageCircle, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Send, Loader2, Clock, ArrowUpRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -360,30 +360,20 @@ const Contact = () => {
             <div className="lg:col-span-5 flex flex-col gap-6">
               <div className="card-premium p-6">
                 <span className="corner-plus text-foreground/20 top-3 right-3" />
-                <span className="eyebrow mb-4">Prefer to chat?</span>
+                <span className="eyebrow mb-4">Prefer email?</span>
                 <h3 className="font-display text-xl font-semibold tracking-tight mt-3 mb-3 text-foreground">
                   We're a message away.
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                  Skip the form — message us directly on WhatsApp or email. We typically reply
-                  within hours, not days.
+                  Skip the form — email us directly. We typically reply within hours, not days.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href="https://wa.me/918735940200?text=Hi,%20I'd%20like%20to%20discuss%20a%20software%20project"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="mailto:codenestcollective@gmail.com"
                     className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md bg-primary text-white text-sm font-semibold hover:bg-[hsl(var(--primary-hover))] transition-all duration-300 shadow-soft"
                   >
-                    <MessageCircle className="w-4 h-4" />
-                    WhatsApp
-                  </a>
-                  <a
-                    href="mailto:codenestcollective@gmail.com"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md border border-border bg-card text-foreground text-sm font-semibold hover:border-primary hover:text-primary transition-all duration-300"
-                  >
                     <Mail className="w-4 h-4" />
-                    Email
+                    Email Us
                   </a>
                 </div>
               </div>
@@ -429,12 +419,10 @@ const Contact = () => {
               </span>
             </div>
             <a
-              href="https://wa.me/918735940200?text=Hi,%20I'd%20like%20to%20discuss%20a%20software%20project"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:codenestcollective@gmail.com"
               className="arrow-link text-sm text-white"
             >
-              Or message us directly on WhatsApp
+              Or email us directly
               <span className="arrow-track" />
               <ArrowUpRight className="w-3.5 h-3.5 -ml-1 -mt-2 opacity-0" aria-hidden />
             </a>

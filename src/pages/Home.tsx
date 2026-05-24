@@ -830,14 +830,10 @@ const Home = () => {
                   <ArrowUpRight className="w-4 h-4 relative z-[2]" />
                 </button>
               </Link>
-              <a
-                href="https://wa.me/918735940200?text=Hi,%20I'd%20like%20to%20discuss%20a%20software%20project"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="mailto:codenestcollective@gmail.com">
                 <button className="btn-ghost-light text-sm">
                   <MessageSquare className="w-4 h-4" />
-                  Chat on WhatsApp
+                  Email Us
                 </button>
               </a>
             </div>
