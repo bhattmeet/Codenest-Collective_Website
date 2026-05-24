@@ -47,3 +47,8 @@ coverage
 
 # Claude Code worktrees
 .claude/worktrees/
+
+# Other package manager lockfiles (project uses bun)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
