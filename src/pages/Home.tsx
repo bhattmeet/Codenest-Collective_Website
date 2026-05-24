@@ -1,61 +1,123 @@
-import { ArrowRight, Code, Smartphone, Palette, Server, CheckCircle, MessageSquare, ChevronDown, Star, Quote, Lightbulb, Pencil, Wrench, Rocket, BookOpen, Clock, Calendar } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Code,
+  Smartphone,
+  Palette,
+  Server,
+  CheckCircle,
+  MessageSquare,
+  Star,
+  Quote,
+  Lightbulb,
+  Pencil,
+  Wrench,
+  Rocket,
+  BookOpen,
+  Clock,
+  Calendar,
+  Sparkles,
+  Zap,
+  Layers,
+  Globe,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
 import SEO from "@/components/SEO";
 import TechStack from "@/components/TechStack";
-import spaceExplorationImg from "@/assets/space_xploration_project.png";
-import touchBridgeImg from "@/assets/touch_bridge_project.png";
-import dishDiscoverImg from "@/assets/dish_discover_project.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { allProjects } from "./Projects";
-import { companyStats, clientLogos } from "@/data/companyData";
+import { companyStats } from "@/data/companyData";
 import { featuredResources } from "@/data/resourcesData";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+
+/* ──────────────── Tilt card hook ──────────────── */
+const useTilt = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const rx = (py - 0.5) * -8;
+    const ry = (px - 0.5) * 10;
+    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+    el.style.setProperty("--mx", `${px * 100}%`);
+    el.style.setProperty("--my", `${py * 100}%`);
+  };
+  const onLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "perspective(900px) rotateX(0) rotateY(0) translateZ(0)";
+  };
+  return { ref, onMove, onLeave };
+};
+
+const TiltCard = ({
+  children,
+  className = "",
+  onClick,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}) => {
+  const { ref, onMove, onLeave } = useTilt();
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      onClick={onClick}
+      className={`tilt-card ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
 const Home = () => {
   useScrollReveal();
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef<HTMLDivElement>(null);
 
-  // Handle scroll for scroll indicator fade
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const featuredProjects = [
-    {
-      title: "Space Exploration",
-      category: "Mobile Apps",
-      industry: "Education",
-      description: "Educational Android app for space exploration",
-      tech: ["Android", "Jetpack Compose", "Firebase"],
-      image: spaceExplorationImg
-    },
-    {
-      title: "TouchBridge - NFC",
-      category: "Mobile Apps",
-      industry: "Healthcare",
-      description: "Cross-platform NFC tag reading and writing application",
-      tech: ["Flutter", "Android", "iOS"],
-      image: touchBridgeImg
-    },
-    {
-      title: "Dish Discover - Recipe App",
-      category: "Fullstack",
-      industry: "SaaS",
-      description: "Recipe management platform with Flutter frontend and Node.js backend",
-      tech: ["Flutter", "Node.js", "GetX"],
-      image: dishDiscoverImg
-    },
+  // Hero cursor spotlight
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const onMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      el.style.setProperty("--mx", `${x}%`);
+      el.style.setProperty("--my", `${y}%`);
+    };
+    el.addEventListener("mousemove", onMove);
+    return () => el.removeEventListener("mousemove", onMove);
+  }, []);
+
+  // Pull the same project records used on the Projects page so images,
+  // descriptions and tech stacks stay in sync with the single source of truth.
+  const featuredTitles = [
+    "Space Xploration",
+    "TouchBridge NFC",
+    "DishDiscover (Frontend)",
   ];
+  const featuredProjects = featuredTitles
+    .map((title) => allProjects.find((p) => p.title === title))
+    .filter((p): p is (typeof allProjects)[number] => Boolean(p));
 
   const stats = [
     { value: allProjects.length, suffix: "+", label: "Projects Delivered" },
@@ -67,582 +129,718 @@ const Home = () => {
     {
       icon: Code,
       title: "Web Development",
-      description: "Responsive, scalable web applications built with modern frameworks and best practices.",
+      description:
+        "Responsive, performant web applications built with modern frameworks and engineering best practices.",
+      span: "lg:col-span-2 lg:row-span-2",
+      featured: true,
     },
     {
       icon: Smartphone,
       title: "Mobile Apps",
-      description: "Native iOS & Android apps plus cross-platform Flutter solutions for maximum reach.",
+      description:
+        "Native iOS & Android plus Flutter cross-platform.",
     },
     {
       icon: Palette,
-      title: "UI/UX Design",
-      description: "User-centered design that combines aesthetics with intuitive functionality.",
+      title: "UI / UX Design",
+      description:
+        "Aesthetic restraint paired with intuitive, accessible interaction.",
     },
     {
       icon: Server,
       title: "Backend & APIs",
-      description: "Robust, secure backend systems and RESTful APIs to power your applications.",
+      description:
+        "Secure backends and APIs that power scalable digital products.",
+    },
+    {
+      icon: Layers,
+      title: "Cloud & DevOps",
+      description:
+        "CI/CD pipelines, observability, and resilient deployment.",
     },
   ];
 
   const whyUs = [
-    { title: "On-time delivery", description: "We respect deadlines and deliver quality on schedule" },
-    { title: "Clean code", description: "Maintainable, scalable code following industry standards" },
-    { title: "Transparent communication", description: "Regular updates and clear project visibility" },
-    { title: "Post-launch support", description: "Ongoing maintenance and technical assistance" },
+    { title: "On-time delivery", description: "We respect deadlines and ship quality on schedule." },
+    { title: "Clean code", description: "Maintainable, scalable code following industry standards." },
+    {
+      title: "Transparent communication",
+      description: "Regular updates and clear project visibility across every milestone.",
+    },
+    { title: "Post-launch support", description: "Ongoing maintenance, monitoring, and technical guidance." },
   ];
 
   const testimonials = [
     {
       name: "Sarah Johnson",
       role: "CEO, TechStart Inc",
-      company: "TechStart",
-      content: "Codenest Collective transformed our vision into a stunning, functional app. Their attention to detail and technical expertise exceeded our expectations. Highly recommend!",
+      content:
+        "Codenest Collective transformed our vision into a stunning, functional app. Their attention to detail and technical expertise exceeded our expectations.",
       rating: 5,
     },
     {
       name: "Michael Chen",
       role: "Product Manager, FinanceFlow",
-      company: "FinanceFlow",
-      content: "Working with Codenest was a game-changer for our project. They delivered on time, communicated clearly, and the code quality was exceptional. Will definitely work with them again.",
+      content:
+        "Working with Codenest was a game-changer. They delivered on time, communicated clearly, and the code quality was exceptional.",
       rating: 5,
     },
     {
       name: "Emily Rodriguez",
       role: "Founder, HealthHub",
-      company: "HealthHub",
-      content: "From concept to launch, the team at Codenest guided us every step of the way. Their development process is transparent, efficient, and results-driven. Couldn't ask for better partners.",
+      content:
+        "From concept to launch, the team guided us every step of the way. Transparent, efficient, and results-driven — couldn't ask for better partners.",
+      rating: 5,
+    },
+    {
+      name: "David Park",
+      role: "CTO, BlueCanvas",
+      content:
+        "Senior-level craftsmanship from day one. They asked the right questions and shipped something we're genuinely proud of.",
+      rating: 5,
+    },
+    {
+      name: "Priya Mehta",
+      role: "Director, NovaWorks",
+      content:
+        "A rare blend of design taste and technical depth. The redesign reset our brand and lifted our conversion materially.",
       rating: 5,
     },
   ];
 
+  const processSteps = [
+    { icon: Lightbulb, title: "Discovery", description: "Understanding goals, constraints, and the people you serve." },
+    { icon: Pencil, title: "Design", description: "Intuitive, brand-aligned interfaces and product flows." },
+    { icon: Wrench, title: "Development", description: "Modern tooling, clean architecture, engineering rigour." },
+    { icon: Rocket, title: "Launch & Care", description: "Deploy, monitor, and partner for ongoing success." },
+  ];
+
+  const marqueeWords = [
+    "Web Apps", "iOS & Android", "UI / UX", "API Design",
+    "Cloud Architecture", "Performance", "Accessibility", "Design Systems",
+    "Product Strategy", "Code Reviews", "Tech Audits", "Scaling",
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="Codenest Collective Technologies - Build The Future"
+        title="Codenest Collective Technologies — Build The Future"
         description="Codenest Collective Technologies creates innovative software solutions that transform businesses. Expert team delivering custom development, web applications, mobile apps, and enterprise software with agile methodology."
         path="/"
         keywords="software development, custom software, web development, mobile app development, enterprise software, Codenest Collective Technologies"
       />
+      <ScrollProgress />
       <Navigation />
 
-      {/* Hero Section - Animated Mesh Gradient */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Mesh Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#2E5BDA] to-[#4874E8]">
-          {/* Gradient Orbs - Slower, elegant movement */}
-          <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#5088FA] rounded-full mix-blend-multiply filter blur-[128px] opacity-70"
-               style={{ animation: 'blob 12s ease-in-out infinite' }}></div>
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#42A5F5] rounded-full mix-blend-multiply filter blur-[128px] opacity-70"
-               style={{ animation: 'blob 12s ease-in-out infinite 3s' }}></div>
-          <div className="absolute bottom-0 left-1/2 w-[500px] h-[500px] bg-[#5088FA] rounded-full mix-blend-multiply filter blur-[128px] opacity-70"
-               style={{ animation: 'blob 12s ease-in-out infinite 6s' }}></div>
-
+      {/* ─────────────── HERO — Cursor spotlight + word reveal + brush ─────────────── */}
+      <section
+        ref={heroRef}
+        className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] cursor-spotlight grain-overlay"
+      >
+        {/* Grid overlay with radial fade */}
+        <div className="absolute inset-0 opacity-[0.08] z-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+              maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%)",
+            }}
+          />
         </div>
 
-        {/* Floating Geometric Shapes */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Circle 1 */}
-          <div className="absolute top-20 left-10 w-24 h-24 rounded-full bg-[#5088FA]/10 animate-float-slow"></div>
-          {/* Diamond 1 */}
-          <div className="absolute top-40 right-20 w-16 h-16 bg-[#42A5F5]/10 rotate-45 rounded-lg animate-blob-large"></div>
-          {/* Circle 2 */}
-          <div className="absolute bottom-32 left-1/4 w-32 h-32 rounded-full bg-[#5088FA]/10 animate-blob animation-delay-2000"></div>
-          {/* Diamond 2 */}
-          <div className="absolute bottom-20 right-1/3 w-20 h-20 bg-[#42A5F5]/10 rotate-45 rounded-lg animate-float-slow animation-delay-1000"></div>
-          {/* Circle 3 */}
-          <div className="absolute top-1/3 right-10 w-16 h-16 rounded-full bg-[#5088FA]/15 animate-float-slow animation-delay-3000"></div>
-          {/* Diamond 3 */}
-          <div className="absolute top-1/2 left-16 w-12 h-12 bg-[#42A5F5]/15 rotate-45 rounded-lg animate-blob-large animation-delay-4000"></div>
+        {/* Animated orbs */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
+          <div className="absolute top-1/4 -left-32 w-[520px] h-[520px] rounded-full bg-[#5088FA]/40 blur-[120px] animate-blob" />
+          <div className="absolute bottom-1/4 -right-32 w-[480px] h-[480px] rounded-full bg-[#42A5F5]/35 blur-[120px] animate-blob animation-delay-3000" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[420px] h-[420px] rounded-full bg-[#1d4ed8]/25 blur-[140px] animate-blob animation-delay-2000" />
         </div>
 
-        <div className="container mx-auto px-6 text-center animate-fade-in relative z-10">
-          {/* Main Heading with Animated Gradient */}
-          <h1 className="hero-title font-bold mb-6 leading-[1.1] pb-4 bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent" style={{ backgroundSize: '200% auto', animation: 'gradient-shift 8s ease infinite' }}>
-            Custom Web & Mobile Apps<br />for Startups & Businesses
-          </h1>
-
-          {/* Subtitle */}
-          <div className="max-w-3xl mx-auto mb-10">
-            <p className="text-sm md:text-base text-white/95 leading-relaxed">
-              We design, build, and scale digital products that drive results
-            </p>
-          </div>
-
-          {/* CTA Buttons with enhanced shadows */}
-          <div className="flex flex-wrap gap-4 justify-center mb-12">
-            <Link to="/contact">
-              <Button size="lg" className="gap-2 px-6 md:px-8 py-4 md:py-6 bg-[#5088FA] hover:bg-[#4078EA] text-white shadow-soft-lg hover:shadow-soft-xl hover:scale-105 transition-all duration-300">
-                Book Free Consultation
-                <ArrowRight size={18} />
-              </Button>
-            </Link>
-            <Link to="/projects">
-              <Button size="lg" className="gap-2 px-6 md:px-8 py-4 md:py-6 border-2 border-white bg-white text-[#5088FA] hover:bg-transparent hover:text-white hover:border-white shadow-soft hover:shadow-soft-lg hover:scale-105 transition-all duration-300">
-                See Our Work
-                <ArrowRight size={18} />
-              </Button>
-            </Link>
-          </div>
-
-          {/* Stats Counter */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12 max-w-3xl mx-auto">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">
-                  <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-                </div>
-                <div className="text-xs md:text-sm text-white/80">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 transition-opacity duration-300"
-          style={{ opacity: scrollY > 100 ? 0 : 1 }}
+        {/* Floating geometric SVG decor */}
+        <svg className="absolute top-[18%] right-[8%] w-24 h-24 text-white/15 float-decor z-0" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="1" strokeDasharray="2 4" />
+          <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="1" />
+          <circle cx="50" cy="50" r="4" fill="currentColor" />
+        </svg>
+        <svg
+          className="absolute bottom-[22%] left-[6%] w-20 h-20 text-white/15 float-decor animation-delay-2000 z-0"
+          viewBox="0 0 100 100"
+          fill="none"
         >
-          <div className="flex flex-col items-center gap-2 animate-bounce-slow">
-            <span className="text-white/70 text-sm">Scroll Down</span>
-            <ChevronDown className="w-6 h-6 text-white/70" />
-          </div>
-        </div>
-      </section>
+          <rect x="6" y="6" width="88" height="88" stroke="currentColor" strokeWidth="1" transform="rotate(8 50 50)" />
+          <rect x="20" y="20" width="60" height="60" stroke="currentColor" strokeWidth="1" />
+        </svg>
 
-      {/* Services Preview Section */}
-      <section className="py-16 md:py-24 px-6 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Our Services</h2>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-              Comprehensive software development solutions tailored to your business needs
-            </p>
-          </div>
+        {/* Corner crosshairs */}
+        <span className="corner-plus text-white/40 top-6 left-6" />
+        <span className="corner-plus text-white/40 top-6 right-6" />
+        <span className="corner-plus text-white/40 bottom-6 left-6" />
+        <span className="corner-plus text-white/40 bottom-6 right-6" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <Card key={index} className="group border-primary/20 hover:border-primary transition-all hover:shadow-soft-xl hover:-translate-y-2 duration-300 bg-white/80 backdrop-blur-sm">
-                <CardContent className="pt-8 pb-6">
-                  <div className="mb-4">
-                    <div className="p-3 rounded-xl bg-primary/10 inline-block group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
-                      <service.icon className="w-8 h-8 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="text-base font-bold mb-3 text-primary group-hover:text-blue-600 transition-colors">{service.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects Section */}
-      <section className="py-16 md:py-24 px-6 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Featured Projects</h2>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-              Showcasing our recent work and successful client collaborations
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProjects.map((project, idx) => (
-              <Card key={project.title} className={`card-glass hover-lift group overflow-hidden transition-all duration-300 border-primary/20 hover:border-primary stagger-${idx + 1}`}>
-                {/* Project Image */}
-                <div className="relative overflow-hidden h-48 bg-primary/10">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                <CardContent className="pt-6">
-                  <h3 className="text-base font-bold mb-2 text-primary group-hover:text-blue-600 transition-colors">{project.title}</h3>
-
-                  {/* Category Badge */}
-                  <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium mb-3">
-                    {project.category}
-                  </span>
-
-                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">{project.description}</p>
-
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.slice(0, 3).map((tech, idx) => (
-                      <Badge key={idx} className="tech-badge">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <Button
-                    variant="link"
-                    className="p-0 text-primary hover:text-blue-600 font-semibold group/btn"
-                    onClick={() => navigate("/case-study", { state: { project } })}
-                  >
-                    View Case Study <ArrowRight className="w-4 h-4 ml-1 inline group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Section */}
-      <TechStack />
-
-      {/* Process / How We Work Section - Compact Design */}
-      <section className="py-12 md:py-16 px-6 bg-gray-50">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Our Process</h2>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-              A proven methodology that delivers results
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Step 1 */}
-              <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
-                  <CardContent className="p-6 text-center">
-                    {/* Animated Icon */}
-                    <div className="mb-4 relative">
-                      <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <Lightbulb className="w-8 h-8 text-primary group-hover:animate-pulse" />
-                      </div>
-                      {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
-                        1
-                      </div>
-                    </div>
-                    <h3 className="text-base font-bold mb-2 text-primary">Discovery</h3>
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      Understanding your goals and requirements
-                    </p>
-                  </CardContent>
-                </Card>
-                {/* Arrow connector - desktop only */}
-                <div className="hidden lg:flex absolute top-1/2 left-[calc(100%+0.75rem)] transform -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center">
-                  <ArrowRight className="w-8 h-8 text-primary" />
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
-                  <CardContent className="p-6 text-center">
-                    {/* Animated Icon */}
-                    <div className="mb-4 relative">
-                      <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <Pencil className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
-                      </div>
-                      {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
-                        2
-                      </div>
-                    </div>
-                    <h3 className="text-base font-bold mb-2 text-cyan-600">Design</h3>
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      Crafting beautiful, intuitive interfaces
-                    </p>
-                  </CardContent>
-                </Card>
-                {/* Arrow connector - desktop only */}
-                <div className="hidden lg:flex absolute top-1/2 left-[calc(100%+0.75rem)] transform -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center">
-                  <ArrowRight className="w-8 h-8 text-primary" />
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
-                  <CardContent className="p-6 text-center">
-                    {/* Animated Icon */}
-                    <div className="mb-4 relative">
-                      <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <Wrench className="w-8 h-8 text-primary group-hover:animate-pulse" />
-                      </div>
-                      {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
-                        3
-                      </div>
-                    </div>
-                    <h3 className="text-base font-bold mb-2 text-primary">Development</h3>
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      Building with modern tech and best practices
-                    </p>
-                  </CardContent>
-                </Card>
-                {/* Arrow connector - desktop only */}
-                <div className="hidden lg:flex absolute top-1/2 left-[calc(100%+0.75rem)] transform -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center">
-                  <ArrowRight className="w-8 h-8 text-primary" />
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="group relative">
-                <Card className="h-full border-primary/20 hover:border-primary transition-all hover:shadow-soft-lg hover:-translate-y-2 duration-300 bg-white">
-                  <CardContent className="p-6 text-center">
-                    {/* Animated Icon */}
-                    <div className="mb-4 relative">
-                      <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <Rocket className="w-8 h-8 text-cyan-600 group-hover:animate-pulse" />
-                      </div>
-                      {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center text-sm font-bold shadow-soft group-hover:scale-125 transition-transform duration-300">
-                        4
-                      </div>
-                    </div>
-                    <h3 className="text-base font-bold mb-2 text-cyan-600">Launch</h3>
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      Deploying and supporting your success
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
+        <div className="relative z-10 section-container py-32 lg:py-40">
+          <div className="max-w-5xl">
+            {/* Status chip */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full bg-white/[0.08] border border-white/15 backdrop-blur-md animate-fade-in">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+              </span>
+              <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/85">
+                Accepting Q3 2026 engagements
+              </span>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Why Us Section */}
-      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Why Choose Us</h2>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-              Partner with a reliable, senior-level development team
+            {/* Word-reveal headline with brush stroke */}
+            <h1 className="hero-title text-white mb-6 word-reveal leading-[1.02]">
+              <span style={{ animationDelay: "0.05s" }}>Software,</span>{" "}
+              <span style={{ animationDelay: "0.18s" }}>designed</span>{" "}
+              <br />
+              <span style={{ animationDelay: "0.32s" }} className="font-serif-accent text-white/85">
+                with{" "}
+              </span>
+              <span style={{ animationDelay: "0.46s" }}>
+                <span className="brush-underline gradient-text-on-dark">precision.</span>
+              </span>
+            </h1>
+
+            <p
+              className="lede !text-white/75 !max-w-2xl text-base sm:text-lg mb-10 fade-in-up"
+              style={{ animationDelay: "0.65s" }}
+            >
+              We design, engineer, and scale custom web and mobile applications for startups and
+              modern enterprises — pairing senior craftsmanship with measurable outcomes.
             </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {whyUs.map((item, index) => (
-              <Card key={index} className="border-primary/20 hover:border-primary/20 transition-all hover:shadow-soft bg-white">
-                <CardContent className="p-6">
-                  <div className="flex gap-4 items-start">
-                    <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
-                      <CheckCircle className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold mb-2 text-primary">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
+            <div
+              className="flex flex-wrap items-center gap-3 mb-14 fade-in-up"
+              style={{ animationDelay: "0.8s" }}
+            >
+              <Link to="/contact">
+                <button className="shine-sweep inline-flex items-center gap-2 px-5 py-3 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
+                  <span className="relative z-[2]">Book a Free Consultation</span>
+                  <ArrowUpRight className="w-4 h-4 relative z-[2]" />
+                </button>
+              </Link>
+              <Link to="/projects">
+                <button className="btn-ghost-light text-sm">
+                  Explore Our Work
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
+            </div>
+
+            {/* Stat strip — hairline */}
+            <div
+              className="grid grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-xl overflow-hidden backdrop-blur-sm max-w-2xl fade-in-up"
+              style={{ animationDelay: "0.95s" }}
+            >
+              {stats.map((stat) => (
+                <div key={stat.label} className="px-4 sm:px-6 py-5 bg-white/[0.04]">
+                  <div className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Client Testimonials Section */}
-      <section className="py-16 md:py-24 px-6 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">What Our Clients Say</h2>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it - hear from our satisfied clients
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="relative overflow-hidden border-primary/20 hover:border-primary/20 transition-all hover:shadow-soft-lg hover:-translate-y-1 duration-300 bg-white">
-                <CardContent className="p-8">
-                  {/* Quote Icon */}
-                  <div className="absolute top-4 right-4 opacity-10">
-                    <Quote className="w-16 h-16 text-primary" />
+                  <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] font-semibold text-white/55 mt-1">
+                    {stat.label}
                   </div>
-
-                  {/* Rating Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-
-                  {/* Testimonial Content */}
-                  <p className="text-gray-700 text-sm leading-relaxed mb-6 relative z-10">
-                    "{testimonial.content}"
-                  </p>
-
-                  {/* Author Info */}
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3">
-                      {/* Avatar Placeholder */}
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold text-lg">
-                          {testimonial.name.charAt(0)}
-                        </span>
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-primary text-sm">{testimonial.name}</h4>
-                        <p className="text-xs text-gray-600">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trusted By Section - Client Logos - Hidden for now */}
-      {/* <section className="py-12 md:py-16 px-6 bg-gradient-to-b from-white to-blue-50/30">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Trusted By</h2>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-              Join the growing list of satisfied clients who trust us with their digital products
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-              {clientLogos.map((client, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center p-4 bg-white rounded-lg border border-primary/10 hover:border-primary/20 transition-all duration-300 hover:shadow-soft group"
-                >
-                  <img
-                    src={client.logo}
-                    alt={client.name}
-                    className="w-full h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-60 group-hover:opacity-100"
-                  />
                 </div>
               ))}
             </div>
-
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center p-4 bg-white rounded-lg border border-primary/10">
-                <div className="flex items-center justify-center mb-2">
-                  <CheckCircle className="w-6 h-6 text-primary" />
-                </div>
-                <p className="text-xl font-bold text-primary">{companyStats.clientSatisfaction}%</p>
-                <p className="text-xs text-gray-600">Client Satisfaction</p>
-              </div>
-              <div className="text-center p-4 bg-white rounded-lg border border-primary/10">
-                <div className="flex items-center justify-center mb-2">
-                  <CheckCircle className="w-6 h-6 text-primary" />
-                </div>
-                <p className="text-xl font-bold text-primary">{allProjects.length}+</p>
-                <p className="text-xs text-gray-600">Projects Delivered</p>
-              </div>
-              <div className="text-center p-4 bg-white rounded-lg border border-primary/10">
-                <div className="flex items-center justify-center mb-2">
-                  <CheckCircle className="w-6 h-6 text-primary" />
-                </div>
-                <p className="text-xl font-bold text-primary">{companyStats.yearsExperience}+</p>
-                <p className="text-xs text-gray-600">Years Experience</p>
-              </div>
-              <div className="text-center p-4 bg-white rounded-lg border border-primary/10">
-                <div className="flex items-center justify-center mb-2">
-                  <CheckCircle className="w-6 h-6 text-primary" />
-                </div>
-                <p className="text-xl font-bold text-primary">{companyStats.clientsWorldwide}+</p>
-                <p className="text-xs text-gray-600">Happy Clients</p>
-              </div>
-            </div>
           </div>
         </div>
-      </section> */}
 
-
-      {/* Featured Resources Section */}
-      <section className="py-16 md:py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">Latest Resources</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Insights, guides, and best practices from our team of experts
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {featuredResources.map((resource) => (
-              <Card
-                key={resource.id}
-                className="border-primary/20 hover:border-primary/20 transition-all duration-300 cursor-pointer group hover:shadow-soft-lg hover:-translate-y-1"
-                onClick={() => navigate('/resource-detail', { state: resource })}
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <BookOpen className="w-6 h-6 text-primary" />
-                    </div>
-                    <Badge variant="secondary" className="capitalize text-xs">
-                      {resource.type.replace("-", " ")}
-                    </Badge>
-                  </div>
-
-                  <h3 className="text-lg font-bold mb-3 text-primary group-hover:text-primary/80 transition-colors line-clamp-2">
-                    {resource.title}
-                  </h3>
-
-                  <p className="text-muted-foreground mb-4 line-clamp-2 text-sm">
-                    {resource.excerpt}
-                  </p>
-
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground border-t border-primary/10 pt-3">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      <span>{new Date(resource.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                    </div>
-                    <span>•</span>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      <span>{resource.readTime}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link to="/resources">
-              <Button size="lg" className="gap-2">
-                View All Resources
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
+        {/* Scroll cue */}
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 transition-opacity duration-500"
+          style={{ opacity: scrollY > 80 ? 0 : 1 }}
+        >
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-[10px] uppercase tracking-[0.3em] font-semibold text-white/55">
+              Scroll
+            </span>
+            <span className="block h-8 w-px bg-gradient-to-b from-white/50 to-transparent" />
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-16 md:py-24 px-6 bg-primary text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start?</h2>
-          <p className="text-lg mb-8 opacity-90">
-            Get in touch with us to discuss your project requirements
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90 px-6 md:px-8 py-4 md:py-6">
-                Contact Us
-                <ArrowRight className="w-5 h-5" />
-              </Button>
+      {/* ─────────────── Marquee strip ─────────────── */}
+      <section className="py-8 bg-[hsl(var(--surface-inverse))] text-white border-y border-white/5 overflow-hidden">
+        <div className="marquee-mask">
+          <div className="marquee-track animate-marquee">
+            {[...marqueeWords, ...marqueeWords].map((word, idx) => (
+              <div key={idx} className="flex items-center gap-6 px-6">
+                <span className="font-display text-2xl md:text-3xl font-semibold tracking-tight">
+                  {word}
+                </span>
+                <Sparkles className="w-4 h-4 text-primary" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── Services — Bento grid ─────────────── */}
+      <section className="section-pad bg-blue-soft relative">
+        <div className="section-container">
+          <div className="grid lg:grid-cols-12 gap-10 mb-14">
+            <div className="lg:col-span-5">
+              <span className="eyebrow mb-4">What we do</span>
+              <h2 className="font-display mt-3 mb-4 leading-[1.1]">
+                Strategy, design, and engineering as{" "}
+                <span className="brush-underline gradient-text">one practice</span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-7 lg:pt-12">
+              <p className="lede">
+                Our cross-functional team delivers digital products end-to-end — from early
+                research and product design through to production engineering and post-launch
+                support.
+              </p>
+            </div>
+          </div>
+
+          {/* Bento grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-4 auto-rows-fr">
+            {services.map((service, idx) => {
+              const Icon = service.icon;
+              return (
+                <div
+                  key={service.title}
+                  className={`group relative card-premium gradient-border overflow-hidden p-7 hover-lift cursor-pointer ${
+                    service.span ?? ""
+                  } ${service.featured ? "bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--primary-darker))] text-white !border-white/10" : ""}`}
+                >
+                  <span className="corner-plus text-foreground/30 top-3 left-3" />
+                  <span className={`corner-plus top-3 right-3 ${service.featured ? "text-white/30" : "text-foreground/30"}`} />
+
+                  <div className="relative h-full flex flex-col z-[2]">
+                    <div className="flex items-start justify-between mb-6">
+                      <div
+                        className={`inline-flex items-center justify-center h-12 w-12 rounded-lg transition-all duration-500 ${
+                          service.featured
+                            ? "bg-white/15 text-white group-hover:bg-white/25 group-hover:rotate-[-8deg]"
+                            : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white group-hover:rotate-[-8deg]"
+                        }`}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <span
+                        className={`text-xs font-semibold tabular-nums tracking-wider ${
+                          service.featured ? "text-white/50" : "text-muted-foreground/50"
+                        }`}
+                      >
+                        0{idx + 1}
+                      </span>
+                    </div>
+
+                    <h3
+                      className={`font-display text-lg sm:text-xl font-semibold tracking-tight mb-2 ${
+                        service.featured ? "text-white" : "text-foreground"
+                      } ${service.featured ? "sm:text-2xl" : ""}`}
+                    >
+                      {service.title}
+                    </h3>
+                    <p
+                      className={`text-sm leading-relaxed mb-6 flex-1 ${
+                        service.featured ? "text-white/80" : "text-muted-foreground"
+                      }`}
+                    >
+                      {service.description}
+                    </p>
+
+                    <Link
+                      to="/services"
+                      className={`arrow-link text-xs uppercase tracking-[0.18em] ${
+                        service.featured ? "text-white" : "text-primary"
+                      }`}
+                    >
+                      Learn more
+                      <span className="arrow-track" />
+                    </Link>
+
+                    {service.featured && (
+                      <>
+                        <Globe className="absolute -bottom-8 -right-8 w-40 h-40 text-white/8 stroke-[0.5]" />
+                        <Zap className="absolute top-1/3 right-6 w-5 h-5 text-white/40 float-decor" />
+                      </>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── Featured Projects — 3D tilt cards ─────────────── */}
+      <section className="section-pad bg-tinted relative overflow-hidden">
+        <div className="absolute inset-0 bg-dots-subtle opacity-50 pointer-events-none" />
+        <div className="relative section-container">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+            <div>
+              <span className="eyebrow mb-4">Selected work</span>
+              <h2 className="font-display mt-3">
+                Recent projects,{" "}
+                <span className="font-serif-accent text-primary brush-underline">crafted</span>{" "}
+                with rigour.
+              </h2>
+            </div>
+            <Link to="/projects" className="arrow-link self-start md:self-auto text-sm text-primary">
+              View all projects
+              <span className="arrow-track" />
             </Link>
-            <a
-              href="https://wa.me/918735940200?text=Hi,%20I'd%20like%20to%20discuss%20a%20software%20project"
-              target="_blank"
-              rel="noopener noreferrer"
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]">
+            {featuredProjects.map((project, idx) => (
+              <TiltCard
+                key={project.title}
+                onClick={() => navigate("/case-study", { state: { project } })}
+                className={`card-premium cursor-spotlight cursor-pointer group flex flex-col fade-in-up stagger-${idx + 1}`}
+              >
+                <div className="relative overflow-hidden h-52 bg-gradient-to-br from-primary/10 to-accent/5 rounded-t-[var(--radius)] shine-sweep">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute top-3 left-3 flex items-center gap-2">
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/85 backdrop-blur-md border border-border text-[10px] uppercase tracking-[0.15em] font-semibold text-foreground">
+                      {project.category}
+                    </span>
+                  </div>
+                  {project.industry && (
+                    <span className="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-full bg-foreground/85 backdrop-blur-md text-[10px] uppercase tracking-[0.15em] font-semibold text-background">
+                      {project.industry}
+                    </span>
+                  )}
+                </div>
+
+                <div className="p-6 flex flex-col flex-1 tilt-card-inner">
+                  <h3 className="font-display text-lg font-semibold tracking-tight mb-2 text-foreground group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.tech.slice(0, 3).map((tech) => (
+                      <span key={tech} className="tech-badge">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="arrow-link text-xs uppercase tracking-[0.18em] text-primary">
+                    Read Case Study
+                    <span className="arrow-track" />
+                  </div>
+                </div>
+              </TiltCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <TechStack />
+
+      {/* ─────────────── Process — animated SVG path ─────────────── */}
+      <section className="section-pad bg-tinted relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-radial opacity-30 pointer-events-none" />
+        <div className="relative section-container">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="eyebrow justify-center mb-4">How we work</span>
+            <h2 className="font-display mt-3 mb-4">
+              A proven process that{" "}
+              <span className="brush-underline gradient-text">delivers</span>.
+            </h2>
+            <p className="lede mx-auto">
+              Four collaborative phases — built around your timeline, your stakeholders, and your
+              business outcomes.
+            </p>
+          </div>
+
+          {/* Desktop: animated SVG flow line */}
+          <div className="relative">
+            <svg
+              className="hidden lg:block absolute top-[88px] left-0 right-0 w-full h-4 z-0"
+              viewBox="0 0 1200 16"
+              fill="none"
+              preserveAspectRatio="none"
             >
-              <Button size="lg" className="gap-2 border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#5088FA] px-6 md:px-8 py-4 md:py-6">
-                <MessageSquare className="w-5 h-5" />
-                Chat on WhatsApp
-              </Button>
-            </a>
+              <path
+                d="M 60 8 Q 300 -10, 460 8 T 740 8 T 1140 8"
+                stroke="url(#flowGrad)"
+                strokeWidth="1.5"
+                strokeDasharray="6 6"
+                strokeLinecap="round"
+                fill="none"
+              >
+                <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1.4s" repeatCount="indefinite" />
+              </path>
+              <defs>
+                <linearGradient id="flowGrad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
+                  <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.3" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
+              {processSteps.map((step, idx) => {
+                const Icon = step.icon;
+                return (
+                  <div
+                    key={step.title}
+                    className={`relative card-premium p-6 fade-in-up stagger-${idx + 1} group`}
+                  >
+                    <span className="corner-plus text-foreground/20 top-3 left-3" />
+                    <span className="corner-plus text-foreground/20 top-3 right-3" />
+
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="font-display text-3xl font-bold text-primary/15 tabular-nums">
+                        0{idx + 1}
+                      </span>
+                      <span className="inline-flex items-center justify-center h-11 w-11 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:rotate-[-6deg]">
+                        <Icon className="w-5 h-5" />
+                      </span>
+                    </div>
+                    <h3 className="font-display text-base font-semibold tracking-tight mb-2 text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── Why Us ─────────────── */}
+      <section className="section-pad bg-blue-soft">
+        <div className="section-container">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-5 lg:sticky lg:top-28">
+              <span className="eyebrow mb-4">Why partner with us</span>
+              <h2 className="font-display mt-3 mb-5">
+                A reliable, senior-level{" "}
+                <span className="brush-underline text-primary">engineering partner</span>.
+              </h2>
+              <p className="lede mb-8">
+                We pair start-up agility with enterprise discipline — so you ship faster, with code
+                that lasts.
+              </p>
+              <Link to="/about" className="arrow-link text-sm text-primary">
+                Learn more about our approach
+                <span className="arrow-track" />
+              </Link>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="grid sm:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden border border-border shadow-soft-lg">
+                {whyUs.map((item, idx) => (
+                  <div
+                    key={item.title}
+                    className="relative bg-card p-6 hover:bg-[hsl(var(--background-tinted))] transition-colors group"
+                  >
+                    <span className="corner-plus text-foreground/20 top-3 right-3" />
+                    <span className="font-display text-xs font-semibold text-primary/50 tabular-nums tracking-wider mb-3 block">
+                      0{idx + 1}
+                    </span>
+                    <CheckCircle className="w-5 h-5 text-primary mb-4 group-hover:scale-110 group-hover:rotate-[-8deg] transition-transform duration-500" />
+                    <h3 className="font-display text-base font-semibold tracking-tight mb-2 text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── Testimonials — Marquee carousel ─────────────── */}
+      <section className="section-pad bg-tinted relative overflow-hidden">
+        <div className="section-container mb-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="eyebrow justify-center mb-4">Client voices</span>
+            <h2 className="font-display mt-3 mb-4">
+              Trusted by founders and{" "}
+              <span className="brush-underline gradient-text">product teams</span>.
+            </h2>
+            <p className="lede mx-auto">
+              From early-stage founders to enterprise product leads — here's what partnering with
+              us feels like.
+            </p>
+          </div>
+        </div>
+
+        <div className="marquee-mask">
+          <div
+            className="marquee-track gap-5 pb-2"
+            style={{ animation: "marquee 60s linear infinite" }}
+          >
+            {[...testimonials, ...testimonials].map((testimonial, idx) => (
+              <figure
+                key={idx}
+                className="card-premium p-6 w-[360px] sm:w-[420px] flex flex-col"
+              >
+                <Quote className="w-6 h-6 text-primary/25 mb-4" />
+                <div className="flex gap-0.5 mb-4">
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <blockquote className="font-display text-[14px] leading-relaxed text-foreground/85 mb-6 flex-1">
+                  "{testimonial.content}"
+                </blockquote>
+                <figcaption className="flex items-center gap-3 pt-4 border-t border-border">
+                  <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-accent text-white flex items-center justify-center font-display font-bold text-sm">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-foreground">{testimonial.name}</div>
+                    <div className="text-xs text-muted-foreground">{testimonial.role}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── Resources ─────────────── */}
+      <section className="section-pad bg-blue-soft">
+        <div className="section-container max-w-6xl">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div>
+              <span className="eyebrow mb-4">Insights</span>
+              <h2 className="font-display mt-3 mb-3">
+                Latest from{" "}
+                <span className="font-serif-accent text-primary">our team</span>.
+              </h2>
+              <p className="text-sm text-muted-foreground max-w-xl">
+                Engineering essays, product playbooks, and tactical guides — written by the team
+                shipping the work.
+              </p>
+            </div>
+            <Link to="/resources" className="arrow-link self-start md:self-auto text-sm text-primary">
+              All resources
+              <span className="arrow-track" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredResources.map((resource, idx) => (
+              <article
+                key={resource.id}
+                className={`card-premium gradient-border p-6 cursor-pointer group flex flex-col fade-in-up stagger-${idx + 1}`}
+                onClick={() => navigate("/resource-detail", { state: resource })}
+              >
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-primary/10 text-primary group-hover:scale-110 group-hover:rotate-[-6deg] transition-transform duration-500">
+                    <BookOpen className="w-4 h-4" />
+                  </span>
+                  <Badge
+                    variant="secondary"
+                    className="capitalize text-[10px] uppercase tracking-[0.15em] font-semibold bg-muted text-muted-foreground border-0"
+                  >
+                    {resource.type.replace("-", " ")}
+                  </Badge>
+                </div>
+
+                <h3 className="font-display text-base font-semibold tracking-tight mb-3 text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                  {resource.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-6 line-clamp-2 leading-relaxed flex-1">
+                  {resource.excerpt}
+                </p>
+
+                <div className="flex items-center justify-between pt-4 border-t border-border text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="w-3 h-3" />
+                    {new Date(resource.date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock className="w-3 h-3" />
+                    {resource.readTime}
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── Final CTA — premium navy band with creative flair ─────────────── */}
+      <section className="relative py-20 md:py-28 overflow-hidden bg-[hsl(var(--surface-inverse))] text-white cursor-spotlight grain-overlay">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2E5BDA]/60 to-[#4874E8]/40" />
+        <div className="absolute inset-0 bg-dots-subtle opacity-20" />
+
+        {/* Floating decor */}
+        <svg className="absolute top-10 right-10 w-32 h-32 text-white/10 float-decor" viewBox="0 0 100 100" fill="none">
+          <polygon points="50,5 95,80 5,80" stroke="currentColor" strokeWidth="1" />
+          <polygon points="50,25 75,70 25,70" stroke="currentColor" strokeWidth="1" />
+        </svg>
+        <svg
+          className="absolute bottom-10 left-10 w-28 h-28 text-white/10 float-decor animation-delay-2000"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="1" />
+          <path d="M 10 50 L 90 50 M 50 10 L 50 90" stroke="currentColor" strokeWidth="1" />
+        </svg>
+
+        <span className="corner-plus text-white/30 top-6 left-6" />
+        <span className="corner-plus text-white/30 top-6 right-6" />
+        <span className="corner-plus text-white/30 bottom-6 left-6" />
+        <span className="corner-plus text-white/30 bottom-6 right-6" />
+
+        <div className="relative section-container z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="eyebrow eyebrow-on-dark justify-center mb-6">Get started</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
+              Have an ambitious project?
+              <br />
+              <span className="font-serif-accent text-white/90">Let's </span>
+              <span className="brush-underline gradient-text-on-dark">build it together.</span>
+            </h2>
+            <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+              Book a free 30-minute consultation. We'll walk through your goals, timeline, and how
+              our team can help you ship it.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link to="/contact">
+                <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
+                  <span className="relative z-[2]">Book a Consultation</span>
+                  <ArrowUpRight className="w-4 h-4 relative z-[2]" />
+                </button>
+              </Link>
+              <a
+                href="https://wa.me/918735940200?text=Hi,%20I'd%20like%20to%20discuss%20a%20software%20project"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="btn-ghost-light text-sm">
+                  <MessageSquare className="w-4 h-4" />
+                  Chat on WhatsApp
+                </button>
+              </a>
+            </div>
           </div>
         </div>
       </section>

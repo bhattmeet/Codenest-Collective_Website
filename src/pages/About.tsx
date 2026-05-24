@@ -1,290 +1,431 @@
-import { Code, Users, RefreshCw, Shield, CheckCircle, ArrowRight, Rocket, Trophy, TrendingUp, Target } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import {
+  Code,
+  Users,
+  RefreshCw,
+  Shield,
+  CheckCircle,
+  ArrowUpRight,
+  Rocket,
+  Trophy,
+  TrendingUp,
+  Target,
+  MessageSquare,
+  Sparkles,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
 import SEO from "@/components/SEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { companyStats, companyInfo } from "@/data/companyData";
+import { companyStats } from "@/data/companyData";
 import { allProjects } from "@/pages/Projects";
 
 const About = () => {
   useScrollReveal();
+
   const values = [
     {
       icon: Code,
       title: "Quality Code",
-      description: "We write clean, maintainable code following industry best practices and standards. Every line is crafted with precision and attention to detail."
+      description:
+        "Clean, maintainable code following industry best practices. Every line is crafted with precision and intent.",
     },
     {
       icon: Users,
       title: "Client-First Approach",
-      description: "Your success is our priority. We listen, collaborate, and adapt to ensure we're delivering exactly what you need."
+      description:
+        "Your success is our priority. We listen, collaborate, and adapt to deliver exactly what you need.",
     },
     {
       icon: RefreshCw,
       title: "Agile Process",
-      description: "We embrace agile methodologies for flexibility and rapid iteration, keeping you involved at every stage of development."
+      description:
+        "Flexibility and rapid iteration through agile methodologies — you stay involved at every stage.",
     },
     {
       icon: Shield,
       title: "Security Focus",
-      description: "Security is built into every layer of our solutions. We implement robust measures to protect your data and applications."
-    }
+      description:
+        "Security built into every layer of our solutions, protecting your data and applications by design.",
+    },
+  ];
+
+  const journey = [
+    { year: "2023", title: "Company Founded", icon: Rocket, blurb: "Codenest Collective Technologies was born with a vision to empower startups." },
+    { year: "2024", title: "First Major Clients", icon: Trophy, blurb: `Delivered ${allProjects.length}+ successful projects and built lasting client relationships worldwide.` },
+    { year: "2025", title: "Rapid Growth", icon: TrendingUp, blurb: "Expanded service offerings and became a trusted development partner across industries." },
+    { year: "2026", title: "Vision Ahead", icon: Target, blurb: "Continuing to innovate and help businesses transform with cutting-edge technology." },
+  ];
+
+  const founderHighlights = [
+    { label: `${allProjects.length}+ Projects`, sub: "Successfully delivered" },
+    { label: "Full-Stack Expert", sub: "Mobile, Web, Backend" },
+    { label: `${companyStats.clientsWorldwide}+ Clients`, sub: "Global partnerships" },
+    { label: `${companyStats.yearsExperience}+ Years`, sub: "Industry experience" },
+  ];
+
+  const stats = [
+    { value: `${companyStats.yearsExperience}+`, label: "Years experience" },
+    { value: `${allProjects.length}+`, label: "Projects delivered" },
+    { value: `${companyStats.clientsWorldwide}+`, label: "Clients worldwide" },
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="About Us - CodeNest Collective Technologies"
-        description="Learn about CodeNest Collective Technologies. With 6+ years of experience, we build scalable software solutions for startups and growing businesses. Meet our founder and discover our values."
+        title="About Us — Codenest Collective Technologies"
+        description="Learn about Codenest Collective Technologies. With 6+ years of experience, we build scalable software solutions for startups and growing businesses."
         path="/about"
         keywords="about codenest, software development company, startup development, scalable software, tech company values"
       />
+      <ScrollProgress />
       <Navigation />
 
-      {/* Company Intro Section */}
-      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] relative overflow-hidden">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="section-title text-4xl md:text-5xl font-bold mb-6 text-white">
-            About CodeNest Collective
-          </h1>
-          <p className="text-lg text-white/90 leading-relaxed mb-8">
-            Building scalable software solutions for startups and growing businesses
-          </p>
-          <div className="flex flex-wrap justify-center gap-8 text-lg">
-            <div>
-              <span className="font-bold text-white">{companyStats.yearsExperience}+ years</span>
-              <span className="text-white/80"> of experience</span>
-            </div>
-            <div className="w-px bg-white/30"></div>
-            <div>
-              <span className="font-bold text-white">{allProjects.length}+ projects</span>
-              <span className="text-white/80"> delivered</span>
-            </div>
-            <div className="w-px bg-white/30"></div>
-            <div>
-              <span className="font-bold text-white">{companyStats.clientsWorldwide}+ clients</span>
-              <span className="text-white/80"> worldwide</span>
+      {/* ─────────────── Hero ─────────────── */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] grain-overlay">
+        {/* Grid */}
+        <div className="absolute inset-0 opacity-[0.07] z-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+              maskImage:
+                "radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%)",
+            }}
+          />
+        </div>
+        <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
+          <div className="absolute top-0 -left-32 w-[460px] h-[460px] rounded-full bg-[#5088FA]/40 blur-[120px] animate-blob" />
+          <div className="absolute bottom-0 -right-32 w-[460px] h-[460px] rounded-full bg-[#42A5F5]/35 blur-[120px] animate-blob animation-delay-3000" />
+        </div>
+
+        <span className="corner-plus text-white/40 top-6 left-6" />
+        <span className="corner-plus text-white/40 top-6 right-6" />
+        <span className="corner-plus text-white/40 bottom-6 left-6" />
+        <span className="corner-plus text-white/40 bottom-6 right-6" />
+
+        <svg
+          className="absolute top-[18%] right-[10%] w-24 h-24 text-white/15 float-decor z-0"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="1" strokeDasharray="2 4" />
+          <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="1" />
+          <circle cx="50" cy="50" r="4" fill="currentColor" />
+        </svg>
+
+        <div className="relative z-10 section-container">
+          <div className="max-w-4xl">
+            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">About the studio</span>
+            <h1 className="hero-title text-white mb-6 word-reveal leading-[1.05]">
+              <span style={{ animationDelay: "0.05s" }}>Built</span>{" "}
+              <span style={{ animationDelay: "0.18s" }}>for</span>{" "}
+              <span style={{ animationDelay: "0.32s" }} className="font-serif-accent text-white/85">
+                teams that
+              </span>{" "}
+              <span style={{ animationDelay: "0.46s" }}>
+                <span className="brush-underline gradient-text-on-dark">ship.</span>
+              </span>
+            </h1>
+            <p
+              className="lede !text-white/75 !max-w-2xl text-base sm:text-lg mb-10 fade-in-up"
+              style={{ animationDelay: "0.65s" }}
+            >
+              We're a small, senior team building scalable software for startups and growing
+              businesses. Six years of practice, dozens of products shipped, and a stubborn focus
+              on quality at every layer.
+            </p>
+
+            <div
+              className="grid grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-xl overflow-hidden backdrop-blur-sm max-w-2xl fade-in-up"
+              style={{ animationDelay: "0.85s" }}
+            >
+              {stats.map((s) => (
+                <div key={s.label} className="px-4 sm:px-6 py-5 bg-white/[0.04]">
+                  <div className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    {s.value}
+                  </div>
+                  <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] font-semibold text-white/55 mt-1">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-12 md:py-16 px-6 bg-white">
-        <div className="container mx-auto max-w-5xl">
-          <Card className="border-primary/20">
-            <CardContent className="p-8 md:p-12 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Our Mission</h2>
-              <p className="text-lg md:text-lg text-muted-foreground leading-relaxed">
-                We empower startups and growing businesses with scalable, high-quality software solutions.
-                Our expertise spans web and mobile applications, backend systems, and UI/UX design.
-                We serve <span className="text-primary font-semibold">Domestic and international clients</span> who
-                need reliable, senior-level development partners they can trust.
+      {/* ─────────────── Mission — editorial split ─────────────── */}
+      <section className="section-pad bg-blue-soft relative">
+        <div className="section-container">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-4">
+              <span className="eyebrow mb-4">Our mission</span>
+              <h2 className="font-display mt-3 leading-[1.1]">
+                Engineering with{" "}
+                <span className="brush-underline gradient-text">purpose</span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-8 lg:pt-6">
+              <p className="text-xl md:text-2xl font-display font-medium text-foreground leading-snug mb-8">
+                We empower startups and growing businesses with scalable, high-quality software
+                solutions — spanning web, mobile, backend, and design.
               </p>
-            </CardContent>
-          </Card>
+              <p className="lede !max-w-3xl">
+                We serve{" "}
+                <span className="text-primary font-semibold">domestic and international clients</span>{" "}
+                who need reliable, senior-level development partners they can trust. Our work
+                combines technical depth with business pragmatism — delivering software that
+                actually moves the needle.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Founder Section */}
-      <section className="py-16 md:py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Meet Our Founder</h2>
-            <p className="text-lg text-muted-foreground">
-              Leadership driven by expertise and passion for technology
+      {/* ─────────────── Founder ─────────────── */}
+      <section className="section-pad bg-tinted relative overflow-hidden">
+        <div className="absolute inset-0 bg-dots-subtle opacity-40 pointer-events-none" />
+        <div className="relative section-container max-w-6xl">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="eyebrow justify-center mb-4">Leadership</span>
+            <h2 className="font-display mt-3 mb-4">
+              Meet our <span className="font-serif-accent text-primary">founder</span>.
+            </h2>
+            <p className="lede mx-auto">
+              Leadership driven by deep expertise and a love for the craft of technology.
             </p>
           </div>
 
-          <Card className="border-primary/20 overflow-hidden">
-            <CardContent className="p-0">
-              <div className="grid md:grid-cols-[300px,1fr] gap-8">
-                {/* Founder Photo */}
-                <div className="bg-primary/10 p-8 flex items-center justify-center">
-                  <div className="w-48 h-48 rounded-full bg-primary/10 border-4 border-primary/20 flex items-center justify-center">
-                    <div className="text-6xl font-bold text-primary">MB</div>
+          <div className="card-premium gradient-border overflow-hidden">
+            <span className="corner-plus text-foreground/25 top-4 left-4" />
+            <span className="corner-plus text-foreground/25 top-4 right-4" />
+            <span className="corner-plus text-foreground/25 bottom-4 left-4" />
+            <span className="corner-plus text-foreground/25 bottom-4 right-4" />
+
+            <div className="grid md:grid-cols-[320px,1fr]">
+              {/* Photo block */}
+              <div className="relative bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] p-10 flex items-center justify-center overflow-hidden grain-overlay">
+                <div className="absolute inset-0 opacity-10">
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+                      backgroundSize: "32px 32px",
+                    }}
+                  />
+                </div>
+                <div className="relative">
+                  <div className="absolute -inset-3 rounded-full bg-white/15 blur-2xl" />
+                  <div className="relative w-44 h-44 rounded-full bg-white/[0.06] border border-white/25 flex items-center justify-center backdrop-blur-sm shine-sweep">
+                    <span className="font-display text-6xl font-bold text-white">MB</span>
                   </div>
                 </div>
+                <Sparkles className="absolute top-6 right-6 w-5 h-5 text-white/40 float-decor" />
+              </div>
 
-                {/* Founder Bio */}
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold mb-2 text-primary">Our Founder</h3>
-                  <p className="text-lg text-accent mb-6">Founder & CEO</p>
+              {/* Bio */}
+              <div className="p-8 md:p-10">
+                <h3 className="font-display text-2xl font-bold tracking-tight mb-1 text-foreground">
+                  Our Founder
+                </h3>
+                <p className="text-sm uppercase tracking-[0.2em] font-semibold text-primary mb-6">
+                  Founder & CEO
+                </p>
 
-                  <div className="space-y-4 text-muted-foreground leading-relaxed">
-                    <p>
-                      With over {companyStats.yearsExperience}+ years of hands-on experience in full-stack development, our founder brings deep
-                      expertise in Flutter, Android (Kotlin), Node.js, Express.js, MongoDB, and Firebase.
-                    </p>
-                    <p>
-                      Having worked with startups and established businesses across multiple industries,
-                      our founder understands the unique challenges of building scalable digital products. The
-                      approach combines technical excellence with business acumen to deliver solutions
-                      that truly move the needle.
-                    </p>
-                  </div>
+                <div className="space-y-4 text-muted-foreground leading-relaxed text-[15px]">
+                  <p>
+                    With over {companyStats.yearsExperience}+ years of hands-on full-stack
+                    development, our founder brings deep expertise in Flutter, Android (Kotlin),
+                    Node.js, Express.js, MongoDB, and Firebase.
+                  </p>
+                  <p>
+                    Having worked with startups and established businesses across industries, our
+                    founder pairs technical excellence with business acumen — delivering solutions
+                    that actually move the needle.
+                  </p>
+                </div>
 
-                  {/* Credibility Highlights */}
-                  <div className="mt-8 grid grid-cols-2 gap-4">
-                    <div className="flex items-start gap-3">
+                <div className="mt-8 grid grid-cols-2 gap-4">
+                  {founderHighlights.map((h) => (
+                    <div key={h.label} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-semibold text-foreground">{allProjects.length}+ Projects</p>
-                        <p className="text-sm text-muted-foreground">Successfully delivered</p>
+                        <p className="font-semibold text-foreground text-sm">{h.label}</p>
+                        <p className="text-xs text-muted-foreground">{h.sub}</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-foreground">Full-Stack Expert</p>
-                        <p className="text-sm text-muted-foreground">Mobile, Web, Backend</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-foreground">{companyStats.clientsWorldwide}+ Clients</p>
-                        <p className="text-sm text-muted-foreground">Global partnerships</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-foreground">{companyStats.yearsExperience}+ Years</p>
-                        <p className="text-sm text-muted-foreground">Industry experience</p>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Journey Timeline Section */}
-      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-blue-50/30 to-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Our Journey</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From humble beginnings to delivering excellence - here's how we've grown
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {/* 2023 - Founded */}
-            <Card className="card-glass stagger-1 border-2 border-primary/20 transition-all duration-300">
-              <CardContent className="p-8 flex flex-col items-center text-center h-full">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
-                  <Rocket className="w-10 h-10 text-primary" />
-                </div>
-                <h3 className="text-4xl font-bold mb-3 text-primary">2023</h3>
-                <h4 className="text-lg font-semibold mb-4 text-foreground">Company Founded</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  CodeNest Collective Technologies was born with a vision to empower startups.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* 2024 - First Clients */}
-            <Card className="card-glass stagger-2 border-2 border-primary/20 transition-all duration-300">
-              <CardContent className="p-8 flex flex-col items-center text-center h-full">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
-                  <Trophy className="w-10 h-10 text-primary" />
-                </div>
-                <h3 className="text-4xl font-bold mb-3 text-primary">2024</h3>
-                <h4 className="text-lg font-semibold mb-4 text-foreground">First Major Clients</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Delivered {allProjects.length}+ successful projects and built strong relationships with clients worldwide.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* 2025 - Growth */}
-            <Card className="card-glass stagger-3 border-2 border-primary/20 transition-all duration-300">
-              <CardContent className="p-8 flex flex-col items-center text-center h-full">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
-                  <TrendingUp className="w-10 h-10 text-primary" />
-                </div>
-                <h3 className="text-4xl font-bold mb-3 text-primary">2025</h3>
-                <h4 className="text-lg font-semibold mb-4 text-foreground">Rapid Growth</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Expanded our service offerings and established ourselves as a trusted development partner.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* 2026 - Future */}
-            <Card className="card-glass stagger-4 border-2 border-primary/20 transition-all duration-300">
-              <CardContent className="p-8 flex flex-col items-center text-center h-full">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-cyan-500/20 flex items-center justify-center mb-6 border-4 border-primary/10">
-                  <Target className="w-10 h-10 text-primary" />
-                </div>
-                <h3 className="text-4xl font-bold mb-3 text-primary">2026</h3>
-                <h4 className="text-lg font-semibold mb-4 text-foreground">Vision Ahead</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Continuing to innovate and help businesses transform with cutting-edge technology.
-                </p>
-              </CardContent>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-16 md:py-24 px-6 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Our Values</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              The principles that guide everything we do
+      {/* ─────────────── Journey — animated SVG flow ─────────────── */}
+      <section className="section-pad bg-blue-soft relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-radial opacity-25 pointer-events-none" />
+        <div className="relative section-container">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="eyebrow justify-center mb-4">Our journey</span>
+            <h2 className="font-display mt-3 mb-4">
+              From day one to{" "}
+              <span className="brush-underline gradient-text">what's next</span>.
+            </h2>
+            <p className="lede mx-auto">
+              The milestones that shaped our practice — and the ones still ahead.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className={`card-glass stagger-${(index % 2) + 1} border-primary/20 transition-all`}>
-                <CardContent className="p-8">
-                  <div className="flex gap-6 items-start">
-                    <div className="p-4 rounded-xl bg-primary/10 flex-shrink-0">
-                      <value.icon className="w-8 h-8 text-primary" />
+          <div className="relative">
+            <svg
+              className="hidden lg:block absolute top-[88px] left-0 right-0 w-full h-4 z-0"
+              viewBox="0 0 1200 16"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M 60 8 Q 300 -10, 460 8 T 740 8 T 1140 8"
+                stroke="url(#aboutFlow)"
+                strokeWidth="1.5"
+                strokeDasharray="6 6"
+                strokeLinecap="round"
+                fill="none"
+              >
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="0"
+                  to="-24"
+                  dur="1.4s"
+                  repeatCount="indefinite"
+                />
+              </path>
+              <defs>
+                <linearGradient id="aboutFlow" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
+                  <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.3" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
+              {journey.map((step, idx) => {
+                const Icon = step.icon;
+                return (
+                  <div
+                    key={step.year}
+                    className={`card-premium p-6 fade-in-up stagger-${idx + 1} group`}
+                  >
+                    <span className="corner-plus text-foreground/20 top-3 left-3" />
+                    <span className="corner-plus text-foreground/20 top-3 right-3" />
+
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="font-display text-3xl font-bold gradient-text tabular-nums">
+                        {step.year}
+                      </span>
+                      <span className="inline-flex items-center justify-center h-11 w-11 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:rotate-[-6deg]">
+                        <Icon className="w-5 h-5" />
+                      </span>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-3 text-primary">{value.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{value.description}</p>
-                    </div>
+                    <h3 className="font-display text-base font-semibold tracking-tight mb-2 text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{step.blurb}</p>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 px-6 bg-primary text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl md:text-2xl lg:text-4xl font-bold mb-6">
-            Ready to Work Together?
+      {/* ─────────────── Values ─────────────── */}
+      <section className="section-pad bg-tinted relative overflow-hidden">
+        <div className="absolute inset-0 bg-dots-subtle opacity-40 pointer-events-none" />
+        <div className="relative section-container">
+          <div className="grid lg:grid-cols-12 gap-10 mb-14">
+            <div className="lg:col-span-5">
+              <span className="eyebrow mb-4">Values</span>
+              <h2 className="font-display mt-3 leading-[1.1]">
+                The principles{" "}
+                <span className="brush-underline gradient-text">behind the work</span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-7 lg:pt-10">
+              <p className="lede">
+                Four commitments we hold to ourselves — and to every team we partner with.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden border border-border shadow-soft-lg">
+            {values.map((value, idx) => {
+              const Icon = value.icon;
+              return (
+                <div
+                  key={value.title}
+                  className="relative bg-card p-8 hover:bg-[hsl(var(--background-tinted))] transition-colors group"
+                >
+                  <span className="corner-plus text-foreground/20 top-4 right-4" />
+
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-display text-xs font-semibold text-primary/60 tabular-nums tracking-wider">
+                      0{idx + 1}
+                    </span>
+                  </div>
+
+                  <Icon className="w-6 h-6 text-primary mb-5 group-hover:scale-110 group-hover:rotate-[-8deg] transition-transform duration-500" />
+                  <h3 className="font-display text-lg font-semibold tracking-tight mb-2 text-foreground">
+                    {value.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {value.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── CTA ─────────────── */}
+      <section className="relative py-20 md:py-28 overflow-hidden bg-[hsl(var(--surface-inverse))] text-white cursor-spotlight grain-overlay">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2E5BDA]/60 to-[#4874E8]/40" />
+        <div className="absolute inset-0 bg-dots-subtle opacity-20" />
+        <span className="corner-plus text-white/30 top-6 left-6" />
+        <span className="corner-plus text-white/30 top-6 right-6" />
+        <span className="corner-plus text-white/30 bottom-6 left-6" />
+        <span className="corner-plus text-white/30 bottom-6 right-6" />
+
+        <div className="relative section-container z-10 max-w-4xl mx-auto text-center">
+          <span className="eyebrow eyebrow-on-dark justify-center mb-6">Let's talk</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
+            Ready to{" "}
+            <span className="brush-underline gradient-text-on-dark">work together</span>?
           </h2>
-          <p className="text-lg md:text-xl mb-8 opacity-90">
-            Let's discuss how we can help bring your project to life
+          <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Let's talk through your goals and how we can help bring your project to life.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/contact">
-              <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90 px-6 md:px-8 py-4 md:py-6">
-                Get Started
-                <ArrowRight className="w-5 h-5" />
-              </Button>
+              <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
+                <span className="relative z-[2]">Get Started</span>
+                <ArrowUpRight className="w-4 h-4 relative z-[2]" />
+              </button>
             </Link>
             <Link to="/projects">
-              <Button size="lg" className="gap-2 border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#5088FA] px-6 md:px-8 py-4 md:py-6">
+              <button className="btn-ghost-light text-sm">
+                <MessageSquare className="w-4 h-4" />
                 View Our Work
-              </Button>
+              </button>
             </Link>
           </div>
         </div>

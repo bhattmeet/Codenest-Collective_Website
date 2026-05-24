@@ -59,7 +59,7 @@ const CaseStudy = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background bg-page-glow">
       <Navigation />
 
       {/* Hero Section - Blue Gradient */}
@@ -104,7 +104,7 @@ const CaseStudy = () => {
       </section>
 
       {/* Content Section - White Background */}
-      <section className="py-16 md:py-24 px-6 bg-white">
+      <section className="py-16 md:py-24 px-6 bg-blue-soft">
         <div className="container mx-auto max-w-6xl">
 
           {project.caseStudyImage.startsWith('url(') ? (

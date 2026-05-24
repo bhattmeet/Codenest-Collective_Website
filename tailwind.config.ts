@@ -15,6 +15,20 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+      },
+      letterSpacing: {
+        'tightest': '-0.04em',
+        'tighter-2': '-0.025em',
+      },
+      boxShadow: {
+        'elevation-1': '0 1px 2px 0 rgba(15, 23, 42, 0.04), 0 1px 1px 0 rgba(15, 23, 42, 0.04)',
+        'elevation-2': '0 4px 6px -2px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.04)',
+        'elevation-3': '0 12px 24px -8px rgba(15, 23, 42, 0.08), 0 4px 8px -4px rgba(15, 23, 42, 0.05)',
+        'elevation-4': '0 24px 48px -12px rgba(15, 23, 42, 0.12), 0 8px 16px -8px rgba(15, 23, 42, 0.06)',
+        'inset-hairline': 'inset 0 0 0 1px rgba(15, 23, 42, 0.06)',
+        'ring-primary': '0 0 0 1px hsl(var(--primary) / 0.18), 0 8px 24px -8px hsl(var(--primary) / 0.18)',
       },
       colors: {
         border: "hsl(var(--border))",

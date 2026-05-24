@@ -45,7 +45,7 @@ const ResourceDetail = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background bg-page-glow">
       <SEO
         title={`${resource.title} - CodeNest Collective`}
         description={resource.excerpt}
@@ -114,7 +114,7 @@ const ResourceDetail = () => {
       </section>
 
       {/* Content Section */}
-      <section className="py-16 md:py-24 px-6 bg-white">
+      <section className="py-16 md:py-24 px-6 bg-blue-soft">
         <div className="container mx-auto max-w-6xl">
           <article className="prose prose-base md:prose-lg max-w-none prose-headings:text-primary prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80 prose-strong:text-foreground prose-code:text-primary prose-code:bg-primary/5 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:shadow-soft-lg prose-img:rounded-xl prose-img:shadow-soft-xl prose-table:border-collapse prose-th:border prose-th:border-primary/20 prose-th:bg-primary/5 prose-th:p-3 prose-th:text-left prose-td:border prose-td:border-primary/10 prose-td:p-3">
             <div className="bg-white rounded-2xl p-6 md:p-10 lg:p-12 shadow-soft-lg border border-primary/10">

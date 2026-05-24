@@ -84,36 +84,31 @@ const NewsletterSignup = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-3">
-          <div>
-            <h4 className="font-semibold mb-3 text-white text-sm">Newsletter</h4>
-            <p className="text-xs text-gray-400 leading-relaxed mb-3">
-              Subscribe to our newsletter to get your weekly dose of news, updates, tips and special offers.
-            </p>
-          </div>
+          <p className="text-xs text-white/60 leading-relaxed">
+            Subscribe for engineering briefings, case studies, and product insights — once a month, no noise.
+          </p>
           <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-primary" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/55" />
               <Input
                 type="email"
-                placeholder="Enter your email address"
+                placeholder="you@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value.replace(/\s/g, ''))}
                 disabled={isSubmitting}
-                className="w-full h-9 pl-10 bg-white border-gray-200 focus:border-primary text-gray-900 text-xs placeholder:text-gray-400"
+                className="w-full h-10 pl-10 bg-white/[0.06] border border-white/15 focus:border-white/35 focus-visible:ring-0 text-white text-xs placeholder:text-white/40"
               />
             </div>
             <Button
               type="submit"
               disabled={isSubmitting}
               size="sm"
-              className="w-full gap-2 bg-primary hover:bg-primary/90 h-9 text-xs font-medium"
+              className="w-full gap-2 bg-white text-primary hover:bg-white/90 h-10 text-xs font-semibold tracking-wide"
             >
               {isSubmitting ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                <>
-                  <span>Subscribe</span>
-                </>
+                <span>Subscribe</span>
               )}
             </Button>
           </form>

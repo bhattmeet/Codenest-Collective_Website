@@ -1,11 +1,9 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github, MessageSquare } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { useState, useEffect, useRef } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
 import SEO from "@/components/SEO";
 import ProjectCardSkeleton from "@/components/ProjectCardSkeleton";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -114,7 +112,7 @@ export const allProjects = [
       tech: ["Flutter", "Dart", "GetX", "Dio", "Hive", "Firebase"],
       image: "https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037401/dishdiscover_feature_graphic_jc9ryn.png",
       github: "https://github.com/bhattmeet/DishDiscovery-Frontend",
-      demo: "",
+      demo: "https://play.google.com/store/apps/details?id=com.meet.dishdiscover",
       problem: "Creating a fluid, responsive UI with offline capabilities while handling large media files and ensuring fast search results",
       // Case Study Details
       caseStudyImage: "url(https://res.cloudinary.com/dlbmnrjgx/image/upload/v1765037401/dishdiscover_feature_graphic_jc9ryn.png)",
@@ -355,6 +353,47 @@ export const allProjects = [
     }
   ];
 
+/* ─── Tilt card helper ─────────────────────────────────────── */
+const TiltCard = ({
+  children,
+  onClick,
+  className = "",
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const rx = (py - 0.5) * -6;
+    const ry = (px - 0.5) * 8;
+    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+    el.style.setProperty("--mx", `${px * 100}%`);
+    el.style.setProperty("--my", `${py * 100}%`);
+  };
+  const onLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "perspective(900px) rotateX(0) rotateY(0) translateZ(0)";
+  };
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      onClick={onClick}
+      className={`tilt-card ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
 const Projects = () => {
   useScrollReveal();
   const navigate = useNavigate();
@@ -363,184 +402,235 @@ const Projects = () => {
 
   const filters = ["All", "Mobile Apps", "Frontend", "UI/UX Design", "Backend", "Fullstack"];
 
-  const filteredProjects = selectedFilter === "All"
-    ? allProjects
-    : allProjects.filter(p => p.category === selectedFilter || p.industry === selectedFilter);
+  const filteredProjects =
+    selectedFilter === "All"
+      ? allProjects
+      : allProjects.filter(
+          (p) => p.category === selectedFilter || p.industry === selectedFilter,
+        );
 
-  // Simulate loading state
   useEffect(() => {
     setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
+    const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
   }, [selectedFilter]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="Portfolio - Our Projects & Case Studies"
-        description="Explore our portfolio of successful software projects including mobile apps, web applications, healthcare, fintech, and SaaS solutions. View detailed case studies showcasing our expertise."
+        title="Portfolio — Our Projects & Case Studies"
+        description="Explore our portfolio of successful software projects including mobile apps, web applications, healthcare, fintech, and SaaS solutions."
         path="/projects"
         keywords="software portfolio, case studies, mobile apps, web applications, project showcase, development projects, healthcare apps, fintech solutions, SaaS platforms"
       />
+      <ScrollProgress />
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] relative overflow-hidden">
-        <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <h1 className="section-title text-3xl md:text-4xl font-bold mb-6 text-white">
-            Our Portfolio
-          </h1>
-          <p className="text-sm md:text-base text-white/90 leading-relaxed">
-            Showcasing successful projects across Mobile Apps, Web Apps, Healthcare, Fintech, and SaaS
-          </p>
+      {/* ─────────────── Hero ─────────────── */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] grain-overlay">
+        <div className="absolute inset-0 opacity-[0.07] z-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+              maskImage:
+                "radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%)",
+            }}
+          />
         </div>
-      </section>
+        <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
+          <div className="absolute top-0 -left-32 w-[460px] h-[460px] rounded-full bg-[#5088FA]/40 blur-[120px] animate-blob" />
+          <div className="absolute bottom-0 -right-32 w-[460px] h-[460px] rounded-full bg-[#42A5F5]/35 blur-[120px] animate-blob animation-delay-3000" />
+        </div>
 
-      {/* Filter Buttons */}
-      <section className="py-8 px-6 bg-white border-y border-primary/10">
-        <div className="container mx-auto">
-          <div className="flex flex-wrap gap-3 justify-center">
-            {filters.map((filter) => (
-              <Button
-                key={filter}
-                variant={selectedFilter === filter ? "default" : "outline"}
-                onClick={() => setSelectedFilter(filter)}
-                className={`${
-                  selectedFilter === filter
-                    ? "bg-primary text-white shadow-soft"
-                    : "border-primary/20 text-primary hover:bg-primary/10 hover:border-primary"
-                } transition-all hover:scale-105 duration-300`}
-              >
-                {filter}
-              </Button>
-            ))}
+        <span className="corner-plus text-white/40 top-6 left-6" />
+        <span className="corner-plus text-white/40 top-6 right-6" />
+        <span className="corner-plus text-white/40 bottom-6 left-6" />
+        <span className="corner-plus text-white/40 bottom-6 right-6" />
+
+        <div className="relative z-10 section-container">
+          <div className="max-w-4xl">
+            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">Portfolio</span>
+            <h1 className="hero-title text-white mb-6 word-reveal leading-[1.05]">
+              <span style={{ animationDelay: "0.05s" }}>Work that</span>{" "}
+              <span style={{ animationDelay: "0.2s" }} className="font-serif-accent text-white/85">
+                ships,
+              </span>{" "}
+              <br />
+              <span style={{ animationDelay: "0.34s" }}>scales,</span>{" "}
+              <span style={{ animationDelay: "0.48s" }}>
+                and <span className="brush-underline gradient-text-on-dark">endures.</span>
+              </span>
+            </h1>
+            <p
+              className="lede !text-white/75 !max-w-2xl text-base sm:text-lg fade-in-up"
+              style={{ animationDelay: "0.65s" }}
+            >
+              Selected projects across Mobile Apps, Web Apps, Healthcare, Fintech, and SaaS — each
+              shipped end-to-end by our team.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-white to-blue-50/30">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {isLoading ? (
-              // Show 6 skeleton cards while loading
-              Array(6).fill(0).map((_, index) => (
-                <ProjectCardSkeleton key={index} />
-              ))
-            ) : (
-              filteredProjects.map((project, index) => (
-              <Card
-                key={index}
-                className={`card-glass hover-lift overflow-hidden group border-primary/20 transition-all duration-300`}
-              >
-                {/* Project Image */}
-                <div className="relative overflow-hidden h-48 bg-primary/10">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+      {/* ─────────────── Filter bar ─────────────── */}
+      <section className="sticky top-[72px] z-30 bg-background/85 backdrop-blur-md border-y border-border">
+        <div className="section-container py-4">
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <span className="text-[10px] uppercase tracking-[0.22em] font-semibold text-muted-foreground hidden md:inline-flex items-center gap-2">
+              <span className="h-px w-5 bg-primary" />
+              {filteredProjects.length} projects
+            </span>
+            <div className="flex flex-wrap gap-1.5 justify-center">
+              {filters.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setSelectedFilter(filter)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 ${
+                    selectedFilter === filter
+                      ? "bg-foreground text-background shadow-soft"
+                      : "bg-card text-muted-foreground border border-border hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+            <span className="hidden md:inline-flex w-[60px]" />
+          </div>
+        </div>
+      </section>
 
-                <CardHeader>
-                  {/* Category Badge - moved below image */}
-                  <div className="mb-3">
-                    <Badge className="bg-primary/10 text-primary border-primary/20">
-                      {project.category}
-                    </Badge>
-                  </div>
-
-                  <CardTitle className="text-lg text-primary mb-2">
-                    {project.title}
-                  </CardTitle>
-                  <p className="text-sm text-gray-600">{project.description}</p>
-                </CardHeader>
-
-                <CardContent>
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.slice(0, 3).map((tech, idx) => (
-                      <Badge key={idx} variant="secondary" className="tech-badge text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Demo and GitHub Links */}
-                  <div className="flex gap-3 mb-4">
-                    {project.demo && (
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="border-primary/20 text-primary hover:bg-primary hover:text-white hover:border-primary text-xs transition-colors"
-                        >
-                          <ExternalLink className="w-3 h-3 mr-1" />
-                          Live Demo
-                        </Button>
-                      </a>
-                    )}
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="border-primary/20 text-primary hover:bg-primary hover:text-white hover:border-primary text-xs transition-colors"
-                        >
-                          <Github className="w-3 h-3 mr-1" />
-                          GitHub
-                        </Button>
-                      </a>
-                    )}
-                  </div>
-
-                  {/* View Details Button */}
-                  <Button
-                    variant="link"
-                    className="p-0 text-primary hover:text-blue-600 font-semibold group/btn"
+      {/* ─────────────── Projects grid ─────────────── */}
+      <section className="section-pad bg-blue-soft relative">
+        <div className="absolute inset-0 bg-dots-subtle opacity-30 pointer-events-none" />
+        <div className="relative section-container">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]">
+            {isLoading
+              ? Array(6)
+                  .fill(0)
+                  .map((_, index) => <ProjectCardSkeleton key={index} />)
+              : filteredProjects.map((project, idx) => (
+                  <TiltCard
+                    key={project.title + idx}
+                    className={`card-premium cursor-spotlight cursor-pointer group flex flex-col overflow-hidden fade-in-up stagger-${(idx % 6) + 1}`}
                     onClick={() => navigate("/case-study", { state: { project } })}
                   >
-                    View Case Study <ArrowRight className="w-4 h-4 ml-1 inline group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-              ))
-            )}
+                    <div className="relative overflow-hidden h-52 bg-gradient-to-br from-primary/10 to-accent/5 rounded-t-[var(--radius)] shine-sweep">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className="w-full h-full object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-110"
+                      />
+                      <span className="absolute top-3 left-3 inline-flex items-center px-2.5 py-1 rounded-full bg-white/85 backdrop-blur-md border border-border text-[10px] uppercase tracking-[0.15em] font-semibold text-foreground">
+                        {project.category}
+                      </span>
+                      {(project as { industry?: string }).industry && (
+                        <span className="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-full bg-foreground/85 backdrop-blur-md text-[10px] font-semibold text-background">
+                          {(project as { industry?: string }).industry}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="p-6 flex flex-col flex-1 tilt-card-inner">
+                      <h3 className="font-display text-lg font-semibold tracking-tight mb-2 text-foreground group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-5 line-clamp-3 flex-1">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {project.tech.slice(0, 3).map((tech) => (
+                          <span key={tech} className="tech-badge">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center justify-between gap-3 pt-4 border-t border-border">
+                        <div className="flex items-center gap-2">
+                          {project.demo && (
+                            <a
+                              href={project.demo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center justify-center h-8 w-8 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                              aria-label="Live demo"
+                            >
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </a>
+                          )}
+                          {project.github && (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center justify-center h-8 w-8 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                              aria-label="GitHub"
+                            >
+                              <Github className="w-3.5 h-3.5" />
+                            </a>
+                          )}
+                        </div>
+                        <div className="arrow-link text-xs uppercase tracking-[0.18em] text-primary">
+                          Case Study
+                          <span className="arrow-track" />
+                        </div>
+                      </div>
+                    </div>
+                  </TiltCard>
+                ))}
           </div>
 
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-xl text-muted-foreground">
-                No projects found for this filter.
+          {!isLoading && filteredProjects.length === 0 && (
+            <div className="text-center py-24">
+              <p className="font-display text-2xl font-semibold mb-2">No projects found.</p>
+              <p className="text-sm text-muted-foreground">
+                Try a different filter or view all projects.
               </p>
             </div>
           )}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 px-6 bg-primary text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-lg md:text-xl lg:text-4xl font-bold mb-6">
-            Start Your Project
+      {/* ─────────────── CTA ─────────────── */}
+      <section className="relative py-20 md:py-28 overflow-hidden bg-[hsl(var(--surface-inverse))] text-white cursor-spotlight grain-overlay">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2E5BDA]/60 to-[#4874E8]/40" />
+        <div className="absolute inset-0 bg-dots-subtle opacity-20" />
+        <span className="corner-plus text-white/30 top-6 left-6" />
+        <span className="corner-plus text-white/30 top-6 right-6" />
+        <span className="corner-plus text-white/30 bottom-6 left-6" />
+        <span className="corner-plus text-white/30 bottom-6 right-6" />
+
+        <div className="relative section-container z-10 max-w-4xl mx-auto text-center">
+          <span className="eyebrow eyebrow-on-dark justify-center mb-6">Start a project</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
+            Have an idea?{" "}
+            <span className="brush-underline gradient-text-on-dark">Let's build it.</span>
           </h2>
-          <p className="text-lg md:text-xl mb-8 opacity-90">
-            Have a project in mind? Let's turn your idea into reality
+          <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Tell us what you're trying to ship — and we'll show you how we'd approach it.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/contact">
-              <Button size="lg" variant="secondary" className="gap-2 bg-white text-primary hover:bg-white/90 px-6 md:px-8 py-4 md:py-6">
-                Get in Touch
-                <ArrowRight className="w-5 h-5" />
-              </Button>
+              <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
+                <span className="relative z-[2]">Get in Touch</span>
+                <ArrowUpRight className="w-4 h-4 relative z-[2]" />
+              </button>
             </Link>
             <Link to="/services">
-              <Button size="lg" className="gap-2 border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#5088FA] px-6 md:px-8 py-4 md:py-6">
+              <button className="btn-ghost-light text-sm">
+                <MessageSquare className="w-4 h-4" />
                 Our Services
-              </Button>
+              </button>
             </Link>
           </div>
         </div>

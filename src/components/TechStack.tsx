@@ -49,21 +49,28 @@ const TechStack = () => {
   ];
 
   return (
-    <section className="py-12 md:py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent mb-4">Our Tech Stack</h2>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            We use cutting-edge technologies to build scalable, high-performance applications
+    <section className="section-pad-tight bg-blue-band relative overflow-hidden">
+      <div className="absolute inset-0 bg-dots-subtle opacity-40 pointer-events-none" />
+      <div className="relative section-container">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="eyebrow justify-center mb-4">Our tech stack</span>
+          <h2 className="font-display mt-3 mb-3">
+            Built with{" "}
+            <span className="brush-underline gradient-text">modern tools</span>.
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+            We use cutting-edge technologies to build scalable, high-performance applications.
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 items-center justify-items-center">
+
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
           {technologies.map((tech) => (
             <div
               key={tech.name}
-              className="flex flex-col items-center gap-3 p-4 rounded-xl bg-white hover:bg-gradient-to-br hover:from-primary/5 hover:to-cyan-500/5 hover:shadow-xl transition-all duration-300 group border border-transparent hover:border-primary/20"
+              className="card-premium flex flex-col items-center gap-3 px-3 py-5 group cursor-default"
             >
-              <div className="w-16 h-16 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+              <span className="corner-plus text-foreground/15 top-2 right-2" />
+              <div className="w-12 h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-[6deg]">
                 {tech.isCustomIcon && tech.name === "Node.js" ? (
                   <NodeIcon className="w-full h-full" />
                 ) : (
@@ -75,7 +82,7 @@ const TechStack = () => {
                   />
                 )}
               </div>
-              <span className="text-xs font-semibold text-gray-700 group-hover:text-primary transition-colors">
+              <span className="text-[11px] font-semibold tracking-wide text-muted-foreground group-hover:text-primary transition-colors">
                 {tech.name}
               </span>
             </div>

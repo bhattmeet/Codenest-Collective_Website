@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import logo from "@/assets/codenest-logo.jpeg";
 
 const Navigation = () => {
@@ -10,32 +9,21 @@ const Navigation = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
+    return () => { document.body.style.overflow = "unset"; };
   }, [isOpen]);
 
+  // Close menu on route change
+  useEffect(() => { setIsOpen(false); }, [location.pathname]);
+
   const navLinks = [
-    { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Projects", path: "/projects" },
@@ -50,114 +38,164 @@ const Navigation = () => {
     return false;
   };
 
-  const isHomePage = location.pathname === "/";
+  // Every public page renders a dark gradient hero at the top, so the nav is
+  // "on dark" whenever we're not yet scrolled past the glass threshold.
+  const onDark = !isScrolled;
 
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'nav-glass' : 'bg-transparent backdrop-blur-sm'
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${
+          isScrolled ? "nav-glass" : "bg-transparent"
         }`}
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-20 gap-4">
-            <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
-              <div className="relative">
-                <img src={logo} alt="Codenest Collective Technologies" className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover transition-transform group-hover:scale-110 duration-300 shadow-lg" />
-              </div>
-              <span className={`text-base sm:text-xl font-bold whitespace-nowrap transition-colors duration-300 ${
-                isOpen || !isScrolled ? 'text-white drop-shadow-lg' : 'text-primary'
-              }`}>
-                Codenest Collective Technologies
+        <div className="section-container">
+          <div className="flex items-center justify-between h-[72px] gap-6">
+            {/* Wordmark */}
+            <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
+              <span
+                className={`relative flex items-center justify-center h-10 w-10 rounded-xl overflow-hidden transition-all duration-300 ${
+                  onDark
+                    ? "ring-1 ring-white/30 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.45)]"
+                    : "ring-1 ring-border shadow-soft"
+                }`}
+              >
+                <img
+                  src={logo}
+                  alt="Codenest Collective Technologies"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </span>
+              <span className="flex flex-col leading-tight">
+                <span
+                  className={`font-display font-bold text-[15px] tracking-tight whitespace-nowrap transition-colors duration-300 ${
+                    onDark ? "text-white" : "text-foreground"
+                  }`}
+                >
+                  Codenest Collective
+                </span>
+                <span
+                  className={`text-[10px] uppercase tracking-[0.22em] font-semibold transition-colors duration-300 ${
+                    onDark ? "text-white/80" : "text-muted-foreground"
+                  }`}
+                >
+                  Technologies
+                </span>
               </span>
             </Link>
 
-            {/* Menu Button */}
-            <button
-              className={`flex-shrink-0 p-2 rounded-lg border-2 border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                isOpen
-                  ? 'hover:bg-white/20'
-                  : isHomePage && !isScrolled
-                    ? 'hover:bg-white/10'
-                    : 'hover:bg-primary/10'
-              }`}
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
-            >
-              {isOpen ? (
-                <X size={28} className="text-white drop-shadow-lg" />
-              ) : (
-                <Menu size={24} className={isHomePage && !isScrolled ? "text-white" : "text-foreground"} />
-              )}
-            </button>
+            {/* Desktop links */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => {
+                const active = isActive(link.path);
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`relative px-3.5 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
+                      active
+                        ? onDark
+                          ? "text-white"
+                          : "text-primary"
+                        : onDark
+                          ? "text-white/95 hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]"
+                          : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {link.name}
+                    {active && (
+                      <span
+                        className={`absolute left-1/2 -translate-x-1/2 bottom-0.5 h-[2px] w-5 rounded-full ${
+                          onDark ? "bg-white" : "bg-primary"
+                        }`}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="flex items-center gap-2">
+              {/* Contact CTA — desktop */}
+              <Link
+                to="/contact"
+                className={`hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-sm font-semibold transition-all duration-300 ${
+                  onDark
+                    ? "bg-white text-primary hover:bg-white/90 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.4)]"
+                    : "bg-primary text-white hover:bg-[hsl(var(--primary-hover))] shadow-soft"
+                }`}
+              >
+                Contact
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+
+              {/* Hamburger */}
+              <button
+                className={`lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-md border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                  onDark
+                    ? "border-white/30 text-white hover:bg-white/10"
+                    : "border-border text-foreground hover:bg-muted"
+                }`}
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+              >
+                {isOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Navigation Menu - Full Screen Gradient Overlay */}
+      {/* Mobile menu */}
       {isOpen && (
-        <div id="mobile-menu" className="fixed inset-0 z-[90]" role="dialog" aria-modal="true">
-          {/* Backdrop with gradient and animated orbs */}
+        <div id="mobile-menu" className="fixed inset-0 z-[90] lg:hidden" role="dialog" aria-modal="true">
           <div
-            className="absolute inset-0 bg-gradient-to-br from-[#0a1929] via-[#1a2f4a] to-[#0d1b2a]"
+            className="absolute inset-0 bg-[hsl(var(--surface-inverse))]"
             onClick={() => setIsOpen(false)}
           >
-            {/* Animated gradient orbs */}
-            <div className="absolute top-20 right-10 w-64 h-64 bg-[#5088FA]/20 rounded-full filter blur-3xl animate-blob"></div>
-            <div className="absolute bottom-20 left-10 w-72 h-72 bg-[#42A5F5]/20 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
+            <div className="absolute inset-0 bg-hero-premium opacity-90" />
+            <div className="absolute inset-0 bg-dots-subtle opacity-30" />
           </div>
 
-          {/* Menu Content */}
-          <div className="relative h-full flex items-center justify-center px-6 pt-24">
-            <div className="w-full max-w-sm">
-              {/* Navigation Links */}
-              <nav className="space-y-2 mb-8">
+          <div className="relative h-full flex flex-col px-6 pt-24 pb-10">
+            <div className="flex-1 flex flex-col justify-center max-w-md mx-auto w-full">
+              <span className="eyebrow eyebrow-on-dark mb-6">Navigate</span>
+
+              <nav className="flex flex-col">
                 {navLinks.map((link, index) => (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`block py-3 px-6 text-base font-semibold rounded-2xl transition-all duration-300 text-center ${
-                      isActive(link.path)
-                        ? "bg-white text-primary shadow-soft-lg scale-105"
-                        : "text-white hover:bg-white/20 hover:scale-105 hover:shadow-soft"
+                    className={`group flex items-center justify-between py-4 border-b border-white/10 transition-colors duration-200 ${
+                      isActive(link.path) ? "text-white" : "text-white/80 hover:text-white"
                     }`}
-                    style={{
-                      animation: `slideInUp 0.4s ease-out ${index * 0.1}s both`
-                    }}
-                    onClick={() => setIsOpen(false)}
+                    style={{ animation: `slideInUp 0.5s var(--ease-premium) ${index * 0.06}s both` }}
                   >
-                    {link.name}
+                    <span className="font-display text-2xl font-semibold tracking-tight">
+                      {link.name}
+                    </span>
+                    <ArrowUpRight className="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
                   </Link>
                 ))}
               </nav>
 
-              {/* Contact Button */}
-              <Link to="/contact" onClick={() => setIsOpen(false)}>
-                <Button
-                  size="lg"
-                  className="w-full rounded-full bg-white text-primary hover:bg-white/90 shadow-soft-xl hover:shadow-soft-xl text-lg font-bold py-6 hover:scale-105 transition-all duration-300"
-                  style={{
-                    animation: `slideInUp 0.4s ease-out ${navLinks.length * 0.1}s both`
-                  }}
-                >
-                  Contact Us
-                </Button>
-              </Link>
-
-              {/* Decorative Text */}
-              <p
-                className="text-center text-white/60 text-sm mt-8"
-                style={{
-                  animation: `fadeIn 0.6s ease-out ${(navLinks.length + 1) * 0.1}s both`
-                }}
+              <Link
+                to="/contact"
+                className="mt-10 inline-flex items-center justify-center gap-2 w-full py-4 rounded-md bg-white text-primary font-semibold text-base hover:bg-white/90 transition-all duration-300 shadow-soft-lg"
+                style={{ animation: `slideInUp 0.5s var(--ease-premium) ${navLinks.length * 0.06}s both` }}
               >
-                Building Digital Excellence
-              </p>
+                Book a Consultation
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
             </div>
+
+            <p className="text-center text-white/45 text-xs uppercase tracking-[0.2em] font-medium mt-8">
+              Engineered Software · Built to Scale
+            </p>
           </div>
         </div>
       )}
