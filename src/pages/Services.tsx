@@ -29,75 +29,120 @@ import {
 const Services = () => {
   useScrollReveal();
 
+  // 6 capabilities from Copy Doc Section 04 — "What We Build"
   const services = [
     {
-      icon: Globe,
-      title: "Web Development",
-      tag: "Frontend · Fullstack",
-      description:
-        "Powerful, responsive web applications that scale with your business — from landing pages to complex enterprise platforms.",
-      benefits: [
-        "Responsive design across every device and breakpoint",
-        "SEO-optimised architecture and semantic markup",
-        "Lightning-fast load times and Core Web Vitals",
-      ],
-    },
-    {
       icon: Smartphone,
-      title: "Mobile Apps",
-      tag: "iOS · Android · Flutter",
+      title: "Mobile Engineering",
+      tag: "Flutter & Native Android",
       description:
-        "Native and cross-platform mobile applications with exceptional user experiences — across Swift, Kotlin, and Flutter.",
+        "Cross-platform or native — we scope it based on your product's constraints, not our preference. Flutter for speed-to-market and shared codebases. Kotlin + Jetpack Compose when you need platform depth.",
       benefits: [
-        "Native iOS (Swift) and Android (Kotlin) engineering",
-        "Cross-platform Flutter for faster shipping",
-        "App Store and Play Store optimisation",
+        "Flutter · Dart · BLoC · Riverpod · Isar",
+        "Kotlin · Jetpack Compose · Hilt · Room · Retrofit",
+        "Architecture review and refactors on existing apps",
       ],
-    },
-    {
-      icon: Palette,
-      title: "UI / UX Design",
-      tag: "Research · Design Systems",
-      description:
-        "User-centred design that pairs beautiful aesthetics with intuitive functionality — interfaces that delight and convert.",
-      benefits: [
-        "User research and persona development",
-        "Interactive prototypes and reusable design systems",
-        "Usability testing and iterative improvements",
-      ],
+      cta: "Scope A Mobile Project",
     },
     {
       icon: Server,
-      title: "Backend & APIs",
-      tag: "Node · MongoDB · Firebase",
+      title: "Backend & API Engineering",
+      tag: "Node.js, REST, WebSockets",
       description:
-        "Robust, scalable backend systems and RESTful APIs — secure, reliable infrastructure that powers your applications.",
+        "Endpoints that don't fail at 2 AM. We build and document APIs your frontend team can actually work with — authentication, payments, real-time sync, and file handling included.",
       benefits: [
-        "RESTful and GraphQL APIs with full documentation",
-        "Secure authentication and authorisation",
-        "Database design and optimisation",
+        "Node.js · Express.js · MongoDB · PostgreSQL",
+        "WebSockets · Firebase · REST · JWT auth",
+        "Full OpenAPI / Postman documentation",
       ],
+      cta: "Scope A Backend Project",
+    },
+    {
+      icon: Palette,
+      title: "UI/UX Design Systems",
+      tag: "Figma, component-driven",
+      description:
+        "Not just screens — a system. We build component libraries in Figma that engineers can implement without guessing. Monochrome-first, then colour. Every element has a purpose.",
+      benefits: [
+        "Figma · Design systems · Wireframing",
+        "Interaction design · Prototyping",
+        "Handoff specs that don't need translation",
+      ],
+      cta: "Start A Design Brief",
+    },
+    {
+      icon: Globe,
+      title: "Cloud & Deployment",
+      tag: "CI/CD, infrastructure",
+      description:
+        "We deploy what we build. Environment setup, CI/CD pipelines, staging and production separation, monitoring. The code lives somewhere reliable — not on someone's laptop.",
+      benefits: [
+        "Vercel · Railway · DigitalOcean",
+        "GitHub Actions · Docker · Nginx · PM2",
+        "Staging and prod environments wired right",
+      ],
+      cta: "Talk Infrastructure",
+    },
+    {
+      icon: Lightbulb,
+      title: "MVP Consulting",
+      tag: "Idea to architecture in one week",
+      description:
+        "You have an idea. We map what to build, what to skip, which stack fits, and what the first sprint looks like. Output: a scope document, architecture diagram, and effort estimate — before a single line of code is written.",
+      benefits: [
+        "Tech stack recommendation + rationale",
+        "Architecture diagram + sprint breakdown",
+        "Effort estimate with timeline + risk flags",
+      ],
+      cta: "Book A Discovery Session",
     },
     {
       icon: Wrench,
-      title: "Maintenance & Support",
-      tag: "Ongoing partnership",
+      title: "Team Augmentation",
+      tag: "Senior engineers, embedded",
       description:
-        "Ongoing maintenance, updates, and technical support that keep your applications running smoothly long after launch.",
+        "You have a product. You need senior engineers who can drop in without a three-month ramp-up. We embed our engineers in your workflow — your repo, your tools, your standups. No overhead. No context loss.",
       benefits: [
-        "Regular updates and security patches",
-        "Performance monitoring and optimisation",
-        "24/7 technical support and bug fixes",
+        "Fixed monthly engagement",
+        "Dedicated resource, your stack",
+        "3-month minimum commitment",
       ],
+      cta: "Discuss Augmentation",
     },
   ];
 
+  // 5-step build cycle from Copy Doc Section 05 — "How A Project Moves"
   const processSteps = [
-    { icon: Lightbulb, title: "Discovery", blurb: "Understanding your goals and requirements" },
-    { icon: Pencil, title: "Design", blurb: "Crafting beautiful, intuitive interfaces" },
-    { icon: Code2, title: "Develop", blurb: "Engineering with modern tech and rigour" },
-    { icon: TestTube, title: "Test", blurb: "Ensuring quality across every platform" },
-    { icon: Rocket, title: "Launch", blurb: "Deploying and supporting your success" },
+    {
+      icon: Lightbulb,
+      title: "Discovery",
+      timeline: "Day 1–3",
+      blurb: "We get on a call. We ask the hard questions. We don't take every project.",
+    },
+    {
+      icon: Pencil,
+      title: "Scope & Architecture",
+      timeline: "Day 4–7",
+      blurb: "SRS, architecture diagram, breakdown. Every line in the scope is estimable.",
+    },
+    {
+      icon: Code2,
+      title: "Sprint Execution",
+      timeline: "Week 2+",
+      blurb: "Two-week sprints. Every sprint closes with a working build in staging.",
+    },
+    {
+      icon: TestTube,
+      title: "QA & Handoff",
+      timeline: "Final sprint",
+      blurb: "Code review, test suite, benchmarks, deployment, real documentation.",
+    },
+    {
+      icon: Rocket,
+      title: "Post-Launch Support",
+      timeline: "Optional",
+      blurb: "3-month maintenance retainer on request. 24h critical SLA, 5 business days minor.",
+    },
   ];
 
   const faqs = [
@@ -166,24 +211,23 @@ const Services = () => {
 
         <div className="relative z-10 section-container">
           <div className="max-w-4xl">
-            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">Services</span>
+            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">What We Build</span>
             <h1 className="hero-title text-white mb-6 word-reveal leading-[1.05]">
-              <span style={{ animationDelay: "0.05s" }}>End-to-end</span>{" "}
-              <span style={{ animationDelay: "0.2s" }} className="font-serif-accent text-white/85">
-                software,
-              </span>{" "}
+              <span style={{ animationDelay: "0.05s" }}>Six capability areas.</span>{" "}
               <br />
-              <span style={{ animationDelay: "0.34s" }}>delivered as</span>{" "}
+              <span style={{ animationDelay: "0.2s" }} className="font-serif-accent text-white/85">
+                Every project
+              </span>{" "}
+              <span style={{ animationDelay: "0.34s" }}>lands in</span>{" "}
               <span style={{ animationDelay: "0.48s" }}>
-                <span className="brush-underline gradient-text-on-dark">one practice.</span>
+                <span className="brush-underline gradient-text-on-dark">one or more.</span>
               </span>
             </h1>
             <p
               className="lede !text-white/75 !max-w-2xl text-base sm:text-lg fade-in-up"
               style={{ animationDelay: "0.65s" }}
             >
-              From concept to deployment and beyond — we provide comprehensive development services
-              that transform ideas into powerful digital products.
+              We tell you honestly which applies — and which doesn't. No upsell, no over-scoping.
             </p>
           </div>
         </div>
@@ -194,16 +238,16 @@ const Services = () => {
         <div className="section-container max-w-7xl">
           <div className="grid lg:grid-cols-12 gap-10 mb-14">
             <div className="lg:col-span-5">
-              <span className="eyebrow mb-4">Capabilities</span>
+              <span className="eyebrow mb-4">The Stack</span>
               <h2 className="font-display mt-3 leading-[1.1]">
-                Five practices,{" "}
-                <span className="brush-underline gradient-text">one team</span>.
+                Six capabilities.{" "}
+                <span className="brush-underline gradient-text">One collective.</span>
               </h2>
             </div>
             <div className="lg:col-span-7 lg:pt-10">
               <p className="lede">
-                A single, senior team that owns your product end-to-end — no handoffs, no
-                miscommunication, no lost context between disciplines.
+                Every project lands in one or more of these. Each lead engineer owns their
+                discipline — no handoffs, no lost context.
               </p>
             </div>
           </div>
@@ -245,7 +289,7 @@ const Services = () => {
                   </ul>
 
                   <Link to="/contact" className="arrow-link text-xs uppercase tracking-[0.18em] text-primary">
-                    Get a quote
+                    {service.cta || "Scope A Project"}
                     <span className="arrow-track" />
                   </Link>
                 </div>
@@ -260,14 +304,13 @@ const Services = () => {
         <div className="absolute inset-0 bg-grid-radial opacity-25 pointer-events-none" />
         <div className="relative section-container max-w-6xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="eyebrow justify-center mb-4">Process</span>
+            <span className="eyebrow justify-center mb-4">The Build Cycle</span>
             <h2 className="font-display mt-3 mb-4">
-              A proven 5-step methodology that{" "}
-              <span className="brush-underline gradient-text">delivers</span>.
+              How a project{" "}
+              <span className="brush-underline gradient-text">moves.</span>
             </h2>
             <p className="lede mx-auto">
-              Five collaborative phases — built around your timeline, your stakeholders, and your
-              outcomes.
+              Five phases. Each one is how we ensure what we build is exactly what you needed.
             </p>
           </div>
 
@@ -322,6 +365,9 @@ const Services = () => {
                         <Icon className="w-5 h-5" />
                       </span>
                     </div>
+                    <span className="inline-block text-[10px] uppercase tracking-[0.18em] font-semibold text-primary/70 mb-2">
+                      {step.timeline}
+                    </span>
                     <h3 className="font-display text-base font-semibold tracking-tight mb-2 text-foreground">
                       {step.title}
                     </h3>
@@ -338,13 +384,13 @@ const Services = () => {
       <section className="section-pad bg-blue-soft relative">
         <div className="section-container max-w-4xl">
           <div className="text-center mb-12">
-            <span className="eyebrow justify-center mb-4">FAQ</span>
+            <span className="eyebrow justify-center mb-4">Before You Reach Out</span>
             <h2 className="font-display mt-3 mb-4">
-              Frequently asked{" "}
-              <span className="brush-underline gradient-text">questions</span>.
+              Common{" "}
+              <span className="brush-underline gradient-text">questions.</span>
             </h2>
             <p className="lede mx-auto">
-              Common questions about our services, process, and partnership.
+              About our services, process, and partnership — answered straight.
             </p>
           </div>
 
@@ -386,25 +432,26 @@ const Services = () => {
         <span className="corner-plus text-white/30 bottom-6 right-6" />
 
         <div className="relative section-container z-10 max-w-4xl mx-auto text-center">
-          <span className="eyebrow eyebrow-on-dark justify-center mb-6">Start a project</span>
+          <span className="eyebrow eyebrow-on-dark justify-center mb-6">Bring Us In</span>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
-            Ready to build{" "}
-            <span className="brush-underline gradient-text-on-dark">something amazing</span>?
+            Ready to{" "}
+            <span className="brush-underline gradient-text-on-dark">scope a project?</span>
           </h2>
           <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Let's talk through your project and how we can help bring it to life.
+            We scope projects in 48 hours. Book a free 30-minute technical call — no pitch, no
+            commitment.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/contact">
               <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
-                <span className="relative z-[2]">Start Your Project</span>
+                <span className="relative z-[2]">Book The Call</span>
                 <ArrowUpRight className="w-4 h-4 relative z-[2]" />
               </button>
             </Link>
             <Link to="/projects">
               <button className="btn-ghost-light text-sm">
                 <MessageSquare className="w-4 h-4" />
-                View Our Work
+                See The Work
               </button>
             </Link>
           </div>

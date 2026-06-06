@@ -41,7 +41,9 @@ const Contact = () => {
     email: "",
     company: "",
     phone: "",
+    building: "", // What are you building? (dropdown)
     message: "",
+    timeline: "",
     budget: "",
   });
 
@@ -63,16 +65,27 @@ const Contact = () => {
         from_email: formData.email,
         company: formData.company || "N/A",
         phone: formData.phone || "N/A",
+        building: formData.building || "Not specified",
+        timeline: formData.timeline || "Not specified",
         budget: formData.budget || "Not specified",
         message: formData.message,
-        to_name: "Codenest Collective Technologies",
+        to_name: "Codenest Collective",
       };
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
       toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for contacting us. We'll get back to you soon.",
+        title: "Brief Received!",
+        description: "Thanks for reaching out. We respond within 24 hours on business days.",
       });
-      setFormData({ name: "", email: "", company: "", phone: "", message: "", budget: "" });
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        building: "",
+        message: "",
+        timeline: "",
+        budget: "",
+      });
     } catch (error) {
       console.error("EmailJS Error:", error);
       let errorMessage =
@@ -115,10 +128,10 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="Contact Us — Get In Touch"
-        description="Contact Codenest Collective Technologies for software development inquiries. We respond within 24 hours."
+        title="Start A Project — Codenest Collective"
+        description="Send the brief. We scope projects in 48 hours and respond within 24 hours on business days. WhatsApp for urgent projects."
         path="/contact"
-        keywords="contact software company, get a quote, software development inquiry, reach out, contact us, free consultation"
+        keywords="hire Flutter developers India, scope a project Codenest, contact Codenest Collective, software development brief"
       />
       <ScrollProgress />
       <Navigation />
@@ -151,23 +164,22 @@ const Contact = () => {
 
         <div className="relative z-10 section-container">
           <div className="max-w-4xl">
-            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">Contact</span>
+            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">Start A Project</span>
             <h1 className="hero-title text-white mb-6 word-reveal leading-[1.05]">
-              <span style={{ animationDelay: "0.05s" }}>Let's</span>{" "}
-              <span style={{ animationDelay: "0.18s" }}>start a</span>{" "}
-              <span style={{ animationDelay: "0.32s" }} className="font-serif-accent text-white/85">
-                conversation
+              <span style={{ animationDelay: "0.05s" }}>Tell us what</span>{" "}
+              <span style={{ animationDelay: "0.2s" }} className="font-serif-accent text-white/85">
+                you're
               </span>{" "}
-              <span style={{ animationDelay: "0.46s" }}>
-                that <span className="brush-underline gradient-text-on-dark">matters.</span>
+              <span style={{ animationDelay: "0.34s" }}>
+                <span className="brush-underline gradient-text-on-dark">building.</span>
               </span>
             </h1>
             <p
               className="lede !text-white/75 !max-w-2xl text-base sm:text-lg fade-in-up"
               style={{ animationDelay: "0.65s" }}
             >
-              Tell us about your project — scope, timeline, budget, anything — and we'll respond
-              within 24 hours with a clear, honest next step.
+              We respond within 24 hours on business days. For urgent projects, WhatsApp us
+              directly.
             </p>
           </div>
         </div>
@@ -224,13 +236,14 @@ const Contact = () => {
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Form */}
             <div className="lg:col-span-7">
-              <span className="eyebrow mb-4">Send a message</span>
+              <span className="eyebrow mb-4">Send The Brief</span>
               <h2 className="font-display mt-3 mb-3 leading-[1.1]">
-                Tell us what you're{" "}
-                <span className="brush-underline gradient-text">building</span>.
+                What's the{" "}
+                <span className="brush-underline gradient-text">core problem?</span>
               </h2>
               <p className="text-sm text-muted-foreground mb-8 max-w-lg">
-                Share a brief — we'll respond within 24 hours with thoughtful next steps.
+                Who uses it, and where are you in the process? We respond within 24 hours on
+                business days.
               </p>
 
               <div className="card-premium gradient-border p-7 md:p-9">
@@ -292,10 +305,9 @@ const Contact = () => {
                     <Input
                       id="company"
                       value={formData.company}
-                      onChange={(e) => {
-                        const value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
-                        setFormData({ ...formData, company: value });
-                      }}
+                      onChange={(e) =>
+                        setFormData({ ...formData, company: e.target.value })
+                      }
                       placeholder="Your company name"
                       className="input-solid mt-2"
                     />
@@ -303,10 +315,35 @@ const Contact = () => {
 
                   <div>
                     <Label
+                      htmlFor="building"
+                      className="text-[10px] uppercase tracking-[0.2em] font-semibold text-muted-foreground"
+                    >
+                      What are you building? *
+                    </Label>
+                    <Select
+                      value={formData.building}
+                      onValueChange={(value) => setFormData({ ...formData, building: value })}
+                    >
+                      <SelectTrigger className="input-solid mt-2" id="building">
+                        <SelectValue placeholder="Select what fits best" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="mobile-app">Mobile App</SelectItem>
+                        <SelectItem value="web-app">Web App</SelectItem>
+                        <SelectItem value="backend-api">Backend API</SelectItem>
+                        <SelectItem value="ui-ux-design">UI/UX Design</SelectItem>
+                        <SelectItem value="end-to-end">End-to-End Product</SelectItem>
+                        <SelectItem value="not-sure">Not Sure Yet</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label
                       htmlFor="message"
                       className="text-[10px] uppercase tracking-[0.2em] font-semibold text-muted-foreground"
                     >
-                      Project description *
+                      Describe the project *
                     </Label>
                     <Textarea
                       id="message"
@@ -314,35 +351,66 @@ const Contact = () => {
                       required
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="What are you trying to build? Timeline? Any specific constraints?"
+                      placeholder="What's the core problem, who uses it, and where are you in the process?"
                       className="input-solid mt-2 resize-none"
                     />
                   </div>
 
-                  <div>
-                    <Label
-                      htmlFor="budget"
-                      className="text-[10px] uppercase tracking-[0.2em] font-semibold text-muted-foreground"
-                    >
-                      Budget (optional)
-                    </Label>
-                    <Select
-                      value={formData.budget}
-                      onValueChange={(value) => setFormData({ ...formData, budget: value })}
-                    >
-                      <SelectTrigger className="input-solid mt-2">
-                        <SelectValue placeholder="Select budget range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="5k-10k">$5,000 – $10,000</SelectItem>
-                        <SelectItem value="10k-25k">$10,000 – $25,000</SelectItem>
-                        <SelectItem value="25k-50k">$25,000 – $50,000</SelectItem>
-                        <SelectItem value="50k+">$50,000+</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <Label
+                        htmlFor="timeline"
+                        className="text-[10px] uppercase tracking-[0.2em] font-semibold text-muted-foreground"
+                      >
+                        Timeline
+                      </Label>
+                      <Select
+                        value={formData.timeline}
+                        onValueChange={(value) =>
+                          setFormData({ ...formData, timeline: value })
+                        }
+                      >
+                        <SelectTrigger className="input-solid mt-2" id="timeline">
+                          <SelectValue placeholder="Select timeline" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="asap">ASAP</SelectItem>
+                          <SelectItem value="within-1-month">Within 1 Month</SelectItem>
+                          <SelectItem value="1-3-months">1–3 Months</SelectItem>
+                          <SelectItem value="3-6-months">3–6 Months</SelectItem>
+                          <SelectItem value="exploring">Just Exploring</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label
+                        htmlFor="budget"
+                        className="text-[10px] uppercase tracking-[0.2em] font-semibold text-muted-foreground"
+                      >
+                        Budget
+                      </Label>
+                      <Select
+                        value={formData.budget}
+                        onValueChange={(value) =>
+                          setFormData({ ...formData, budget: value })
+                        }
+                      >
+                        <SelectTrigger className="input-solid mt-2" id="budget">
+                          <SelectValue placeholder="Select budget range" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="under-1L">Under ₹1L</SelectItem>
+                          <SelectItem value="1L-5L">₹1L – ₹5L</SelectItem>
+                          <SelectItem value="5L-15L">₹5L – ₹15L</SelectItem>
+                          <SelectItem value="15L+">₹15L+</SelectItem>
+                          <SelectItem value="open">Open To Discussion</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
 
-                  <div className="pt-2">
+                  <div className="pt-2 space-y-3">
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -355,11 +423,23 @@ const Contact = () => {
                         </>
                       ) : (
                         <>
-                          <span className="relative z-[2]">Send Message</span>
+                          <span className="relative z-[2]">Send The Brief</span>
                           <Send className="w-4 h-4 relative z-[2]" />
                         </>
                       )}
                     </button>
+                    <p className="text-xs text-muted-foreground text-center leading-relaxed">
+                      We respond within 24 hours on business days. For urgent projects,{" "}
+                      <a
+                        href="https://wa.me/919426507055?text=Hi%2C%20I%27d%20like%20to%20scope%20a%20project%20with%20Codenest%20Collective"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary font-semibold hover:underline"
+                      >
+                        WhatsApp us directly
+                      </a>
+                      .
+                    </p>
                   </div>
                 </form>
               </div>

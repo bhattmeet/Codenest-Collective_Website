@@ -400,13 +400,22 @@ const Projects = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
 
-  const filters = ["All", "Mobile Apps", "Frontend", "UI/UX Design", "Backend", "Fullstack"];
+  // Filter labels from Copy Doc Section 06 — "The Work"
+  const filters = ["All", "Mobile", "Backend", "Design", "Full-Stack"];
+
+  // Map display label → underlying category values in allProjects
+  const filterMap: Record<string, string[]> = {
+    Mobile: ["Mobile Apps"],
+    Backend: ["Backend"],
+    Design: ["UI/UX Design"],
+    "Full-Stack": ["Fullstack", "Frontend"],
+  };
 
   const filteredProjects =
     selectedFilter === "All"
       ? allProjects
-      : allProjects.filter(
-          (p) => p.category === selectedFilter || p.industry === selectedFilter,
+      : allProjects.filter((p) =>
+          (filterMap[selectedFilter] ?? [selectedFilter]).includes(p.category),
         );
 
   useEffect(() => {
@@ -418,10 +427,10 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="Portfolio — Our Projects & Case Studies"
-        description="Explore our portfolio of successful software projects including mobile apps, web applications, healthcare, fintech, and SaaS solutions."
+        title="The Work — Selected Builds"
+        description="Selected builds from Codenest Collective. Mobile, backend, design, and full-stack projects — each documented with problem framing, architecture decisions, and outcome metrics."
         path="/projects"
-        keywords="software portfolio, case studies, mobile apps, web applications, project showcase, development projects, healthcare apps, fintech solutions, SaaS platforms"
+        keywords="Flutter case study, Android app case study, Node.js backend project, software portfolio India, Codenest Collective case studies"
       />
       <ScrollProgress />
       <Navigation />
@@ -454,24 +463,24 @@ const Projects = () => {
 
         <div className="relative z-10 section-container">
           <div className="max-w-4xl">
-            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">Portfolio</span>
+            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">The Work</span>
             <h1 className="hero-title text-white mb-6 word-reveal leading-[1.05]">
-              <span style={{ animationDelay: "0.05s" }}>Work that</span>{" "}
+              <span style={{ animationDelay: "0.05s" }}>Selected</span>{" "}
               <span style={{ animationDelay: "0.2s" }} className="font-serif-accent text-white/85">
-                ships,
+                builds,
               </span>{" "}
               <br />
-              <span style={{ animationDelay: "0.34s" }}>scales,</span>{" "}
+              <span style={{ animationDelay: "0.34s" }}>documented</span>{" "}
               <span style={{ animationDelay: "0.48s" }}>
-                and <span className="brush-underline gradient-text-on-dark">endures.</span>
+                with <span className="brush-underline gradient-text-on-dark">rigour.</span>
               </span>
             </h1>
             <p
               className="lede !text-white/75 !max-w-2xl text-base sm:text-lg fade-in-up"
               style={{ animationDelay: "0.65s" }}
             >
-              Selected projects across Mobile Apps, Web Apps, Healthcare, Fintech, and SaaS — each
-              shipped end-to-end by our team.
+              Each case study documents the problem, the architecture decisions, and the outcome.
+              Includes in-house research builds alongside client work — same rigour either way.
             </p>
           </div>
         </div>
@@ -581,7 +590,7 @@ const Projects = () => {
                           )}
                         </div>
                         <div className="arrow-link text-xs uppercase tracking-[0.18em] text-primary">
-                          Case Study
+                          Read The Case Study
                           <span className="arrow-track" />
                         </div>
                       </div>
@@ -611,25 +620,25 @@ const Projects = () => {
         <span className="corner-plus text-white/30 bottom-6 right-6" />
 
         <div className="relative section-container z-10 max-w-4xl mx-auto text-center">
-          <span className="eyebrow eyebrow-on-dark justify-center mb-6">Start a project</span>
+          <span className="eyebrow eyebrow-on-dark justify-center mb-6">Bring Us In</span>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
-            Have an idea?{" "}
-            <span className="brush-underline gradient-text-on-dark">Let's build it.</span>
+            Got something to{" "}
+            <span className="brush-underline gradient-text-on-dark">build?</span>
           </h2>
           <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Tell us what you're trying to ship — and we'll show you how we'd approach it.
+            Send the brief. We respond within 24 hours on business days.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/contact">
               <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
-                <span className="relative z-[2]">Get in Touch</span>
+                <span className="relative z-[2]">Send The Brief</span>
                 <ArrowUpRight className="w-4 h-4 relative z-[2]" />
               </button>
             </Link>
             <Link to="/services">
               <button className="btn-ghost-light text-sm">
                 <MessageSquare className="w-4 h-4" />
-                Our Services
+                What We Build
               </button>
             </Link>
           </div>

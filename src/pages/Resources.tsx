@@ -38,10 +38,10 @@ const Resources = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="Resources — Blog, Guides & Case Studies"
-        description="Explore insights, guides, and best practices from Codenest Collective Technologies. Stay updated with the latest in software development and technology trends."
+        title="From The Build Floor — Insights"
+        description="Technical breakdowns, architecture decisions, and engineering commentary. Written by the people doing the work at Codenest Collective."
         path="/resources"
-        keywords="software development blog, tech guides, case studies, coding tutorials, DevOps resources, cloud computing, API design"
+        keywords="Flutter architecture, Android BLoC, Node.js patterns, engineering writing India, Codenest insights"
       />
       <ScrollProgress />
       <Navigation />
@@ -74,24 +74,24 @@ const Resources = () => {
 
         <div className="relative z-10 section-container">
           <div className="max-w-4xl">
-            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">Insights</span>
+            <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">From The Build Floor</span>
             <h1 className="hero-title text-white mb-6 word-reveal leading-[1.05]">
-              <span style={{ animationDelay: "0.05s" }}>Ideas,</span>{" "}
-              <span style={{ animationDelay: "0.18s" }}>essays, and</span>{" "}
-              <br />
-              <span style={{ animationDelay: "0.32s" }} className="font-serif-accent text-white/85">
-                playbooks
+              <span style={{ animationDelay: "0.05s" }}>Technical</span>{" "}
+              <span style={{ animationDelay: "0.18s" }} className="font-serif-accent text-white/85">
+                breakdowns,
               </span>{" "}
+              <br />
+              <span style={{ animationDelay: "0.32s" }}>architecture</span>{" "}
               <span style={{ animationDelay: "0.46s" }}>
-                from <span className="brush-underline gradient-text-on-dark">the team.</span>
+                <span className="brush-underline gradient-text-on-dark">decisions.</span>
               </span>
             </h1>
             <p
               className="lede !text-white/75 !max-w-2xl text-base sm:text-lg fade-in-up"
               style={{ animationDelay: "0.65s" }}
             >
-              Insights, guides, and best practices — written by the engineers and designers
-              shipping the work.
+              Written by the people doing the work. Engineering commentary, build playbooks, and
+              architecture rationale — nothing thought-leadership about it.
             </p>
           </div>
         </div>
@@ -278,22 +278,37 @@ const Resources = () => {
         <span className="corner-plus text-white/30 bottom-6 right-6" />
 
         <div className="relative section-container z-10 max-w-3xl mx-auto text-center">
-          <span className="eyebrow eyebrow-on-dark justify-center mb-6">Stay sharp</span>
+          <span className="eyebrow eyebrow-on-dark justify-center mb-6">Follow The Build</span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-5 leading-[1.05]">
-            Get our best{" "}
-            <span className="brush-underline gradient-text-on-dark">writing</span>
-            , in your inbox.
+            We publish technical{" "}
+            <span className="brush-underline gradient-text-on-dark">content weekly.</span>
           </h2>
           <p className="text-base md:text-lg text-white/70 max-w-xl mx-auto mb-8 leading-relaxed">
-            One thoughtful essay each month — engineering, design, and product writing from the
-            team shipping the work. No noise.
+            Carousel posts, build playbooks, architecture writeups. Follow on Instagram and
+            LinkedIn — full blog coming soon.
           </p>
-          <Link to="/contact">
-            <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
-              <span className="relative z-[2]">Subscribe to the briefing</span>
-              <ArrowUpRight className="w-4 h-4 relative z-[2]" />
-            </button>
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="https://www.instagram.com/codenest_collective/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
+                <span className="relative z-[2]">Follow On Instagram</span>
+                <ArrowUpRight className="w-4 h-4 relative z-[2]" />
+              </button>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/codenest-collective-technologies/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="btn-ghost-light text-sm">
+                LinkedIn
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </a>
+          </div>
         </div>
       </section>
 
