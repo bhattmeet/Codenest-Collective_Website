@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
-import { Mail, MapPin, Send, Loader2, Clock, ArrowUpRight } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Send,
+  Loader2,
+  Clock,
+  ArrowUpRight,
+  MessageCircle,
+  Phone,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -67,9 +76,9 @@ const Contact = () => {
     } catch (error) {
       console.error("EmailJS Error:", error);
       let errorMessage =
-        "Please try again or contact us directly at codenestcollective@gmail.com";
+        "Please try again or contact us directly at hello@codenestcollective.net";
       if (error instanceof Error) {
-        errorMessage = `${error.message}. Please contact us directly at codenestcollective@gmail.com`;
+        errorMessage = `${error.message}. Please contact us directly at hello@codenestcollective.net`;
       }
       toast({
         title: "Failed to Send Message",
@@ -85,8 +94,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      lines: ["codenestcollective@gmail.com"],
-      href: "mailto:codenestcollective@gmail.com",
+      lines: ["hello@codenestcollective.net"],
+      href: "mailto:hello@codenestcollective.net",
       cta: "Send an email",
     },
     {
@@ -360,20 +369,46 @@ const Contact = () => {
             <div className="lg:col-span-5 flex flex-col gap-6">
               <div className="card-premium p-6">
                 <span className="corner-plus text-foreground/20 top-3 right-3" />
-                <span className="eyebrow mb-4">Prefer email?</span>
+                <span className="eyebrow mb-4">Prefer to skip the form?</span>
                 <h3 className="font-display text-xl font-semibold tracking-tight mt-3 mb-3 text-foreground">
-                  We're a message away.
+                  Reach us direct.
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                  Skip the form — email us directly. We typically reply within hours, not days.
+                  WhatsApp for urgent projects. Email for everything else. We respond within
+                  24 hours on business days.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href="mailto:codenestcollective@gmail.com"
+                    href="https://wa.me/919426507055?text=Hi%2C%20I%27d%20like%20to%20scope%20a%20project%20with%20Codenest%20Collective"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md bg-primary text-white text-sm font-semibold hover:bg-[hsl(var(--primary-hover))] transition-all duration-300 shadow-soft"
                   >
+                    <MessageCircle className="w-4 h-4" />
+                    WhatsApp
+                  </a>
+                  <a
+                    href="mailto:hello@codenestcollective.net"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md border border-border bg-card text-foreground text-sm font-semibold hover:border-primary hover:text-primary transition-all duration-300"
+                  >
                     <Mail className="w-4 h-4" />
-                    Email Us
+                    Email
+                  </a>
+                </div>
+                <div className="mt-5 pt-5 border-t border-border space-y-2">
+                  <a
+                    href="tel:+919426507055"
+                    className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-primary" />
+                    +91 94265 07055
+                  </a>
+                  <a
+                    href="mailto:hello@codenestcollective.net"
+                    className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-primary" />
+                    hello@codenestcollective.net
                   </a>
                 </div>
               </div>
@@ -419,10 +454,12 @@ const Contact = () => {
               </span>
             </div>
             <a
-              href="mailto:codenestcollective@gmail.com"
+              href="https://wa.me/919426507055?text=Hi%2C%20I%27d%20like%20to%20scope%20a%20project%20with%20Codenest%20Collective"
+              target="_blank"
+              rel="noopener noreferrer"
               className="arrow-link text-sm text-white"
             >
-              Or email us directly
+              For urgent projects, WhatsApp us directly
               <span className="arrow-track" />
               <ArrowUpRight className="w-3.5 h-3.5 -ml-1 -mt-2 opacity-0" aria-hidden />
             </a>

@@ -53,22 +53,24 @@ const NotFound = () => {
         </h1>
 
         <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
-          We can't find that page.
+          This Page Doesn't Exist.{" "}
+          <span className="font-serif-accent text-white/85">The Code Might Though.</span>
         </h2>
         <p className="text-base md:text-lg text-white/70 max-w-md mx-auto mb-10 leading-relaxed">
-          The link you followed may be broken, or the page may have moved. Try heading back home.
+          Whatever you were looking for, we didn't build this page. Yet. Let's get you back
+          somewhere useful.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link to="/">
             <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
               <Home className="w-4 h-4 relative z-[2]" />
-              <span className="relative z-[2]">Return to Home</span>
+              <span className="relative z-[2]">Back To Home</span>
             </button>
           </Link>
           <Link to="/contact">
             <button className="btn-ghost-light text-sm">
-              Contact us
+              Start A Project
               <ArrowUpRight className="w-4 h-4" />
             </button>
           </Link>

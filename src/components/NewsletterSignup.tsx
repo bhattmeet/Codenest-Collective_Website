@@ -41,7 +41,7 @@ const NewsletterSignup = () => {
       const templateParams = {
         subscriber_email: email,
         to_name: 'CodeNest Collective Technologies',
-        to_email: 'codenestcollective@gmail.com',
+        to_email: 'hello@codenestcollective.net',
       };
 
       await emailjs.send(
@@ -65,7 +65,7 @@ const NewsletterSignup = () => {
 
       toast({
         title: "Subscription Failed",
-        description: "Please try again or contact us directly at codenestcollective@gmail.com",
+        description: "Please try again or contact us directly at hello@codenestcollective.net",
         variant: "destructive",
       });
     } finally {

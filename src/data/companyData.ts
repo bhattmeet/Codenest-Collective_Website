@@ -9,20 +9,26 @@ export const companyStats = {
 };
 
 export const companyInfo = {
-  name: "Codenest Collective Technologies",
+  name: "Codenest Collective",
+  legalName: "Codenest Collective Technologies",
   tagline: "Build The Future",
-  description: "We design, build, and scale digital products that drive results",
-  email: "codenestcollective@gmail.com",
-  address: "India", // Update with actual address if needed
+  description:
+    "A remote-first engineering collective. We build Flutter apps, Android systems, and Node.js backends for teams who can't afford to ship slow.",
+  email: "hello@codenestcollective.net",
+  phone: "+91 94265 07055",
+  phoneE164: "+919426507055",
+  whatsappUrl:
+    "https://wa.me/919426507055?text=Hi%2C%20I%27d%20like%20to%20scope%20a%20project%20with%20Codenest%20Collective",
+  address: "India · Remote-First",
   foundedYear: 2023,
 };
 
 export const socialLinks = {
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/company/codenest-collective-technologies/",
+  instagram: "https://www.instagram.com/codenest_collective/",
   twitter: "",
   github: "",
   facebook: "",
-  instagram: "",
 };
 
 // Client logos - add your actual client logos here

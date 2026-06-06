@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Linkedin,
+  Instagram,
+  MessageCircle,
+  ArrowUpRight,
+} from "lucide-react";
 import logo from "@/assets/codenest-logo.jpeg";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import { companyInfo } from "@/data/companyData";
 
 const Footer = () => {
   const socialLinks = [
@@ -19,21 +28,24 @@ const Footer = () => {
 
   const linkGroups = [
     {
-      title: "Capabilities",
+      title: "What We Build",
       links: [
-        { label: "Services", to: "/services" },
-        { label: "Projects", to: "/projects" },
-        { label: "Resources", to: "/resources" },
-        { label: "Case Studies", to: "/projects" },
+        { label: "Mobile Engineering", to: "/services" },
+        { label: "Backend & API", to: "/services" },
+        { label: "UI/UX Design Systems", to: "/services" },
+        { label: "Cloud & Deployment", to: "/services" },
+        { label: "MVP Consulting", to: "/services" },
+        { label: "Team Augmentation", to: "/services" },
       ],
     },
     {
       title: "Company",
       links: [
-        { label: "About", to: "/about" },
-        { label: "Our Studio", to: "/company" },
-        { label: "Careers", to: "/careers" },
-        { label: "Contact", to: "/contact" },
+        { label: "The Work", to: "/projects" },
+        { label: "How We Run It", to: "/about" },
+        { label: "The Collective", to: "/company" },
+        { label: "From The Build Floor", to: "/resources" },
+        { label: "Start A Project", to: "/contact" },
       ],
     },
   ];
@@ -48,15 +60,26 @@ const Footer = () => {
       </div>
 
       <div className="relative section-container">
+        {/* Tagline band */}
+        <div className="pt-16 pb-10">
+          <p className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.05]">
+            Build The <span className="font-serif-accent text-white/85">Future.</span>
+          </p>
+        </div>
+
+        <div className="divider-hairline-on-dark" />
+
         {/* Top brand band */}
-        <div className="pt-16 pb-12 grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-5">
+        <div className="pt-12 pb-12 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-4">
             <Link to="/" className="inline-flex items-center gap-3 group">
               <span className="relative flex items-center justify-center h-12 w-12 rounded-xl overflow-hidden ring-1 ring-white/20 shadow-lg">
-                <img src={logo} alt="Codenest Collective Technologies" className="h-full w-full object-cover" />
+                <img src={logo} alt="Codenest Collective" className="h-full w-full object-cover" />
               </span>
               <span className="flex flex-col leading-tight">
-                <span className="font-display text-lg font-bold tracking-tight">Codenest Collective</span>
+                <span className="font-display text-lg font-bold tracking-tight">
+                  Codenest Collective
+                </span>
                 <span className="text-[10px] uppercase tracking-[0.22em] font-semibold text-white/55">
                   Technologies
                 </span>
@@ -64,10 +87,11 @@ const Footer = () => {
             </Link>
 
             <p className="mt-6 text-sm text-white/65 leading-relaxed max-w-md">
-              We design, engineer, and scale digital products — from emerging startups to established
-              enterprises. Strategy, design, and software, delivered as one craft.
+              A remote-first engineering collective. We build Flutter apps, Android systems, and
+              Node.js backends for teams who can't afford to ship slow.
             </p>
 
+            {/* Social row */}
             <div className="mt-6 flex flex-wrap items-center gap-2">
               {socialLinks.map((social) => (
                 <a
@@ -82,16 +106,18 @@ const Footer = () => {
                 </a>
               ))}
               <a
-                href="mailto:codenestcollective@gmail.com"
+                href={companyInfo.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="ml-1 inline-flex items-center gap-1.5 px-3.5 h-10 rounded-lg bg-white/[0.06] border border-white/10 text-sm font-medium text-white/85 hover:text-white hover:bg-white/[0.12] hover:border-white/25 transition-all duration-300"
               >
-                <Mail size={14} /> Email us
+                <MessageCircle size={14} /> WhatsApp
               </a>
             </div>
           </div>
 
           {linkGroups.map((group) => (
-            <div key={group.title} className="lg:col-span-2">
+            <div key={group.title} className="lg:col-span-3">
               <h4 className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/50 mb-4">
                 {group.title}
               </h4>
@@ -111,9 +137,9 @@ const Footer = () => {
             </div>
           ))}
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
             <h4 className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/50 mb-4">
-              Newsletter
+              The Brief
             </h4>
             <NewsletterSignup />
           </div>
@@ -125,21 +151,26 @@ const Footer = () => {
         <div className="py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-x-6 gap-y-2 text-xs text-white/55">
             <a
-              href="mailto:codenestcollective@gmail.com"
+              href={`mailto:${companyInfo.email}`}
               className="inline-flex items-center gap-2 hover:text-white transition-colors"
             >
-              <Mail size={13} className="text-primary" /> codenestcollective@gmail.com
+              <Mail size={13} className="text-primary" /> {companyInfo.email}
             </a>
-            <span className="hidden sm:inline-block h-3 w-px bg-white/20" />
+            <a
+              href={`tel:${companyInfo.phoneE164}`}
+              className="inline-flex items-center gap-2 hover:text-white transition-colors"
+            >
+              <Phone size={13} className="text-primary" /> {companyInfo.phone}
+            </a>
             <span className="inline-flex items-center gap-2">
-              <MapPin size={13} className="text-primary" /> Ahmedabad · Gujarat · India
+              <MapPin size={13} className="text-primary" /> Remote-First · Based in India
             </span>
           </div>
 
           <p className="text-xs text-white/45">
             © {new Date().getFullYear()}{" "}
-            <span className="text-white/75 font-medium">Codenest Collective Technologies</span>. All
-            rights reserved.
+            <span className="text-white/75 font-medium">Codenest Collective</span>. All rights
+            reserved.
           </p>
         </div>
       </div>

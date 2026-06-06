@@ -24,11 +24,11 @@ const Navigation = () => {
   useEffect(() => { setIsOpen(false); }, [location.pathname]);
 
   const navLinks = [
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Projects", path: "/projects" },
-    { name: "Company", path: "/company" },
-    { name: "Resources", path: "/resources" },
+    { name: "The Work", path: "/projects" },
+    { name: "What We Build", path: "/services" },
+    { name: "How We Run It", path: "/about" },
+    { name: "The Collective", path: "/company" },
+    { name: "Insights", path: "/resources" },
     { name: "Careers", path: "/careers" },
   ];
 
@@ -127,7 +127,7 @@ const Navigation = () => {
                     : "bg-primary text-white hover:bg-[hsl(var(--primary-hover))] shadow-soft"
                 }`}
               >
-                Contact
+                Start A Project
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
 
@@ -188,13 +188,13 @@ const Navigation = () => {
                 className="mt-10 inline-flex items-center justify-center gap-2 w-full py-4 rounded-md bg-white text-primary font-semibold text-base hover:bg-white/90 transition-all duration-300 shadow-soft-lg"
                 style={{ animation: `slideInUp 0.5s var(--ease-premium) ${navLinks.length * 0.06}s both` }}
               >
-                Book a Consultation
+                Start A Project
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
 
             <p className="text-center text-white/45 text-xs uppercase tracking-[0.2em] font-medium mt-8">
-              Engineered Software · Built to Scale
+              Remote-First · Based In India · Shipping Globally
             </p>
           </div>
         </div>

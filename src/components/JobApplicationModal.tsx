@@ -160,7 +160,7 @@ const JobApplicationModal = ({ isOpen, onClose, jobTitle }: JobApplicationModalP
         resume_link: resumeUrl || 'Not provided',
         cover_letter: formData.coverLetter,
         to_name: 'CodeNest Collective Technologies',
-        to_email: 'codenestcollective@gmail.com',
+        to_email: 'hello@codenestcollective.net',
       };
 
       await emailjs.send(
@@ -185,10 +185,10 @@ const JobApplicationModal = ({ isOpen, onClose, jobTitle }: JobApplicationModalP
     } catch (error) {
       console.error('Application Error:', error);
 
-      let errorMessage = "Please try again or email us directly at codenestcollective@gmail.com";
+      let errorMessage = "Please try again or email us directly at hello@codenestcollective.net";
 
       if (error instanceof Error) {
-        errorMessage = `${error.message}. Please contact us directly at codenestcollective@gmail.com`;
+        errorMessage = `${error.message}. Please contact us directly at hello@codenestcollective.net`;
       }
 
       toast({

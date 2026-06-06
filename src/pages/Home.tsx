@@ -119,55 +119,64 @@ const Home = () => {
     .map((title) => allProjects.find((p) => p.title === title))
     .filter((p): p is (typeof allProjects)[number] => Boolean(p));
 
+  // "By The Numbers" stats from copy doc Section 08
   const stats = [
-    { value: allProjects.length, suffix: "+", label: "Projects Delivered" },
-    { value: companyStats.clientSatisfaction, suffix: "%", label: "Client Satisfaction" },
-    { value: companyStats.yearsExperience, suffix: "+", label: "Years Experience" },
+    { value: 20, suffix: "+", label: "Applications Shipped" },
+    { value: 5, suffix: "+", label: "Industry Domains" },
+    { value: 100, suffix: "%", label: "Remote Operations" },
+    { value: 4, suffix: "", label: "Core Tech Stacks" },
   ];
 
+  // "What We Build" — 6 capabilities from copy doc Section 04
   const services = [
     {
-      icon: Code,
-      title: "Web Development",
+      icon: Smartphone,
+      title: "Mobile Engineering",
+      tag: "Flutter & Native Android",
       description:
-        "Responsive, performant web applications built with modern frameworks and engineering best practices.",
+        "Cross-platform or native — we scope it based on your product's constraints, not our preference.",
       span: "lg:col-span-2 lg:row-span-2",
       featured: true,
     },
     {
-      icon: Smartphone,
-      title: "Mobile Apps",
-      description:
-        "Native iOS & Android plus Flutter cross-platform.",
+      icon: Server,
+      title: "Backend & API",
+      tag: "Node.js, REST, WebSockets",
+      description: "Endpoints that don't fail at 2 AM. Documented APIs your frontend can use.",
     },
     {
       icon: Palette,
-      title: "UI / UX Design",
-      description:
-        "Aesthetic restraint paired with intuitive, accessible interaction.",
-    },
-    {
-      icon: Server,
-      title: "Backend & APIs",
-      description:
-        "Secure backends and APIs that power scalable digital products.",
+      title: "UI/UX Design Systems",
+      tag: "Figma, component-driven",
+      description: "Not just screens — a system. Component libraries engineers can implement.",
     },
     {
       icon: Layers,
-      title: "Cloud & DevOps",
-      description:
-        "CI/CD pipelines, observability, and resilient deployment.",
+      title: "Cloud & Deployment",
+      tag: "CI/CD, infrastructure",
+      description: "We deploy what we build. Environments, monitoring, staging — wired right.",
+    },
+    {
+      icon: Lightbulb,
+      title: "MVP Consulting",
+      tag: "Idea → architecture in one week",
+      description: "Scope, stack, sprint plan, and effort estimate — before a line of code.",
+    },
+    {
+      icon: Code,
+      title: "Team Augmentation",
+      tag: "Senior engineers, embedded",
+      description: "Senior engineers who drop in without a three-month ramp-up.",
     },
   ];
 
-  const whyUs = [
-    { title: "On-time delivery", description: "We respect deadlines and ship quality on schedule." },
-    { title: "Clean code", description: "Maintainable, scalable code following industry standards." },
-    {
-      title: "Transparent communication",
-      description: "Regular updates and clear project visibility across every milestone.",
-    },
-    { title: "Post-launch support", description: "Ongoing maintenance, monitoring, and technical guidance." },
+  // Trust signals row from copy doc Section 08
+  const trustBadges = [
+    "NDA-Ready On Day One",
+    "Milestone-Based Billing",
+    "Source Code Ownership",
+    "Weekly Progress Reports",
+    "SRS Documentation",
   ];
 
   const testimonials = [
@@ -208,17 +217,61 @@ const Home = () => {
     },
   ];
 
+  // "How A Project Moves" — 5 steps from copy doc Section 05
   const processSteps = [
-    { icon: Lightbulb, title: "Discovery", description: "Understanding goals, constraints, and the people you serve." },
-    { icon: Pencil, title: "Design", description: "Intuitive, brand-aligned interfaces and product flows." },
-    { icon: Wrench, title: "Development", description: "Modern tooling, clean architecture, engineering rigour." },
-    { icon: Rocket, title: "Launch & Care", description: "Deploy, monitor, and partner for ongoing success." },
+    {
+      icon: Lightbulb,
+      title: "Discovery",
+      timeline: "Day 1–3",
+      description:
+        "We get on a call. We ask the hard questions: what breaks if we get this wrong? We don't take every project.",
+    },
+    {
+      icon: Pencil,
+      title: "Scope & Architecture",
+      timeline: "Day 4–7",
+      description:
+        "We write the SRS. We diagram the architecture. Every line in the scope is estimable.",
+    },
+    {
+      icon: Wrench,
+      title: "Sprint Execution",
+      timeline: "Week 2 onwards",
+      description:
+        "Two-week sprints. Every sprint closes with a working build in your staging environment.",
+    },
+    {
+      icon: CheckCircle,
+      title: "QA & Handoff",
+      timeline: "Final sprint",
+      description:
+        "Code review, test suite, performance benchmarks, deployment. Documentation a real developer can read.",
+    },
+    {
+      icon: Rocket,
+      title: "Post-Launch Support",
+      timeline: "Optional",
+      description:
+        "3-month maintenance retainer on request. Critical fixes within 24 hours, minor within 5 business days.",
+    },
   ];
 
+  // Trust bar from copy doc Section 03 — "Stack We Operate In"
   const marqueeWords = [
-    "Web Apps", "iOS & Android", "UI / UX", "API Design",
-    "Cloud Architecture", "Performance", "Accessibility", "Design Systems",
-    "Product Strategy", "Code Reviews", "Tech Audits", "Scaling",
+    "Flutter",
+    "Kotlin",
+    "Node.js",
+    "Figma",
+    "Firebase",
+    "PostgreSQL",
+    "AWS",
+    "Jetpack Compose",
+    "BLoC",
+    "Riverpod",
+    "Express",
+    "MongoDB",
+    "Docker",
+    "GitHub Actions",
   ];
 
   return (
@@ -289,29 +342,35 @@ const Home = () => {
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
               </span>
               <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/85">
-                Accepting Q3 2026 engagements
+                Remote-First · Based In India · Shipping Globally
               </span>
             </div>
 
             {/* Word-reveal headline with brush stroke */}
             <h1 className="hero-title text-white mb-6 word-reveal leading-[1.02]">
-              <span style={{ animationDelay: "0.05s" }}>Software,</span>{" "}
-              <span style={{ animationDelay: "0.18s" }}>designed</span>{" "}
+              <span style={{ animationDelay: "0.05s" }}>Production-Grade</span>{" "}
+              <span style={{ animationDelay: "0.18s" }}>Mobile &amp; Web Products.</span>{" "}
               <br />
               <span style={{ animationDelay: "0.32s" }} className="font-serif-accent text-white/85">
-                with{" "}
+                Engineered{" "}
               </span>
               <span style={{ animationDelay: "0.46s" }}>
-                <span className="brush-underline gradient-text-on-dark">precision.</span>
+                For <span className="brush-underline gradient-text-on-dark">Scale.</span>
               </span>
             </h1>
 
             <p
-              className="lede !text-white/75 !max-w-2xl text-base sm:text-lg mb-10 fade-in-up"
+              className="lede !text-white/75 !max-w-2xl text-base sm:text-lg mb-3 fade-in-up"
               style={{ animationDelay: "0.65s" }}
             >
-              We design, engineer, and scale custom web and mobile applications for startups and
-              modern enterprises — pairing senior craftsmanship with measurable outcomes.
+              Codenest Collective is a remote-first engineering collective. We build Flutter apps,
+              native Android systems, and Node.js backends — from architecture to deployment.
+            </p>
+            <p
+              className="text-xs sm:text-sm text-white/55 mb-10 fade-in-up"
+              style={{ animationDelay: "0.72s" }}
+            >
+              Based in India. Shipping globally.
             </p>
 
             <div
@@ -320,13 +379,13 @@ const Home = () => {
             >
               <Link to="/contact">
                 <button className="shine-sweep inline-flex items-center gap-2 px-5 py-3 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.4)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
-                  <span className="relative z-[2]">Book a Free Consultation</span>
+                  <span className="relative z-[2]">Book A Free Technical Call</span>
                   <ArrowUpRight className="w-4 h-4 relative z-[2]" />
                 </button>
               </Link>
               <Link to="/projects">
                 <button className="btn-ghost-light text-sm">
-                  Explore Our Work
+                  See The Work
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </Link>
@@ -386,17 +445,16 @@ const Home = () => {
         <div className="section-container">
           <div className="grid lg:grid-cols-12 gap-10 mb-14">
             <div className="lg:col-span-5">
-              <span className="eyebrow mb-4">What we do</span>
+              <span className="eyebrow mb-4">What We Build</span>
               <h2 className="font-display mt-3 mb-4 leading-[1.1]">
-                Strategy, design, and engineering as{" "}
-                <span className="brush-underline gradient-text">one practice</span>.
+                Six capability areas.{" "}
+                <span className="brush-underline gradient-text">One collective.</span>
               </h2>
             </div>
             <div className="lg:col-span-7 lg:pt-12">
               <p className="lede">
-                Our cross-functional team delivers digital products end-to-end — from early
-                research and product design through to production engineering and post-launch
-                support.
+                Every project lands in one or more. We tell you honestly which applies — and which
+                doesn't.
               </p>
             </div>
           </div>
@@ -480,15 +538,17 @@ const Home = () => {
         <div className="relative section-container">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div>
-              <span className="eyebrow mb-4">Selected work</span>
+              <span className="eyebrow mb-4">The Work</span>
               <h2 className="font-display mt-3">
-                Recent projects,{" "}
-                <span className="font-serif-accent text-primary brush-underline">crafted</span>{" "}
-                with rigour.
+                Selected{" "}
+                <span className="font-serif-accent text-primary brush-underline">builds.</span>{" "}
               </h2>
+              <p className="text-sm text-muted-foreground mt-3 max-w-md">
+                Each case study documents the problem, the architecture decisions, and the outcome.
+              </p>
             </div>
             <Link to="/projects" className="arrow-link self-start md:self-auto text-sm text-primary">
-              View all projects
+              See The Work
               <span className="arrow-track" />
             </Link>
           </div>
@@ -552,14 +612,13 @@ const Home = () => {
         <div className="absolute inset-0 bg-grid-radial opacity-30 pointer-events-none" />
         <div className="relative section-container">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="eyebrow justify-center mb-4">How we work</span>
+            <span className="eyebrow justify-center mb-4">How A Project Moves</span>
             <h2 className="font-display mt-3 mb-4">
-              A proven process that{" "}
-              <span className="brush-underline gradient-text">delivers</span>.
+              We don't start with a quote.{" "}
+              <span className="brush-underline gradient-text">We start with questions.</span>
             </h2>
             <p className="lede mx-auto">
-              Four collaborative phases — built around your timeline, your stakeholders, and your
-              business outcomes.
+              Five phases. Each one is how we make sure what we build is exactly what you needed.
             </p>
           </div>
 
@@ -590,7 +649,7 @@ const Home = () => {
               </defs>
             </svg>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 relative z-10">
               {processSteps.map((step, idx) => {
                 const Icon = step.icon;
                 return (
@@ -609,6 +668,9 @@ const Home = () => {
                         <Icon className="w-5 h-5" />
                       </span>
                     </div>
+                    <span className="inline-block text-[10px] uppercase tracking-[0.18em] font-semibold text-primary/70 mb-2">
+                      {step.timeline}
+                    </span>
                     <h3 className="font-display text-base font-semibold tracking-tight mb-2 text-foreground">
                       {step.title}
                     </h3>
@@ -623,48 +685,45 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ─────────────── Why Us ─────────────── */}
+      {/* ─────────────── By The Numbers + Trust Badges ─────────────── */}
       <section className="section-pad bg-blue-soft">
         <div className="section-container">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5 lg:sticky lg:top-28">
-              <span className="eyebrow mb-4">Why partner with us</span>
-              <h2 className="font-display mt-3 mb-5">
-                A reliable, senior-level{" "}
-                <span className="brush-underline text-primary">engineering partner</span>.
-              </h2>
-              <p className="lede mb-8">
-                We pair start-up agility with enterprise discipline — so you ship faster, with code
-                that lasts.
-              </p>
-              <Link to="/about" className="arrow-link text-sm text-primary">
-                Learn more about our approach
-                <span className="arrow-track" />
-              </Link>
-            </div>
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="eyebrow justify-center mb-4">By The Numbers</span>
+            <h2 className="font-display mt-3 mb-4">
+              Earned over{" "}
+              <span className="brush-underline gradient-text">six years.</span>
+            </h2>
+          </div>
 
-            <div className="lg:col-span-7">
-              <div className="grid sm:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden border border-border shadow-soft-lg">
-                {whyUs.map((item, idx) => (
-                  <div
-                    key={item.title}
-                    className="relative bg-card p-6 hover:bg-[hsl(var(--background-tinted))] transition-colors group"
-                  >
-                    <span className="corner-plus text-foreground/20 top-3 right-3" />
-                    <span className="font-display text-xs font-semibold text-primary/50 tabular-nums tracking-wider mb-3 block">
-                      0{idx + 1}
-                    </span>
-                    <CheckCircle className="w-5 h-5 text-primary mb-4 group-hover:scale-110 group-hover:rotate-[-8deg] transition-transform duration-500" />
-                    <h3 className="font-display text-base font-semibold tracking-tight mb-2 text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
+          {/* Stat strip */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border shadow-soft-lg mb-10">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-card p-6 sm:p-7 group hover:bg-[hsl(var(--background-tinted))] transition-colors"
+              >
+                <div className="font-display text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
+                  <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+                </div>
+                <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] font-semibold text-muted-foreground mt-2">
+                  {stat.label}
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
+
+          {/* Trust badges row */}
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {trustBadges.map((badge) => (
+              <span
+                key={badge}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-card text-xs font-semibold text-foreground"
+              >
+                <CheckCircle className="w-3 h-3 text-primary" />
+                {badge}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -673,14 +732,14 @@ const Home = () => {
       <section className="section-pad bg-tinted relative overflow-hidden">
         <div className="section-container mb-12">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="eyebrow justify-center mb-4">Client voices</span>
+            <span className="eyebrow justify-center mb-4">In Their Words</span>
             <h2 className="font-display mt-3 mb-4">
-              Trusted by founders and{" "}
-              <span className="brush-underline gradient-text">product teams</span>.
+              From founders and{" "}
+              <span className="brush-underline gradient-text">product teams.</span>
             </h2>
             <p className="lede mx-auto">
-              From early-stage founders to enterprise product leads — here's what partnering with
-              us feels like.
+              Early-stage founders. Enterprise product leads. What partnering with the collective
+              feels like, in their words.
             </p>
           </div>
         </div>
@@ -812,28 +871,33 @@ const Home = () => {
 
         <div className="relative section-container z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="eyebrow eyebrow-on-dark justify-center mb-6">Get started</span>
+            <span className="eyebrow eyebrow-on-dark justify-center mb-6">Ready When You Are</span>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
-              Have an ambitious project?
+              Got an idea, a broken app,
               <br />
-              <span className="font-serif-accent text-white/90">Let's </span>
-              <span className="brush-underline gradient-text-on-dark">build it together.</span>
+              <span className="font-serif-accent text-white/90">or a deadline </span>
+              <span className="brush-underline gradient-text-on-dark">you can't miss?</span>
             </h2>
             <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Book a free 30-minute consultation. We'll walk through your goals, timeline, and how
-              our team can help you ship it.
+              We scope projects in 48 hours. Book a free 30-minute technical call — no pitch, no
+              commitment. We'll tell you what we'd build, how long it'd take, and what it'd cost.
+              If we're not the right fit, we'll say so.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link to="/contact">
                 <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
-                  <span className="relative z-[2]">Book a Consultation</span>
+                  <span className="relative z-[2]">Book The Call</span>
                   <ArrowUpRight className="w-4 h-4 relative z-[2]" />
                 </button>
               </Link>
-              <a href="mailto:codenestcollective@gmail.com">
+              <a
+                href="https://wa.me/919426507055?text=Hi%2C%20I%27d%20like%20to%20scope%20a%20project%20with%20Codenest%20Collective"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <button className="btn-ghost-light text-sm">
                   <MessageSquare className="w-4 h-4" />
-                  Email Us
+                  Message Us On WhatsApp
                 </button>
               </a>
             </div>
