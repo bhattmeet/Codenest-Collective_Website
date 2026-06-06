@@ -225,7 +225,7 @@ const About = () => {
                   <div className="absolute -inset-3 rounded-full bg-white/15 blur-2xl" />
                   <div className="relative w-44 h-44 rounded-full bg-white/[0.08] border border-white/25 overflow-hidden backdrop-blur-sm shine-sweep">
                     <img
-                      src="https://api.dicebear.com/9.x/avataaars/svg?seed=CodenestCEO2&backgroundColor=eef4ff&radius=50&top=shortFlat,shortRound,theCaesar,sides,shortWaved&facialHairProbability=100&facialHair=beardLight,beardMedium,beardMajestic&clothing=blazerAndShirt,blazerAndSweater,shirtCrewNeck&clothesColor=2E5BDA,4874E8,3c4f5c&accessoriesProbability=0&skinColor=d08b5b,edb98a,ffdbb4&eyes=default,happy,wink&mouth=smile,default,twinkle"
+                      src="https://api.dicebear.com/9.x/avataaars/svg?seed=YoungFounder3&backgroundColor=eef4ff&radius=50&top=shortFlat,shortRound,shortWaved&facialHairProbability=70&facialHair=beardLight&clothing=shirtCrewNeck,hoodie,graphicShirt&clothesColor=2E5BDA,4874E8&accessoriesProbability=0&skinColor=edb98a,ffdbb4&hairColor=2c1b18,4a312c,724133&facialHairColor=2c1b18,4a312c,724133&eyes=default,happy&mouth=smile,twinkle"
                       alt="Founder portrait"
                       loading="lazy"
                       className="w-full h-full object-cover"
