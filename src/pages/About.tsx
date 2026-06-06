@@ -137,7 +137,7 @@ const About = () => {
               style={{ animationDelay: "0.65s" }}
             >
               We're a small, senior team building scalable software for startups and growing
-              businesses. Six years of practice, dozens of products shipped, and a stubborn focus
+              businesses. Seven years of practice, dozens of products shipped, and a stubborn focus
               on quality at every layer.
             </p>
 

@@ -4,7 +4,7 @@
 export const companyStats = {
   projectsDelivered: 6, // Will be calculated from allProjects.length
   clientSatisfaction: 100,
-  yearsExperience: 3, // Founded in 2023, now 2026
+  yearsExperience: 7, // Founder's hands-on engineering experience
   clientsWorldwide: 10,
 };
 

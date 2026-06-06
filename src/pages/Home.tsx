@@ -692,7 +692,7 @@ const Home = () => {
             <span className="eyebrow justify-center mb-4">By The Numbers</span>
             <h2 className="font-display mt-3 mb-4">
               Earned over{" "}
-              <span className="brush-underline gradient-text">six years.</span>
+              <span className="brush-underline gradient-text">seven years.</span>
             </h2>
           </div>
 
