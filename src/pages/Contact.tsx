@@ -89,9 +89,9 @@ const Contact = () => {
     } catch (error) {
       console.error("EmailJS Error:", error);
       let errorMessage =
-        "Please try again or contact us directly at hello@codenestcollective.net";
+        "Please try again or contact us directly at codenestcollective@gmail.com";
       if (error instanceof Error) {
-        errorMessage = `${error.message}. Please contact us directly at hello@codenestcollective.net`;
+        errorMessage = `${error.message}. Please contact us directly at codenestcollective@gmail.com`;
       }
       toast({
         title: "Failed to Send Message",
@@ -107,8 +107,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      lines: ["hello@codenestcollective.net"],
-      href: "mailto:hello@codenestcollective.net",
+      lines: ["codenestcollective@gmail.com"],
+      href: "mailto:codenestcollective@gmail.com",
       cta: "Send an email",
     },
     {
@@ -468,7 +468,7 @@ const Contact = () => {
                     WhatsApp
                   </a>
                   <a
-                    href="mailto:hello@codenestcollective.net"
+                    href="mailto:codenestcollective@gmail.com"
                     className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md border border-border bg-card text-foreground text-sm font-semibold hover:border-primary hover:text-primary transition-all duration-300"
                   >
                     <Mail className="w-4 h-4" />
@@ -484,11 +484,11 @@ const Contact = () => {
                     +91 94265 07055
                   </a>
                   <a
-                    href="mailto:hello@codenestcollective.net"
+                    href="mailto:codenestcollective@gmail.com"
                     className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     <Mail className="w-3.5 h-3.5 text-primary" />
-                    hello@codenestcollective.net
+                    codenestcollective@gmail.com
                   </a>
                 </div>
               </div>

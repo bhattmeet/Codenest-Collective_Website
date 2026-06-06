@@ -74,10 +74,10 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="About Us — Codenest Collective Technologies"
-        description="Learn about Codenest Collective Technologies. With 6+ years of experience, we build scalable software solutions for startups and growing businesses."
+        title="How We Run It — The Build Cycle"
+        description="How a project moves at Codenest Collective. Five phases — Discovery, Scope & Architecture, Sprint Execution, QA & Handoff, Post-Launch Support — built around your timeline."
         path="/about"
-        keywords="about codenest, software development company, startup development, scalable software, tech company values"
+        keywords="agile software process, sprint execution, SRS documentation, software development workflow, Codenest Collective process"
       />
       <ScrollProgress />
       <Navigation />

@@ -30,12 +30,12 @@ const Footer = () => {
     {
       title: "What We Build",
       links: [
-        { label: "Mobile Engineering", to: "/services" },
-        { label: "Backend & API", to: "/services" },
-        { label: "UI/UX Design Systems", to: "/services" },
-        { label: "Cloud & Deployment", to: "/services" },
-        { label: "MVP Consulting", to: "/services" },
-        { label: "Team Augmentation", to: "/services" },
+        { label: "Mobile Engineering", to: "/services#mobile-engineering" },
+        { label: "Backend & API", to: "/services#backend-api" },
+        { label: "UI/UX Design Systems", to: "/services#design-systems" },
+        { label: "Cloud & Deployment", to: "/services#cloud-deployment" },
+        { label: "MVP Consulting", to: "/services#mvp-consulting" },
+        { label: "Team Augmentation", to: "/services#team-augmentation" },
       ],
     },
     {

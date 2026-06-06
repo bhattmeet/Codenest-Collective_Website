@@ -81,21 +81,21 @@ const CaseStudy = () => {
             </p>
 
             {/* Demo and GitHub Links */}
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-3">
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                  <Button className="gap-2 hover:scale-105 transition-transform bg-white text-primary hover:bg-white/90">
-                    <ExternalLink size={18} />
+                  <button className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">
+                    <ExternalLink className="w-4 h-4" />
                     View Live Demo
-                  </Button>
+                  </button>
                 </a>
               )}
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="gap-2 border-white/30 text-white hover:bg-white/10 transition-colors">
-                    <Github size={18} />
+                  <button className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-white/[0.10] border border-white/30 text-white font-semibold text-sm backdrop-blur-md hover:bg-white/[0.18] hover:border-white/50 transition-all duration-300">
+                    <Github className="w-4 h-4" />
                     View on GitHub
-                  </Button>
+                  </button>
                 </a>
               )}
             </div>

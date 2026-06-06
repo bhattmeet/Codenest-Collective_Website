@@ -277,10 +277,10 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="Codenest Collective Technologies — Build The Future"
-        description="Codenest Collective Technologies creates innovative software solutions that transform businesses. Expert team delivering custom development, web applications, mobile apps, and enterprise software with agile methodology."
+        title="Codenest Collective — Mobile & Web Engineering Collective"
+        description="A remote-first engineering collective. We build Flutter apps, Android systems, and Node.js backends for teams who can't afford to ship slow. Scope your project in 48 hours."
         path="/"
-        keywords="software development, custom software, web development, mobile app development, enterprise software, Codenest Collective Technologies"
+        keywords="Flutter development agency India, Android app development collective, Node.js backend engineers India, mobile app development startup India, Codenest Collective"
       />
       <ScrollProgress />
       <Navigation />

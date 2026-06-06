@@ -46,7 +46,7 @@ const SEO = ({
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Service",
-      "email": "hello@codenestcollective.net"
+      "email": "codenestcollective@gmail.com"
     },
     "sameAs": [
       "https://www.linkedin.com/company/codenest-collective-technologies/",

@@ -13,7 +13,8 @@ import {
   Rocket,
   MessageSquare,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -28,10 +29,26 @@ import {
 
 const Services = () => {
   useScrollReveal();
+  const { hash } = useLocation();
+
+  // Smooth-scroll to the anchor section when arriving via a deep-link
+  // (e.g. footer "Mobile Engineering" → /services#mobile-engineering).
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.replace(/^#/, "");
+    // Wait a tick so the section card has mounted, then scroll.
+    const t = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+    return () => clearTimeout(t);
+  }, [hash]);
 
   // 6 capabilities from Copy Doc Section 04 — "What We Build"
+  // `anchor` is the slug used by Footer deep-links (e.g. /services#mobile-engineering)
   const services = [
     {
+      anchor: "mobile-engineering",
       icon: Smartphone,
       title: "Mobile Engineering",
       tag: "Flutter & Native Android",
@@ -45,6 +62,7 @@ const Services = () => {
       cta: "Scope A Mobile Project",
     },
     {
+      anchor: "backend-api",
       icon: Server,
       title: "Backend & API Engineering",
       tag: "Node.js, REST, WebSockets",
@@ -58,6 +76,7 @@ const Services = () => {
       cta: "Scope A Backend Project",
     },
     {
+      anchor: "design-systems",
       icon: Palette,
       title: "UI/UX Design Systems",
       tag: "Figma, component-driven",
@@ -71,6 +90,7 @@ const Services = () => {
       cta: "Start A Design Brief",
     },
     {
+      anchor: "cloud-deployment",
       icon: Globe,
       title: "Cloud & Deployment",
       tag: "CI/CD, infrastructure",
@@ -84,6 +104,7 @@ const Services = () => {
       cta: "Talk Infrastructure",
     },
     {
+      anchor: "mvp-consulting",
       icon: Lightbulb,
       title: "MVP Consulting",
       tag: "Idea to architecture in one week",
@@ -97,6 +118,7 @@ const Services = () => {
       cta: "Book A Discovery Session",
     },
     {
+      anchor: "team-augmentation",
       icon: Wrench,
       title: "Team Augmentation",
       tag: "Senior engineers, embedded",
@@ -175,10 +197,10 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="Our Services — End-to-End Software Solutions"
-        description="Comprehensive software development services: Web Development, Mobile Apps (iOS/Android/Flutter), UI/UX Design, Backend & APIs, and Maintenance & Support."
+        title="What We Build — Six Capability Areas"
+        description="Mobile Engineering (Flutter, Android), Backend & API (Node.js), UI/UX Design Systems, Cloud & Deployment, MVP Consulting, and Team Augmentation. Six capability areas. Every project lands in one or more."
         path="/services"
-        keywords="web development, mobile app development, flutter, kotlin, iOS, android, UI/UX design, backend APIs, Node.js, Express, MongoDB, Firebase"
+        keywords="Flutter development, Android Kotlin, Node.js backend, Figma design systems, MVP consulting, team augmentation, Codenest Collective"
       />
       <ScrollProgress />
       <Navigation />
@@ -258,7 +280,8 @@ const Services = () => {
               return (
                 <div
                   key={service.title}
-                  className={`card-premium gradient-border p-8 group fade-in-up stagger-${(idx % 4) + 1}`}
+                  id={service.anchor}
+                  className={`card-premium gradient-border p-8 group fade-in-up stagger-${(idx % 4) + 1} scroll-mt-28`}
                 >
                   <span className="corner-plus text-foreground/20 top-4 left-4" />
                   <span className="corner-plus text-foreground/20 top-4 right-4" />

@@ -14,7 +14,7 @@ export const companyInfo = {
   tagline: "Build The Future",
   description:
     "A remote-first engineering collective. We build Flutter apps, Android systems, and Node.js backends for teams who can't afford to ship slow.",
-  email: "hello@codenestcollective.net",
+  email: "codenestcollective@gmail.com",
   phone: "+91 94265 07055",
   phoneE164: "+919426507055",
   whatsappUrl:
