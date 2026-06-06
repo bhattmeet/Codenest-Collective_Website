@@ -85,25 +85,29 @@ const NewsletterSignup = () => {
       ) : (
         <div className="flex flex-col gap-3">
           <p className="text-xs text-white/60 leading-relaxed">
-            Subscribe for engineering briefings, case studies, and product insights — once a month, no noise.
+            Subscribe for engineering briefings, case studies, and product insights — once a
+            month, no noise.
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
-            <div className="relative">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-2 w-full"
+          >
+            <div className="relative flex-1 min-w-0">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/55" />
               <Input
                 type="email"
                 placeholder="you@company.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value.replace(/\s/g, ''))}
+                onChange={(e) => setEmail(e.target.value.replace(/\s/g, ""))}
                 disabled={isSubmitting}
-                className="w-full h-10 pl-10 bg-white/[0.06] border border-white/15 focus:border-white/35 focus-visible:ring-0 text-white text-xs placeholder:text-white/40"
+                className="w-full h-11 pl-10 pr-3 bg-white/[0.06] border border-white/15 focus:border-white/35 focus-visible:ring-0 text-white text-sm placeholder:text-white/40 rounded-md"
               />
             </div>
             <Button
               type="submit"
               disabled={isSubmitting}
               size="sm"
-              className="w-full gap-2 bg-white text-primary hover:bg-white/90 h-10 text-xs font-semibold tracking-wide"
+              className="gap-2 bg-white text-primary hover:bg-white/90 h-11 px-6 text-xs font-semibold tracking-wider uppercase rounded-md sm:flex-shrink-0"
             >
               {isSubmitting ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -112,6 +116,9 @@ const NewsletterSignup = () => {
               )}
             </Button>
           </form>
+          <p className="text-[10px] text-white/40 leading-relaxed">
+            No spam, ever. Unsubscribe with one click.
+          </p>
         </div>
       )}
     </div>

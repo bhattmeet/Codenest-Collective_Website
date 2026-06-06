@@ -7,6 +7,7 @@ import {
   Instagram,
   MessageCircle,
   ArrowUpRight,
+  CheckCircle2,
 } from "lucide-react";
 import logo from "@/assets/codenest-logo.jpeg";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -26,28 +27,25 @@ const Footer = () => {
     },
   ];
 
-  const linkGroups = [
-    {
-      title: "What We Build",
-      links: [
-        { label: "Mobile Engineering", to: "/services#mobile-engineering" },
-        { label: "Backend & API", to: "/services#backend-api" },
-        { label: "UI/UX Design Systems", to: "/services#design-systems" },
-        { label: "Cloud & Deployment", to: "/services#cloud-deployment" },
-        { label: "MVP Consulting", to: "/services#mvp-consulting" },
-        { label: "Team Augmentation", to: "/services#team-augmentation" },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { label: "The Work", to: "/projects" },
-        { label: "How We Run It", to: "/about" },
-        { label: "The Collective", to: "/company" },
-        { label: "From The Build Floor", to: "/resources" },
-        { label: "Start A Project", to: "/contact" },
-      ],
-    },
+  // Distinct destinations only — every link below opens a different page.
+  const sitemapLinks = [
+    { label: "The Work", to: "/projects" },
+    { label: "What We Build", to: "/services" },
+    { label: "How We Run It", to: "/about" },
+    { label: "The Collective", to: "/company" },
+    { label: "From The Build Floor", to: "/resources" },
+    { label: "Careers", to: "/careers" },
+    { label: "Start A Project", to: "/contact" },
+  ];
+
+  // "How we operate" — distinct, useful info, not a duplicate of /services.
+  const studioCommitments = [
+    "NDA-Ready On Day 1",
+    "Milestone-Based Billing",
+    "Source Code Owned By You",
+    "Weekly Progress Reports",
+    "SRS On Every Project",
+    "24h Response · 48h Scoping",
   ];
 
   return (
@@ -69,8 +67,13 @@ const Footer = () => {
 
         <div className="divider-hairline-on-dark" />
 
-        {/* Top brand band */}
-        <div className="pt-12 pb-12 grid lg:grid-cols-12 gap-10">
+        {/* Main grid:
+            - Brand block: 4/12
+            - Sitemap:    2/12
+            - Studio:     2/12
+            - Newsletter: 4/12  (was 2 — now wide enough for the email input)
+        */}
+        <div className="pt-12 pb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4">
             <Link to="/" className="inline-flex items-center gap-3 group">
               <span className="relative flex items-center justify-center h-12 w-12 rounded-xl overflow-hidden ring-1 ring-white/20 shadow-lg">
@@ -116,30 +119,48 @@ const Footer = () => {
             </div>
           </div>
 
-          {linkGroups.map((group) => (
-            <div key={group.title} className="lg:col-span-3">
-              <h4 className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/50 mb-4">
-                {group.title}
-              </h4>
-              <ul className="space-y-2.5">
-                {group.links.map((link) => (
-                  <li key={link.to + link.label}>
-                    <Link
-                      to={link.to}
-                      className="group inline-flex items-center gap-1 text-sm text-white/75 hover:text-white transition-colors duration-200"
-                    >
-                      {link.label}
-                      <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
+          {/* Sitemap */}
           <div className="lg:col-span-2">
             <h4 className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/50 mb-4">
-              The Brief
+              Sitemap
+            </h4>
+            <ul className="space-y-2.5">
+              {sitemapLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className="group inline-flex items-center gap-1 text-sm text-white/75 hover:text-white transition-colors duration-200"
+                  >
+                    {link.label}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* How we operate — distinct from /services, no nav duplication */}
+          <div className="lg:col-span-2">
+            <h4 className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/50 mb-4">
+              How We Operate
+            </h4>
+            <ul className="space-y-2.5">
+              {studioCommitments.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-white/75 leading-tight">
+                  <CheckCircle2
+                    size={13}
+                    className="text-primary flex-shrink-0 mt-1"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter — now 4/12 so the input has room */}
+          <div className="lg:col-span-4">
+            <h4 className="text-[11px] uppercase tracking-[0.22em] font-semibold text-white/50 mb-4">
+              The Brief · Monthly Engineering Memo
             </h4>
             <NewsletterSignup />
           </div>
