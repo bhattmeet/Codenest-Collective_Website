@@ -223,8 +223,52 @@ const About = () => {
                 </div>
                 <div className="relative">
                   <div className="absolute -inset-3 rounded-full bg-white/15 blur-2xl" />
-                  <div className="relative w-44 h-44 rounded-full bg-white/[0.06] border border-white/25 flex items-center justify-center backdrop-blur-sm shine-sweep">
-                    <span className="font-display text-6xl font-bold text-white">MB</span>
+                  <div className="relative w-44 h-44 rounded-full bg-white/[0.08] border border-white/25 overflow-hidden backdrop-blur-sm shine-sweep">
+                    <img
+                      src="https://api.dicebear.com/9.x/notionists/svg?seed=MeetBhatt&backgroundColor=ffffff&radius=50&beard=variant02,variant03&body=variant02,variant05,variant10&brows=variant01,variant03&eyes=variant02&glasses=&hair=variant24,variant35,variant40,variant44,variant48&lips=variant10,variant13,variant17&nose=variant02,variant10&accessories=&accessoriesProbability=0&glassesProbability=0"
+                      alt="Founder portrait"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback: hide broken image, show inline SVG silhouette below
+                        const img = e.currentTarget;
+                        img.style.display = "none";
+                        const fallback = img.nextElementSibling as HTMLElement | null;
+                        if (fallback) fallback.style.display = "block";
+                      }}
+                    />
+                    {/* Inline SVG fallback — stylized male persona silhouette */}
+                    <svg
+                      viewBox="0 0 200 200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="absolute inset-0 w-full h-full"
+                      style={{ display: "none" }}
+                      aria-hidden="true"
+                    >
+                      <defs>
+                        <linearGradient id="founderAvatarGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="rgba(255,255,255,0.96)" />
+                          <stop offset="100%" stopColor="rgba(255,255,255,0.72)" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M 28 200 C 28 142 58 124 100 124 C 142 124 172 142 172 200 Z"
+                        fill="url(#founderAvatarGrad)"
+                      />
+                      <rect
+                        x="84"
+                        y="100"
+                        width="32"
+                        height="34"
+                        rx="2"
+                        fill="url(#founderAvatarGrad)"
+                      />
+                      <circle cx="100" cy="78" r="42" fill="url(#founderAvatarGrad)" />
+                      <path
+                        d="M 58 76 C 58 42 78 32 100 32 C 122 32 142 42 142 76 C 134 60 118 54 100 54 C 82 54 66 60 58 76 Z"
+                        fill="rgba(255,255,255,0.78)"
+                      />
+                    </svg>
                   </div>
                 </div>
                 <Sparkles className="absolute top-6 right-6 w-5 h-5 text-white/40 float-decor" />
