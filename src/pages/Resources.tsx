@@ -151,34 +151,75 @@ const Resources = () => {
                   onClick={() => navigate("/resource-detail", { state: featured })}
                 >
                   <div className="grid md:grid-cols-2 gap-0">
-                    <div className="relative bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] p-10 md:p-14 grain-overlay overflow-hidden">
-                      <div className="absolute inset-0 opacity-10">
+                    <div className="relative bg-gradient-to-br from-[#2E5BDA] to-[#4874E8] p-10 md:p-14 grain-overlay overflow-hidden flex flex-col justify-between min-h-[280px]">
+                      {/* Grid */}
+                      <div className="absolute inset-0 opacity-[0.10]">
                         <div
                           className="absolute inset-0"
                           style={{
                             backgroundImage:
                               "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
                             backgroundSize: "40px 40px",
+                            maskImage:
+                              "radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 75%)",
+                            WebkitMaskImage:
+                              "radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 75%)",
                           }}
                         />
                       </div>
+                      {/* Soft glow orbs */}
+                      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                        <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/15 blur-[80px]" />
+                        <div className="absolute -bottom-20 -left-10 w-48 h-48 rounded-full bg-[#42A5F5]/35 blur-[80px]" />
+                      </div>
+
                       <span className="corner-plus text-white/40 top-4 left-4" />
+                      <span className="corner-plus text-white/40 top-4 right-4" />
+                      <span className="corner-plus text-white/40 bottom-4 left-4" />
                       <span className="corner-plus text-white/40 bottom-4 right-4" />
 
-                      <div className="relative z-10">
-                        <span className="eyebrow eyebrow-on-dark mb-6">Featured</span>
-                        <div className="mt-6 inline-flex items-center justify-center h-16 w-16 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md">
-                          {(() => {
-                            const Icon = iconMap[featured.iconName];
-                            return Icon ? <Icon className="w-7 h-7 text-white" /> : null;
-                          })()}
+                      {/* Top row: eyebrow + type chip */}
+                      <div className="relative z-10 flex items-center justify-between gap-3 flex-wrap">
+                        <span className="eyebrow eyebrow-on-dark">Featured</span>
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/[0.12] border border-white/25 text-[10px] uppercase tracking-[0.15em] font-semibold text-white backdrop-blur-md capitalize">
+                          {featured.type.replace("-", " ")}
+                        </span>
+                      </div>
+
+                      {/* Centerpiece: large rounded icon tile with rings */}
+                      <div className="relative z-10 self-start flex items-center gap-4">
+                        <div className="relative">
+                          {/* Outer ring */}
+                          <div className="absolute -inset-3 rounded-2xl border border-white/15" />
+                          <div className="absolute -inset-1.5 rounded-2xl border border-white/25" />
+                          <div className="relative inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-white/[0.14] border border-white/30 backdrop-blur-md shadow-[0_12px_32px_-8px_rgba(0,0,0,0.4)]">
+                            {(() => {
+                              const Icon = iconMap[featured.iconName];
+                              return Icon ? <Icon className="w-9 h-9 text-white" /> : null;
+                            })()}
+                          </div>
                         </div>
+                        <div className="hidden sm:block">
+                          <div className="font-display text-2xl font-bold text-white leading-tight">
+                            From The
+                            <br />
+                            <span className="font-serif-accent text-white/85">
+                              Build Floor
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bottom row: signature */}
+                      <div className="relative z-10 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] font-semibold text-white/70">
+                        <span className="h-px w-6 bg-white/60" />
+                        Codenest Collective
                       </div>
                     </div>
 
                     <div className="p-8 md:p-10 flex flex-col justify-center">
-                      <span className="inline-flex items-center self-start px-2.5 py-1 rounded-full bg-muted text-[10px] uppercase tracking-[0.15em] font-semibold text-muted-foreground capitalize mb-4">
-                        {featured.type.replace("-", " ")}
+                      <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-primary mb-3">
+                        Featured Article
                       </span>
                       <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors mb-4 leading-tight">
                         {featured.title}

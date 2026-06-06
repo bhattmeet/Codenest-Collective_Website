@@ -274,12 +274,12 @@ const Careers = () => {
                       <span className="corner-plus text-foreground/20 top-4 left-4" />
                       <span className="corner-plus text-foreground/20 top-4 right-4" />
 
-                      <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
+                      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
                         <div className="flex-1 min-w-0">
                           <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-primary/70 mb-2 inline-block">
                             {job.department}
                           </span>
-                          <h3 className="font-display text-xl md:text-2xl font-semibold tracking-tight text-foreground mb-2">
+                          <h3 className="font-display text-xl md:text-2xl font-semibold tracking-tight text-foreground mb-3 break-words">
                             {job.title}
                           </h3>
                           <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-muted-foreground">
@@ -297,27 +297,27 @@ const Careers = () => {
                             </span>
                           </div>
                         </div>
-
-                        <div className="flex flex-wrap gap-2 items-center">
-                          <button
-                            onClick={() => toggleJobDetails(job.id)}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md border border-border bg-card text-foreground text-sm font-semibold hover:border-primary hover:text-primary transition-all"
-                          >
-                            {isExpanded ? "Show Less" : "View Details"}
-                          </button>
-                          <button
-                            onClick={() => handleApply(job)}
-                            className="shine-sweep inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[hsl(var(--primary))] text-white text-sm font-semibold hover:bg-[hsl(var(--primary-hover))] transition-all shadow-soft"
-                          >
-                            <span className="relative z-[2]">Apply Now</span>
-                            <ArrowUpRight className="w-3.5 h-3.5 relative z-[2]" />
-                          </button>
-                        </div>
                       </div>
 
-                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
                         {job.description}
                       </p>
+
+                      <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
+                        <button
+                          onClick={() => toggleJobDetails(job.id)}
+                          className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-md border border-border bg-card text-foreground text-sm font-semibold hover:border-primary hover:text-primary transition-all"
+                        >
+                          {isExpanded ? "Show Less" : "View Details"}
+                        </button>
+                        <button
+                          onClick={() => handleApply(job)}
+                          className="shine-sweep inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-md bg-[hsl(var(--primary))] text-white text-sm font-semibold hover:bg-[hsl(var(--primary-hover))] transition-all shadow-soft"
+                        >
+                          <span className="relative z-[2]">Apply Now</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 relative z-[2]" />
+                        </button>
+                      </div>
 
                       {isExpanded && (
                         <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 mt-6 pt-6 border-t border-border">

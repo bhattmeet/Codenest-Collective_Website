@@ -140,7 +140,11 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* NB: keep scroll-behavior as `auto` so page-to-page navigation jumps
+       instantly to the top instead of animating. In-page smooth scrolls
+       (e.g. footer anchor links into /services#mobile-engineering) opt in
+       via scrollIntoView({ behavior: "smooth" }) at the call site. */
+    scroll-behavior: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
