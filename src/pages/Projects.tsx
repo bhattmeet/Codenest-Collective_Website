@@ -11,6 +11,151 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 // Export projects data for use in other components
 export const allProjects = [
     {
+      title: "DMShop",
+      category: "AI",
+      industry: "E-commerce",
+      description: "Unified order management for Instagram D2C sellers. An OpenAI-powered parser converts conversational DMs into structured orders; Razorpay payment links are generated in one click and auto-confirmed via webhook.",
+      tech: ["Flutter Web", "Node.js", "MongoDB", "Instagram Graph API", "OpenAI GPT-4o-mini", "Razorpay"],
+      image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=1200&h=630&fit=crop",
+      github: "",
+      demo: "",
+      problem: "Indian Instagram D2C sellers run their entire sales operation across 4+ apps — DMs for enquiries, WhatsApp for payment screenshots, Sheets for tracking, UPI app for confirmation — with a 15–25% miss/error rate during high-volume windows.",
+      // Case Study Details
+      caseStudyImage: "url(https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=1600&h=900&fit=crop)",
+      duration: "R&D Initiative · 2025",
+      teamSize: "Codenest in-house",
+      challenge: "A seller with 20,000 followers receives 30–60 DM orders per day. Each enquiry becomes a multi-step manual process across four disconnected tools: check availability, reply with price, share payment details on WhatsApp, verify payment screenshot in PhonePe, log in Google Sheets, mark shipped. The cost: fragmented pipelines with no single source of truth, missed and duplicate orders during sale-day spikes, screenshot fraud and missed genuine payments, zero live inventory leading to overselling, and revenue that's unknown until end-of-day Sheets math. Existing solutions either price out the segment (Shopify-class platforms) or solve only one slice of the problem (WhatsApp Business, generic chatbots). The challenge: build a single seller dashboard that captures Instagram DMs, extracts structured orders without manual entry, runs a kanban order pipeline, and closes the payment loop — all without asking the customer to install anything.",
+      solution: "Built a Flutter Web dashboard (PWA-capable, runs in the seller's browser) backed by a Node.js + MongoDB API. Instagram DMs flow in via the Meta Graph API webhook — the handler validates the HMAC-SHA256 signature, responds with HTTP 200 within Meta's 5-second window, and dispatches incoming messages asynchronously. Each DM is parsed by GPT-4o-mini in JSON-mode with a system prompt that includes the seller's product catalogue; the model returns structured product_id, variant, quantity, delivery address, and a confidence score — low-confidence extractions are flagged for review instead of auto-creating orders. Razorpay Payment Links are generated server-side with the exact order amount, sent back via the Graph API to the same DM thread, and confirmed via webhook with HMAC validation. Inventory is decremented atomically using MongoDB's findOneAndUpdate with a stock > 0 guard, preventing overselling at high DM volume. The pipeline is a kanban: Enquiry → Confirmed → Paid → Shipped → Delivered, with full audit trail per order.",
+      results: [
+        "Order miss / error rate projected to drop from 15–25% to under 2% with structured inbox",
+        "Time to confirm one order projected to drop from 8–12 min (across 4 apps) to under 90 seconds",
+        "Payment verification fully automated via Razorpay webhook — no screenshot fraud, no missed payments",
+        "Atomic inventory deduction eliminates overselling at high DM volume",
+        "Live revenue dashboard replaces end-of-day Sheets reconciliation",
+        "AI parser tested across conversational, multilingual, and abbreviated DM patterns",
+        "2–3 seller hours saved per day at 40 orders/day baseline (40 × 6 min of manual work)"
+      ],
+      features: [
+        "Smart DM inbox — incoming Instagram DMs arrive via Meta Graph webhook within seconds",
+        "OpenAI GPT-4o-mini order parser with confidence scoring and review-queue fallback",
+        "Razorpay Payment Link generation with one-click send-back to the DM thread",
+        "Auto-confirmed orders via Razorpay payment webhook with HMAC validation",
+        "Kanban order pipeline: Enquiry → Confirmed → Paid → Shipped → Delivered",
+        "Atomic inventory deduction with MongoDB findOneAndUpdate and stock > 0 guard",
+        "Live revenue dashboard with daily, weekly, monthly breakdowns and top-product analytics",
+        "Product catalogue with SKUs, variants, low-stock thresholds, and inline stock counts",
+        "DM reply composer with template messages and payment-link insertion",
+        "OAuth Instagram account connect and Razorpay key setup in a guided settings flow",
+        "Webhook signature validation (HMAC-SHA256) on every Meta and Razorpay event"
+      ],
+      testimonials: [
+        {
+          quote: "The parser is the trick. We're not asking the seller to retype an order — the DM becomes the order. That single jump kills the four-app sprawl and gets them to a paid status in under a minute.",
+          author: "Meet Bhatt",
+          role: "Founder, Codenest Collective",
+          initials: "MB"
+        }
+      ]
+    },
+    {
+      title: "ClinicNest",
+      category: "AI",
+      industry: "Healthcare",
+      description: "WhatsApp-first appointment and patient record system for Tier-2/3 Indian clinics. Patients book via WhatsApp; receptionists and doctors use an offline-first Flutter app that syncs to a Node.js backend. Zero patient app installation required.",
+      tech: ["Flutter", "Riverpod", "Isar", "Node.js", "MongoDB", "WhatsApp Business API"],
+      image: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=1200&h=630&fit=crop",
+      github: "",
+      demo: "",
+      problem: "India has 600,000+ registered clinics in Tier-2/3 cities running on paper registers, WhatsApp voice notes, and handwritten prescriptions — producing 30–40% no-show rates, 15–20% double-booking days, and lost patient histories.",
+      // Case Study Details
+      caseStudyImage: "url(https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=1600&h=900&fit=crop)",
+      duration: "R&D Initiative · 2025",
+      teamSize: "Codenest in-house",
+      challenge: "A typical single-doctor clinic in Tier-2 India processes 40–70 consultations per day with no structured digital system. Existing options fail this segment: Practo Pro is too expensive and requires patient app installs; WhatsApp Business has no scheduling logic, reminders, or history; custom development costs ₹2–10L upfront with no ongoing support. The challenge was to remove the three persistent failures — scheduling conflicts, the no-show epidemic, and lost patient history — without changing how patients and doctors already communicate. That meant zero patient app installs, an interface a receptionist could learn in under two hours, and full offline capability for clinics with unreliable connectivity. The system had to handle conversational booking ('tomorrow 11am', 'Friday morning', 'cancel my appointment'), route messages correctly for doctors practising at multiple clinics, and remain trustworthy as the source of truth for patient records over time.",
+      solution: "Built a Flutter app for clinic staff (receptionist + doctor) backed by a Node.js + MongoDB API with Meta's WhatsApp Cloud API integration. Patients interact entirely through WhatsApp — no install. A rule-based NLP parser (not an LLM, by deliberate choice for latency and zero external dependency) extracts intent, date, time, and patient context from conversational messages: BOOK, CANCEL, RESCHEDULE. Offline-first architecture writes every state change to Isar locally; a background sync service pushes deltas to the backend when connectivity is restored, with last-write-wins conflict resolution against the server timestamp. A two-stage reminder engine sends a 24-hour message and a 2-hour Confirm/Cancel/Reschedule prompt — patient responses parse back via webhook and update the receptionist's dashboard in real time. Multi-clinic doctor profiles route incoming WhatsApp messages to the correct clinic based on the originating phone number, supporting the common Tier-2 reality of doctors practising at 2–3 locations on different days. Authentication uses JWT with clinic_id and role claims (admin, doctor, receptionist) and HMAC-SHA256 verification on every WhatsApp webhook.",
+      results: [
+        "No-show rate projected to drop from 30–40% to 8–12% with automated 2-stage reminders (WHO 2021 benchmark)",
+        "Double-bookings projected to drop from 15–20% of days to under 1% with structured slot management",
+        "Average booking time projected at under 90 seconds via WhatsApp vs. 4–6 min by phone",
+        "Receptionist onboarding target: under 2 hours (vs. 2–3 days for existing clinic software)",
+        "Patient history retrieval under 15 seconds via Isar indexed query (vs. 5–10 min paper search)",
+        "Revenue loss from no-shows projected to reduce by 70–80% at ₹200 average consultation fee",
+        "Zero patient app installs required — WhatsApp covers 530M+ active users in India",
+        "Offline-first sync tested across simulated network drops with no data loss"
+      ],
+      features: [
+        "WhatsApp-first patient booking via Meta Cloud API — zero app install for patients",
+        "Rule-based NLP appointment parser (BOOK / CANCEL / RESCHEDULE intents, low-latency, no LLM dependency)",
+        "Two-stage smart reminder engine: 24-hour message + 2-hour Confirm/Cancel/Reschedule action buttons",
+        "Offline-first Flutter app with Isar local database and background delta-sync",
+        "Multi-clinic doctor profile with per-clinic schedule, receptionist access, and patient list",
+        "Structured prescription writer with drug autocomplete and WhatsApp share",
+        "Receptionist dashboard with live appointment queue, arrived / no-show flags, and slot management",
+        "Patient profile with full visit history, prescriptions, vitals log, and chronic condition tags",
+        "Monthly analytics: no-shows, average wait time, diagnosis distribution, PDF export",
+        "RBAC with JWT scoped to clinic_id + role (admin / doctor / receptionist)",
+        "Webhook signature validation (HMAC-SHA256) on every WhatsApp event"
+      ],
+      testimonials: [
+        {
+          quote: "The bet is simple: meet patients where they already are, and meet receptionists with an interface they can learn in an hour. Every feature past that comes back to those two principles.",
+          author: "Meet Bhatt",
+          role: "Founder, Codenest Collective",
+          initials: "MB"
+        }
+      ]
+    },
+    {
+      title: "FleetPulse",
+      category: "Mobile Apps",
+      industry: "Logistics",
+      description: "Real-time fleet visibility for India's small logistics operators. Two native Android apps — for drivers and fleet owners — broadcast live GPS via WebSocket, with offline trip logs, fuel analytics, and km-based maintenance alerts. No hardware GPS device required.",
+      tech: ["Kotlin", "Jetpack Compose", "Hilt", "Room", "Node.js", "PostgreSQL", "WebSockets", "Google Maps SDK"],
+      image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&h=630&fit=crop",
+      github: "",
+      demo: "",
+      problem: "70% of India's 3.5M registered goods vehicles are run by small operators (under 20 trucks) with no live fleet visibility — position is communicated by phone call or a WhatsApp Google Maps screenshot, fuel is tracked on paper, and maintenance is reactive.",
+      // Case Study Details
+      caseStudyImage: "url(https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&h=900&fit=crop)",
+      duration: "R&D Initiative · 2025",
+      teamSize: "Codenest in-house",
+      challenge: "A fleet owner managing 8–15 trucks across Gujarat or Maharashtra has no live view of where those trucks are at any given moment. Position is a 15–30 minute delayed estimate. Fuel — 40–45% of total revenue — is tracked on paper receipts that are regularly lost, forged, or misread, creating opportunities for skimming that no owner can detect. Maintenance is purely reactive: trucks break down, then get fixed, costing ₹15,000–50,000 per unscheduled breakdown and 15–20% of annual fleet downtime. Existing solutions don't reach this segment — Samsara/Fleetio are priced for 50+ vehicle USD-contract fleets, TrackoBit/Uffizio require ₹2,000+ hardware GPS install per truck, and Tookan/LogiNext are built for delivery startups not freight fleets. The challenge was to deliver real-time visibility, fuel analytics, and maintenance scheduling using only the driver's existing Android phone — no hardware, no SIM module, no vehicle modification — while surviving Doze mode, battery optimisation, and unreliable cellular coverage on highway and rural routes.",
+      solution: "Built two native Kotlin + Jetpack Compose Android apps — one for drivers, one for fleet owners — backed by a Node.js + PostgreSQL + WebSocket backend. The driver app runs an Android Foreground Service with a persistent notification, which exempts it from Doze mode and battery kill; GPS positions are pushed every 5 seconds over a persistent OkHttp WebSocket connection. The Node.js WebSocket hub maintains a fleet-scoped subscriber map and broadcasts each incoming GPS event to all subscribed owner clients in the same fleet, observed at p95 latency under 400ms. Every GPS point, fuel entry, and maintenance flag is written to Room locally first; a WorkManager job monitors connectivity and syncs pending records to PostgreSQL when reconnected — guaranteeing trip data integrity across highway dead zones. The fleet owner Android dashboard renders live truck markers on Google Maps with tap-for-driver-detail, plus a fleet status panel filterable by active/idle/offline. Fuel analytics run as PostgreSQL window functions triggered at trip close: per-truck km/litre (to identify declining efficiency or skimming), per-route cost (to flag unprofitable runs), and fleet-level monthly fuel spend (for budget planning). Maintenance scheduling is km-based per truck, surfacing service-due alerts before breakdown. JWT auth carries fleet_id + role claims; driver tokens are scoped to a single truck_id, owner tokens to fleet_id read-only across all trucks.",
+      results: [
+        "Fleet position visibility projected to drop from 15–30 min WhatsApp delay to under 5 seconds (WebSocket p95 under 400ms)",
+        "Fuel cost visibility moves from paper estimate to full per-truck km/litre analytics with skimming detection",
+        "Unscheduled breakdown rate projected to reduce 30–40% with km-based preventive maintenance alerts",
+        "Per-route cost computed from real fuel + distance data — enabling accurate client pricing and unprofitable-route flags",
+        "Client ETA accuracy improves from ±45 min estimate to GPS-derived live ETA via Google Maps API",
+        "Driver accountability shifts from self-reported to GPS-verified immutable trip log (Room + PostgreSQL)",
+        "Zero tracking hardware required — replaces ₹2,000+/truck hardware GPS install with the driver's existing Android phone",
+        "Offline trip log survives highway dead zones with WorkManager-backed sync on reconnect"
+      ],
+      features: [
+        "Driver Android app with foreground GPS service surviving Doze mode and battery optimisation",
+        "WebSocket-based real-time position broadcasting (p95 latency under 400ms)",
+        "Fleet owner dashboard with live Google Maps view of all trucks plus tabular status panel",
+        "Offline trip log with Room (TripPoint, FuelEntry, MaintenanceFlag, TripSummary) and WorkManager sync",
+        "Fuel entry capture with photo receipt, odometer, litres, and price — offline-capable",
+        "Per-truck km/litre analytics with PostgreSQL window functions and fuel-skimming flags",
+        "Per-route cost / km computation supporting accurate client pricing",
+        "Monthly fleet-level fuel spend trend and per-truck efficiency comparison charts",
+        "km-based maintenance schedule with service-due alerts and completion log",
+        "Polyline trip replay on Google Maps for any historical trip",
+        "Driver-reported maintenance flags with type, severity, optional photo",
+        "JWT auth with fleet_id + role claims; driver tokens scoped to a single truck_id",
+        "CSV export of trips, fuel entries, and analytics for accounting"
+      ],
+      testimonials: [
+        {
+          quote: "The insight is that the driver's phone is already there. You don't need a ₹2,000 box on every truck — you need software that respects Doze mode, survives the highway dead zone, and broadcasts position before the receptionist asks where the truck is.",
+          author: "Meet Bhatt",
+          role: "Founder, Codenest Collective",
+          initials: "MB"
+        }
+      ]
+    },
+    {
       title: "Space Xploration",
       category: "Mobile Apps",
       industry: "Education",
@@ -401,10 +546,11 @@ const Projects = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // Filter labels from Copy Doc Section 06 — "The Work"
-  const filters = ["All", "Mobile", "Backend", "Design", "Full-Stack"];
+  const filters = ["All", "AI", "Mobile", "Backend", "Design", "Full-Stack"];
 
   // Map display label → underlying category values in allProjects
   const filterMap: Record<string, string[]> = {
+    AI: ["AI"],
     Mobile: ["Mobile Apps"],
     Backend: ["Backend"],
     Design: ["UI/UX Design"],
