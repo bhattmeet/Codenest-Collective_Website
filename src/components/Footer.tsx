@@ -27,9 +27,12 @@ const Footer = () => {
     },
   ];
 
-  // Distinct destinations only — every link below opens a different page.
+  // Distinct destinations only — every link below opens a different page,
+  // except the AI Engineering anchor which deep-links straight to the
+  // capability card on /services because it's worth promoting separately.
   const sitemapLinks = [
     { label: "The Work", to: "/projects" },
+    { label: "AI Engineering", to: "/services#ai-engineering" },
     { label: "What We Build", to: "/services" },
     { label: "How We Run It", to: "/about" },
     { label: "The Collective", to: "/company" },

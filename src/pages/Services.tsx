@@ -4,6 +4,7 @@ import {
   Palette,
   Server,
   Wrench,
+  Sparkles,
   ArrowUpRight,
   CheckCircle,
   Lightbulb,
@@ -44,7 +45,7 @@ const Services = () => {
     return () => clearTimeout(t);
   }, [hash]);
 
-  // 6 capabilities from Copy Doc Section 04 — "What We Build"
+  // 7 capabilities — original 6 from Copy Doc Section 04, plus AI Engineering.
   // `anchor` is the slug used by Footer deep-links (e.g. /services#mobile-engineering)
   const services = [
     {
@@ -60,6 +61,20 @@ const Services = () => {
         "Architecture review and refactors on existing apps",
       ],
       cta: "Scope A Mobile Project",
+    },
+    {
+      anchor: "ai-engineering",
+      icon: Sparkles,
+      title: "AI Engineering",
+      tag: "LLMs, RAG, agents",
+      description:
+        "AI features that don't just demo well — they ship. We integrate LLMs, build RAG pipelines over your own data, design tool-calling agents with guardrails, and wire it into your existing product without a rewrite. We pick the model based on cost, latency, and quality — not on whatever's trending.",
+      benefits: [
+        "LLM integration · OpenAI, Anthropic Claude, Gemini, Llama",
+        "RAG pipelines · vector DBs (pgvector, Pinecone, Qdrant)",
+        "Agentic workflows · tool calling, evals, fallbacks",
+      ],
+      cta: "Scope An AI Build",
     },
     {
       anchor: "backend-api",
@@ -197,10 +212,10 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden bg-page-glow">
       <SEO
-        title="What We Build — Six Capability Areas"
-        description="Mobile Engineering (Flutter, Android), Backend & API (Node.js), UI/UX Design Systems, Cloud & Deployment, MVP Consulting, and Team Augmentation. Six capability areas. Every project lands in one or more."
+        title="What We Build — Seven Capability Areas"
+        description="AI Engineering (LLMs, RAG, agents), Mobile Engineering (Flutter, Android), Backend & API (Node.js), UI/UX Design Systems, Cloud & Deployment, MVP Consulting, and Team Augmentation. Seven capability areas. Every project lands in one or more."
         path="/services"
-        keywords="Flutter development, Android Kotlin, Node.js backend, Figma design systems, MVP consulting, team augmentation, Codenest Collective"
+        keywords="AI engineering, LLM integration, RAG pipeline, AI agents, Flutter development, Android Kotlin, Node.js backend, Figma design systems, MVP consulting, team augmentation, Codenest Collective"
       />
       <ScrollProgress />
       <Navigation />
@@ -235,7 +250,7 @@ const Services = () => {
           <div className="max-w-4xl">
             <span className="eyebrow eyebrow-on-dark mb-6 animate-fade-in">What We Build</span>
             <h1 className="hero-title text-white mb-6 word-reveal leading-[1.05]">
-              <span style={{ animationDelay: "0.05s" }}>Six capability areas.</span>{" "}
+              <span style={{ animationDelay: "0.05s" }}>Seven capability areas.</span>{" "}
               <br />
               <span style={{ animationDelay: "0.2s" }} className="font-serif-accent text-white/85">
                 Every project
@@ -262,7 +277,7 @@ const Services = () => {
             <div className="lg:col-span-5">
               <span className="eyebrow mb-4">The Stack</span>
               <h2 className="font-display mt-3 leading-[1.1]">
-                Six capabilities.{" "}
+                Seven capabilities.{" "}
                 <span className="brush-underline gradient-text">One collective.</span>
               </h2>
             </div>

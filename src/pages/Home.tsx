@@ -128,16 +128,25 @@ const Home = () => {
     { value: 4, suffix: "", label: "Core Tech Stacks" },
   ];
 
-  // "What We Build" — 6 capabilities from copy doc Section 04
+  // "What We Build" — preview of 6 capabilities (full set lives on /services).
+  // AI Engineering owns the featured 2x2 tile because it's the most attractive
+  // capability for new visitors.
   const services = [
+    {
+      icon: Sparkles,
+      title: "AI Engineering",
+      tag: "LLMs · RAG · agents",
+      description:
+        "AI features that ship, not demo. LLM integration, RAG over your own data, agentic workflows with guardrails — wired into your product without a rewrite.",
+      span: "lg:col-span-2 lg:row-span-2",
+      featured: true,
+    },
     {
       icon: Smartphone,
       title: "Mobile Engineering",
       tag: "Flutter & Native Android",
       description:
-        "Cross-platform or native — we scope it based on your product's constraints, not our preference.",
-      span: "lg:col-span-2 lg:row-span-2",
-      featured: true,
+        "Cross-platform or native — we scope it based on your product, not our preference.",
     },
     {
       icon: Server,
@@ -162,12 +171,6 @@ const Home = () => {
       title: "MVP Consulting",
       tag: "Idea → architecture in one week",
       description: "Scope, stack, sprint plan, and effort estimate — before a line of code.",
-    },
-    {
-      icon: Code,
-      title: "Team Augmentation",
-      tag: "Senior engineers, embedded",
-      description: "Senior engineers who drop in without a three-month ramp-up.",
     },
   ];
 
@@ -262,6 +265,10 @@ const Home = () => {
     "Flutter",
     "Kotlin",
     "Node.js",
+    "OpenAI",
+    "Claude",
+    "LangChain",
+    "pgvector",
     "Figma",
     "Firebase",
     "PostgreSQL",
@@ -448,7 +455,7 @@ const Home = () => {
             <div className="lg:col-span-5">
               <span className="eyebrow mb-4">What We Build</span>
               <h2 className="font-display mt-3 mb-4 leading-[1.1]">
-                Six capability areas.{" "}
+                Seven capability areas.{" "}
                 <span className="brush-underline gradient-text">One collective.</span>
               </h2>
             </div>
