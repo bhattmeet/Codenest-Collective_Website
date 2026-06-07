@@ -887,10 +887,8 @@ const Home = () => {
             {/* Primary CTA — MailerLite "Get Started" form */}
             <div className="max-w-xl mx-auto mb-8 text-left">
               <MailerLiteForm
-                formId="XGmsby"
                 buttonText="Get Started"
                 successMessage="We'll be in touch within 24 hours."
-                className="is-inline"
               />
             </div>
 
