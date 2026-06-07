@@ -128,9 +128,9 @@ const Home = () => {
     { value: 4, suffix: "", label: "Core Tech Stacks" },
   ];
 
-  // "What We Build" — preview of 6 capabilities (full set lives on /services).
+  // "What We Build" — all 7 capabilities mirroring the /services page.
   // AI Engineering owns the featured 2x2 tile because it's the most attractive
-  // capability for new visitors.
+  // capability for new visitors; the rest flow as regular tiles.
   const services = [
     {
       icon: Sparkles,
@@ -171,6 +171,12 @@ const Home = () => {
       title: "MVP Consulting",
       tag: "Idea → architecture in one week",
       description: "Scope, stack, sprint plan, and effort estimate — before a line of code.",
+    },
+    {
+      icon: Wrench,
+      title: "Team Augmentation",
+      tag: "Senior engineers, embedded",
+      description: "Senior engineers who drop in without a three-month ramp-up.",
     },
   ];
 
