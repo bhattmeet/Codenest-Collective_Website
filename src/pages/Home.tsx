@@ -28,6 +28,7 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import SEO from "@/components/SEO";
 import TechStack from "@/components/TechStack";
+import MailerLiteForm from "@/components/MailerLiteForm";
 import { useEffect, useRef, useState } from "react";
 import { allProjects } from "./Projects";
 import { companyStats } from "@/data/companyData";
@@ -878,11 +879,27 @@ const Home = () => {
               <span className="font-serif-accent text-white/90">or a deadline </span>
               <span className="brush-underline gradient-text-on-dark">you can't miss?</span>
             </h2>
-            <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-              We scope projects in 48 hours. Book a free 30-minute technical call — no pitch, no
-              commitment. We'll tell you what we'd build, how long it'd take, and what it'd cost.
-              If we're not the right fit, we'll say so.
+            <p className="text-lg text-white/70 max-w-2xl mx-auto mb-8 leading-relaxed">
+              We scope projects in 48 hours. Drop your email and we'll send you a free offer with
+              what we'd build, how long it'd take, and what it'd cost.
             </p>
+
+            {/* Primary CTA — MailerLite "Get Started" form */}
+            <div className="max-w-xl mx-auto mb-8 text-left">
+              <MailerLiteForm
+                formId="XGmsby"
+                buttonText="Get Started"
+                successMessage="We'll be in touch within 24 hours."
+                className="is-inline"
+              />
+            </div>
+
+            {/* Secondary actions */}
+            <div className="flex items-center justify-center gap-2 mb-6 text-[10px] uppercase tracking-[0.22em] font-semibold text-white/40">
+              <span className="h-px w-8 bg-white/20" />
+              Or talk to us directly
+              <span className="h-px w-8 bg-white/20" />
+            </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link to="/contact">
                 <button className="shine-sweep inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-white text-[hsl(var(--primary-deep))] font-semibold text-sm shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300">

@@ -1342,6 +1342,199 @@
 
 .page-transition { animation: fadeIn 0.5s var(--ease-premium); }
 
+/* ─────────────────────────────────────────────────────────────────
+   MailerLite embedded form — dark-on-navy override
+   The Universal SDK injects its own markup with inline styles, so we
+   reach for !important to stamp our spec on every nested element.
+   ───────────────────────────────────────────────────────────────── */
+.mailerlite-form-wrapper {
+  width: 100%;
+  max-width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mailerlite-form-wrapper .ml-embedded,
+.mailerlite-form-wrapper .ml-form-embedContainer,
+.mailerlite-form-wrapper .ml-form-embedWrapper,
+.mailerlite-form-wrapper .ml-form-embedBody,
+.mailerlite-form-wrapper .ml-form-align-center,
+.mailerlite-form-wrapper .ml-form-align-left,
+.mailerlite-form-wrapper .ml-form-align-right {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Hide MailerLite's default headline / paragraph / brand footer */
+.mailerlite-form-wrapper .ml-form-embedContent,
+.mailerlite-form-wrapper .ml-form-embedPermissions,
+.mailerlite-form-wrapper .ml-form-embedSubmitLoad,
+.mailerlite-form-wrapper .ml-form-recaptcha,
+.mailerlite-form-wrapper .ml-mobileForm {
+  display: none !important;
+}
+
+/* Input fields — black background, gray border, white text, Arial */
+.mailerlite-form-wrapper input[type="text"],
+.mailerlite-form-wrapper input[type="email"],
+.mailerlite-form-wrapper input[type="tel"],
+.mailerlite-form-wrapper input.form-control,
+.mailerlite-form-wrapper .ml-form-fieldRow input {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  border: 1px solid #333 !important;
+  border-radius: 4px !important;
+  background: #0a0a0a !important;
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  height: 46px !important;
+  padding: 0 14px !important;
+  width: 100% !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: border-color 0.18s ease-in-out !important;
+}
+
+.mailerlite-form-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.mailerlite-form-wrapper input:focus {
+  border-color: #5088FA !important;
+  box-shadow: 0 0 0 3px rgba(80, 136, 250, 0.18) !important;
+}
+
+/* Field row spacing */
+.mailerlite-form-wrapper .ml-form-fieldRow,
+.mailerlite-form-wrapper .ml-form-formContent {
+  margin-bottom: 12px !important;
+  padding: 0 !important;
+}
+
+/* Submit button — brand blue pill */
+.mailerlite-form-wrapper .ml-form-embedSubmit,
+.mailerlite-form-wrapper .ml-form-embedSubmit button,
+.mailerlite-form-wrapper button[type="submit"],
+.mailerlite-form-wrapper .primary {
+  width: 100% !important;
+}
+
+.mailerlite-form-wrapper .ml-form-embedSubmit button,
+.mailerlite-form-wrapper button[type="submit"],
+.mailerlite-form-wrapper .primary {
+  background: #5088FA !important;
+  background-color: #5088FA !important;
+  color: #ffffff !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  height: 46px !important;
+  padding: 0 24px !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 22px -8px rgba(80, 136, 250, 0.55) !important;
+  transition: background 0.18s ease-in-out, transform 0.18s ease-in-out !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.mailerlite-form-wrapper .ml-form-embedSubmit button:hover,
+.mailerlite-form-wrapper button[type="submit"]:hover {
+  background: #3F75E8 !important;
+  background-color: #3F75E8 !important;
+  transform: translateY(-1px) !important;
+}
+
+.mailerlite-form-wrapper .ml-form-embedSubmit button:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Spinner inside button stays white */
+.mailerlite-form-wrapper .ml-form-embedSubmitLoad,
+.mailerlite-form-wrapper .ml-form-embedSubmit .loader {
+  color: #ffffff !important;
+}
+
+/* Success state — our brand-blue inline message */
+.mailerlite-form-wrapper .ml-form-successBody,
+.mailerlite-form-wrapper .ml-form-successContent {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(80, 136, 250, 0.35) !important;
+  border-radius: 4px !important;
+  padding: 18px 20px !important;
+  text-align: left !important;
+}
+
+.mailerlite-form-wrapper .ml-form-successBody h4,
+.mailerlite-form-wrapper .ml-form-successBody p,
+.mailerlite-form-wrapper .ml-form-successContent h4,
+.mailerlite-form-wrapper .ml-form-successContent p {
+  color: #5088FA !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* Validation errors */
+.mailerlite-form-wrapper .ml-error,
+.mailerlite-form-wrapper label.error {
+  color: #ff6b6b !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 12px !important;
+  margin-top: 4px !important;
+}
+
+.mailerlite-form-wrapper input.error,
+.mailerlite-form-wrapper input.invalid {
+  border-color: #ff6b6b !important;
+}
+
+/* Inline layout: stack on mobile, side-by-side from md up */
+@media (min-width: 768px) {
+  .mailerlite-form-wrapper.is-inline .ml-form-embedBody {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .mailerlite-form-wrapper.is-inline .ml-form-formContent {
+    flex: 1 1 auto !important;
+    margin-bottom: 0 !important;
+  }
+  .mailerlite-form-wrapper.is-inline .ml-form-embedSubmit {
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+  .mailerlite-form-wrapper.is-inline .ml-form-embedSubmit button {
+    min-width: 180px !important;
+  }
+}
+
+/* Mobile responsive — full width on screens below 768px */
+@media (max-width: 767px) {
+  .mailerlite-form-wrapper,
+  .mailerlite-form-wrapper .ml-form-embedBody,
+  .mailerlite-form-wrapper input,
+  .mailerlite-form-wrapper .ml-form-embedSubmit,
+  .mailerlite-form-wrapper .ml-form-embedSubmit button {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
